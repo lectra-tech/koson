@@ -11,6 +11,7 @@ class KsonTest {
         val json = obj {
             "key" to 3.4
             "anotherKey" to array("test", "test2", 1, 2.433, true)
+            "nullsAreAllowedToo" to null
         }
         val toto = array("aa",
             obj {

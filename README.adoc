@@ -6,18 +6,25 @@ Concise Kotlin DSL for building JSON objects
 
 [source, java]
 ----
-obj {
+val object = obj {
   "key" to 3.4
-  "anotherKey" to array("test", "test2", 1, 2.433, true),
+  "anotherKey" to array("test", "test2", 1, 2.433, true)
   "nullsAreAllowedToo" to null
 }.toString()
 
-array("aa",
-      obj {
-        "key" to 3.4
-        "anotherKey" to array("test", "test2", 1, 2.433, true)
-      }
+// print(object)
+// {"key":3.4,"anotherKey":["test","test2",1,2.433,true],"nullsAreAllowedToo":null}
+
+
+val array = array("aa",
+  obj {
+    "key" to 3.4
+     "anotherKey" to array("test", "test2", 1, 2.433, true)
+  }
 ).toString()
+
+// print(array)
+// ["aa",{"key":3.4,"anotherKey":["test","test2",1,2.433,true]}]
 ----
 
 == Strong type constraints
@@ -32,7 +39,7 @@ array("aa",
 ** obj
 ** array
 
-== build prerequisites
+== Build prerequisites
 
 * `java` version 8 or later
 * `maven`
