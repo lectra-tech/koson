@@ -4,7 +4,7 @@ import org.json.JSONArray
 import org.json.JSONObject
 import org.junit.jupiter.api.Test
 
-class KsonTest {
+class KosonTest {
 
     @Test
     fun name() {

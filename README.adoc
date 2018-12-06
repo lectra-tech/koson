@@ -1,4 +1,4 @@
-= Kson
+= Koson
 
 Concise Kotlin DSL for building JSON objects
 

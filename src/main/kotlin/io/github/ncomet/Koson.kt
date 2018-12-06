@@ -1,25 +1,25 @@
 package io.github.ncomet
 
-sealed class KsonTypes
-data class ObjectType(val values: MutableMap<String, KsonTypes> = mutableMapOf()) : KsonTypes() {
+sealed class KosonTypes
+data class ObjectType(val values: MutableMap<String, KosonTypes> = mutableMapOf()) : KosonTypes() {
     override fun toString(): String = values.entries.joinToString(",", "{", "}") { (k, v) -> "\"$k\":$v" }
 }
-data class ArrayType(val values: MutableList<KsonTypes> = mutableListOf()) : KsonTypes() {
+data class ArrayType(val values: MutableList<KosonTypes> = mutableListOf()) : KosonTypes() {
     override fun toString(): String = "[${values.joinToString(",")}]"
 }
-private data class StringType(val value: String) : KsonTypes() {
+private data class StringType(val value: String) : KosonTypes() {
     override fun toString(): String = "\"$value\""
 }
-private data class NumberType(val value: Double) : KsonTypes() {
+private data class NumberType(val value: Double) : KosonTypes() {
     override fun toString(): String = value.toString()
 }
-private data class IntType(val value: Int) : KsonTypes() {
+private data class IntType(val value: Int) : KosonTypes() {
     override fun toString(): String = value.toString()
 }
-private data class BooleanType(val value: Boolean) : KsonTypes() {
+private data class BooleanType(val value: Boolean) : KosonTypes() {
     override fun toString(): String = value.toString()
 }
-private object NullType : KsonTypes() {
+private object NullType : KosonTypes() {
     override fun toString(): String = "null"
 }
 
@@ -47,7 +47,7 @@ class ObjectTypeBuilder(val objectType: ObjectType = ObjectType()) {
     }
 }
 
-private fun <T> toAllowedType(value: T?) : KsonTypes {
+private fun <T> toAllowedType(value: T?) : KosonTypes {
     return when (value) {
         is String -> StringType(value)
         is Int -> IntType(value)
