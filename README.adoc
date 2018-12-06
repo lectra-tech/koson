@@ -1,0 +1,44 @@
+= Kson
+
+Concise Kotlin DSL for building JSON objects
+
+== how to use
+
+[source, java]
+----
+obj {
+  "key" to 3.4
+  "anotherKey" to array("test", "test2", 1, 2.433, true),
+  "nullsAreAllowedToo" to null
+}.toString()
+
+array("aa",
+      obj {
+        "key" to 3.4
+        "anotherKey" to array("test", "test2", 1, 2.433, true)
+      }
+).toString()
+----
+
+== Strong type constraints
+
+* if a key (attribute) duplicate is found, an `IllegalArgumentException` is raised
+* An `IllegalArgumentException` is raised if a JSON element values is not one of the following `Kotlin` types
+** String
+** Double
+** Int
+** Boolean
+** null
+** obj
+** array
+
+== build prerequisites
+
+* `java` version 8 or later
+* `maven`
+
+[source]
+----
+mvn package
+----
+
