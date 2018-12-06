@@ -29,7 +29,7 @@ fun obj(block: ObjectTypeBuilder.() -> Unit): ObjectType {
     return builder.objectType
 }
 
-fun <T> array(vararg elements: T?): ArrayType {
+fun array(vararg elements: Any?): ArrayType {
     val builder = ArrayTypeBuilder()
     elements.forEach { builder.arrayType.values.add(toAllowedType(it)) }
     return builder.arrayType
