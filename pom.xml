@@ -8,7 +8,13 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>io.github.ncomet koson</name>
+    <name>Koson</name>
+    <description>Concise Kotlin DSL for building JSON objects</description>
+    <contributors>
+        <contributor>
+            <name>Nicolas Comet</name>
+        </contributor>
+    </contributors>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
