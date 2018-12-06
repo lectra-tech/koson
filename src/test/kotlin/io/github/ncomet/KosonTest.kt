@@ -19,8 +19,8 @@ class KosonTest {
                 "anotherKey" to array("test", "test2", 1, 2.433, true)
             }
         )
-        println(json.toString())
-        println(toto.toString())
+        println(json)
+        println(toto)
 
         println(
             JSONObject().put(
