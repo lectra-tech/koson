@@ -6,6 +6,25 @@ Concise Kotlin DSL for building JSON objects
 
 [source, java]
 ----
+// to define an empty object
+obj { }
+
+// to define an object
+obj {
+  "attribute" to 42
+}
+
+// to define an array
+array ["element"]
+
+// to an empty array
+emptyArray
+----
+
+NOTE: Any combination of these instruction is possible
+
+[source, java]
+----
 val object = obj {
   "key" to 3.4
   "anotherKey" to array ["test", "test2", 1, 2.433, true]
