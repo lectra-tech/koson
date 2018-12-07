@@ -6,7 +6,8 @@ data class ObjectType(val values: MutableMap<String, KosonType> = mutableMapOf()
     override fun toString(): String =
             values.entries.joinToString(",", "{", "}") { (k, v) -> "\"$k\":$v" }
 }
-data class ArrayType(val values: MutableList<KosonType> = mutableListOf()) : KosonType() {
+
+data class ArrayType(val values: List<KosonType> = listOf()) : KosonType() {
     override fun toString(): String = "[${values.joinToString(",")}]"
 }
 private data class StringType(val value: String) : KosonType() {
@@ -23,11 +24,11 @@ private object NullType : KosonType() {
     override fun toString(): String = "null"
 }
 
-val emptyArray: ArrayType = ArrayType()
+val emptyArray: ArrayType = ArrayType(emptyList())
 
 object array {
     operator fun get(vararg elements: Any?) : KosonType =
-            ArrayType(elements.map { toAllowedType(it) }.toMutableList())
+        ArrayType(elements.map { toAllowedType(it) }.toList())
 }
 
 fun obj(block: ObjectTypeBuilder.() -> Unit): ObjectType {
@@ -49,7 +50,7 @@ class ObjectTypeBuilder(val objectType: ObjectType = ObjectType()) {
     val array : ObjectTypeBuilder = this
 
     operator fun ObjectTypeBuilder.get(vararg elements: Any?) : KosonType =
-            ArrayType(elements.map { toAllowedType(it) }.toMutableList())
+        ArrayType(elements.map { toAllowedType(it) }.toList())
 
     infix fun Any.to(value: Any?): Nothing =
         throw IllegalArgumentException("Key \"$this\" of ($this to $value) is not of type String")
