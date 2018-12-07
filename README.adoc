@@ -6,7 +6,7 @@ image:https://travis-ci.org/ncomet/koson.svg?branch=master["Build Status", link=
 
 Concise Kotlin DSL for building JSON objects and their String representations
 
-== How to use
+== DSL
 
 [source, Kotlin]
 ----
@@ -27,6 +27,8 @@ array ["element", 12.345, null]
 ----
 
 NOTE: Any combination of these instructions is possible
+
+== How to use
 
 [source, Kotlin]
 ----
