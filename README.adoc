@@ -74,7 +74,7 @@ A `Kotlin` `IllegalArgumentException` is raised on these conditions :
 
 * A JSON key (attribute) duplicate is found
 * A JSON key (attribute) is not of `Kotlin` type `String`
-* A JSON value is not one of the following `Kotlin` types :
+* A JSON value is not one of the following `Kotlin`/DSL types :
 ** String
 ** Number
 ** Boolean
