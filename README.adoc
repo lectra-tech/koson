@@ -79,8 +79,8 @@ A `Kotlin` `IllegalArgumentException` is raised on these conditions :
 ** Number
 ** Boolean
 ** null
-** obj
-** array
+** obj { }
+** array [...]
 ** arrayØ (empty array)
 
 == Runtime prerequisites
