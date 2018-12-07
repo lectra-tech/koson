@@ -74,6 +74,6 @@ A `Kotlin` `IllegalArgumentException` is raised on these conditions :
 
 [source]
 ----
-mvn package
+./mvnw package
 ----
 
