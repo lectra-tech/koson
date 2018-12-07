@@ -21,7 +21,7 @@ array ["element"]
 emptyArray
 ----
 
-NOTE: Any combination of these instruction is possible
+NOTE: Any combination of these instructions is possible
 
 [source, java]
 ----
