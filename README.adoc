@@ -20,7 +20,7 @@ obj {
 }
 
 // for an empty array
-emptyArray
+arrayØ
 
 // for an array
 array ["element", 12.345, null]
@@ -35,7 +35,7 @@ val obj = obj {
   "anotherKey" to array ["test", "test2", 1, 2.433, true]
   "nullValue" to null
   "emptyObject" to obj { }
-  "emptyArray" to emptyArray
+  "emptyArray" to arrayØ
 }
 
 println(obj) // see below
@@ -79,6 +79,7 @@ A `Kotlin` `IllegalArgumentException` is raised on these conditions :
 ** null
 ** obj
 ** array
+** arrayØ (empty array)
 
 == Runtime prerequisites
 
