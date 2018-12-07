@@ -92,12 +92,14 @@ class KosonTest : WithAssertions {
     inner class ExceptionCases : WithAssertions {
         @Test
         fun `array must throw exception when illegal element is inserted`() {
-            assertThrows<IllegalArgumentException> { array['c'] }
+            val message = assertThrows<IllegalArgumentException> { array['c'] }.message
+            assertThat(message).isEqualTo("value <c> is not one of allowed JSON value types (String, Number, Boolean, obj{}, array[...], arrayØ or null)")
         }
 
         @Test
         fun `object must throw exception when illegal element is added`() {
-            assertThrows<IllegalArgumentException> { obj { "key" to 'c' } }
+            val message = assertThrows<IllegalArgumentException> { obj { "key" to 'c' } }.message
+            assertThat(message).isEqualTo("value <c> is not one of allowed JSON value types (String, Number, Boolean, obj{}, array[...], arrayØ or null)")
         }
 
         @Test
@@ -113,12 +115,19 @@ class KosonTest : WithAssertions {
         @Test
         @Suppress("UNREACHABLE_CODE")
         fun `object containing a Pair_to() function`() {
-            assertThrows<IllegalArgumentException> {
+            val message = assertThrows<IllegalArgumentException> {
                 obj {
                     10 to "element"
                     "correctKey" to 136.36
                 }
-            }
+            }.message
+            assertThat(message).isEqualTo("key <10> of (10 to element) is not of type String")
+        }
+
+        @Test
+        fun `object containing a Pair_to() function with obj {} as key`() {
+            val message = assertThrows<IllegalArgumentException> { obj { obj {} to 1.2 } }.message
+            assertThat(message).isEqualTo("key <{}> of ({} to 1.2) is not of type String")
         }
 
         @Test
@@ -133,9 +142,15 @@ class KosonTest : WithAssertions {
 
         @Test
         fun `object containing a to function with array keyword as value`() {
-            assertThrows<IllegalArgumentException> { obj { "error" to array } }
+            val message = assertThrows<IllegalArgumentException> { obj { "error" to array } }.message
+            assertThat(message).isEqualTo("<array> keyword cannot be used as value, to describe an empty array, use <arrayØ> instead")
         }
 
+        @Test
+        fun `array containing array keyword as value`() {
+            val message = assertThrows<IllegalArgumentException> { array[array] }.message
+            assertThat(message).isEqualTo("<array> keyword cannot be used as value, to describe an empty array, use <arrayØ> instead")
+        }
     }
 
 }

@@ -41,12 +41,12 @@ class Koson(val objectType: ObjectType = ObjectType()) {
         if (!objectType.values.containsKey(this)) {
             objectType.values[this] = toAllowedType(value)
         } else {
-            throw IllegalArgumentException("Key \"$this\" of ($this to $value) is already defined for json object")
+            throw IllegalArgumentException("key <$this> of ($this to $value) is already defined for json object")
         }
     }
 
     infix fun Any.to(value: Any?): Nothing =
-        throw IllegalArgumentException("Key \"$this\" of ($this to $value) is not of type String")
+        throw IllegalArgumentException("key <$this> of ($this to $value) is not of type String")
 
 }
 
@@ -58,6 +58,7 @@ private fun <T> toAllowedType(value: T?) : KosonType {
         is ObjectType -> value
         is ArrayType -> value
         null -> NullType
-        else -> throw IllegalArgumentException("Value [$value] is not one of allowed JSON value types (String, Number, Boolean, obj{}, array[...], arrayØ or null)")
+        array -> throw IllegalArgumentException("<array> keyword cannot be used as value, to describe an empty array, use <arrayØ> instead")
+        else -> throw IllegalArgumentException("value <$value> is not one of allowed JSON value types (String, Number, Boolean, obj{}, array[...], arrayØ or null)")
     }
 }
