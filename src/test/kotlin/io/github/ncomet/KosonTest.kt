@@ -75,7 +75,8 @@ class KosonTest : WithAssertions {
 
         @Test
         fun `testing all types in an array`() {
-            val array = array["aa",
+            val array = array[
+                    "koson",
                     obj {
                         "key" to 3.4
                         "anotherKey" to array["test", "test2", 1, 2.333, true, null]
@@ -83,7 +84,7 @@ class KosonTest : WithAssertions {
             ]
 
             assertThat("$array")
-                    .isEqualTo("[\"aa\",{\"key\":3.4,\"anotherKey\":[\"test\",\"test2\",1,2.333,true,null]}]")
+                .isEqualTo("[\"koson\",{\"key\":3.4,\"anotherKey\":[\"test\",\"test2\",1,2.333,true,null]}]")
         }
     }
 
