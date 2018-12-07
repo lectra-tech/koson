@@ -1,3 +1,5 @@
+image:https://github.com/ncomet/koson/blob/master/image/koson-logo.svg["Koson Logo", align="center"]
+
 = Koson
 
 image:https://travis-ci.org/ncomet/koson.svg?branch=master["Build Status", link="https://travis-ci.org/ncomet/koson"]
