@@ -52,7 +52,7 @@ class ObjectTypeBuilder(val objectType: ObjectType = ObjectType()) {
             ArrayType(elements.map { toAllowedType(it) }.toMutableList())
 
     infix fun Any.to(ignored: Any?): Nothing =
-            throw IllegalArgumentException("Using Pair.to() function is not allowed by Koson")
+            throw IllegalArgumentException("Key \"$this\" is not of type String")
 }
 
 private fun <T> toAllowedType(value: T?) : KosonType {
@@ -63,6 +63,6 @@ private fun <T> toAllowedType(value: T?) : KosonType {
         is ObjectType -> value
         is ArrayType -> value
         null -> NullType
-        else -> throw IllegalArgumentException("Value [$value] has not a recognized JSON compatible type")
+        else -> throw IllegalArgumentException("Value [$value] is not one of allowed JSON value types (String, Number, Boolean, obj, array, null)")
     }
 }
