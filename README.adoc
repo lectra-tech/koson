@@ -74,7 +74,6 @@ A `Kotlin` `IllegalArgumentException` is raised on these conditions :
 == Build prerequisites
 
 * `Java` 8 or later
-* `maven`
 
 [source]
 ----
