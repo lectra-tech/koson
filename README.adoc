@@ -12,13 +12,14 @@ obj { }
 // for an object
 obj {
   "attribute" to 42
+  "another" to true
 }
-
-// for an array
-array ["element"]
 
 // for an empty array
 emptyArray
+
+// for an array
+array ["element", 12.345, null]
 ----
 
 NOTE: Any combination of these instructions is possible
