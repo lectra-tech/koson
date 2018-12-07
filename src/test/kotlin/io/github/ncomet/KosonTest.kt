@@ -100,7 +100,12 @@ class KosonTest : WithAssertions {
 
         @Test
         fun `object containing a Pair_to() function`() {
-            assertThrows<IllegalArgumentException> { obj { 10 to "element" } }
+            assertThrows<IllegalArgumentException> {
+                obj {
+                    10 to "element"
+                    "correctKey" to 136.36
+                }
+            }
         }
 
         @Test

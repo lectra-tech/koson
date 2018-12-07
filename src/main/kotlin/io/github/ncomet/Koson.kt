@@ -37,6 +37,7 @@ fun obj(block: ObjectTypeBuilder.() -> Unit): ObjectType {
 }
 
 class ObjectTypeBuilder(val objectType: ObjectType = ObjectType()) {
+
     infix fun <T> String.to(value: T?) {
         if (!objectType.values.containsKey(this)) {
             objectType.values[this] = toAllowedType(value)
@@ -50,9 +51,8 @@ class ObjectTypeBuilder(val objectType: ObjectType = ObjectType()) {
     operator fun ObjectTypeBuilder.get(vararg elements: Any?) : KosonType =
             ArrayType(elements.map { toAllowedType(it) }.toMutableList())
 
-    infix fun Any.to(ignored: Any?) {
-        throw IllegalArgumentException("Using Pair.to() function is not allowed by Koson")
-    }
+    infix fun Any.to(ignored: Any?): Nothing =
+            throw IllegalArgumentException("Using Pair.to() function is not allowed by Koson")
 }
 
 private fun <T> toAllowedType(value: T?) : KosonType {
