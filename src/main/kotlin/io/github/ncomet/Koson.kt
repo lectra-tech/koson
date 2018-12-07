@@ -31,13 +31,13 @@ object array {
         ArrayType(elements.map { toAllowedType(it) }.toList())
 }
 
-fun obj(block: ObjectTypeBuilder.() -> Unit): ObjectType {
-    val builder = ObjectTypeBuilder()
+fun obj(block: Koson.() -> Unit): ObjectType {
+    val builder = Koson()
     builder.block()
     return builder.objectType
 }
 
-class ObjectTypeBuilder(val objectType: ObjectType = ObjectType()) {
+class Koson(val objectType: ObjectType = ObjectType()) {
 
     infix fun <T> String.to(value: T?) {
         if (!objectType.values.containsKey(this)) {
@@ -47,13 +47,14 @@ class ObjectTypeBuilder(val objectType: ObjectType = ObjectType()) {
         }
     }
 
-    val array : ObjectTypeBuilder = this
+    val array: Koson = this
 
-    operator fun ObjectTypeBuilder.get(vararg elements: Any?) : KosonType =
+    operator fun Koson.get(vararg elements: Any?): KosonType =
         ArrayType(elements.map { toAllowedType(it) }.toList())
 
     infix fun Any.to(value: Any?): Nothing =
         throw IllegalArgumentException("Key \"$this\" of ($this to $value) is not of type String")
+
 }
 
 private fun <T> toAllowedType(value: T?) : KosonType {
