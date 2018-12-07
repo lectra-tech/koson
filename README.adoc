@@ -1,5 +1,7 @@
 = Koson
 
+image:https://travis-ci.org/ncomet/koson.svg?branch=master["Build Status", link="https://travis-ci.org/ncomet/koson"]
+
 Concise Kotlin DSL for building JSON objects
 
 == How to use
