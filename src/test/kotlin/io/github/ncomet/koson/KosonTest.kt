@@ -1,4 +1,4 @@
-package io.github.ncomet
+package io.github.ncomet.koson
 
 import org.assertj.core.api.WithAssertions
 import org.junit.jupiter.api.Nested

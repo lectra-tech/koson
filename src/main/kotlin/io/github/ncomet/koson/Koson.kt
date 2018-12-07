@@ -1,4 +1,4 @@
-package io.github.ncomet
+package io.github.ncomet.koson
 
 sealed class KosonType
 
@@ -6,14 +6,12 @@ data class ObjectType(val values: MutableMap<String, KosonType> = mutableMapOf()
     override fun toString(): String =
             values.entries.joinToString(",", "{", "}") { (k, v) -> "\"$k\":$v" }
 }
-
 data class ArrayType(val values: List<KosonType> = listOf()) : KosonType() {
     override fun toString(): String = "[${values.joinToString(",")}]"
 }
 private data class StringType(val value: String) : KosonType() {
     override fun toString(): String = "\"$value\""
 }
-
 private data class NumberType(val value: Number) : KosonType() {
     override fun toString(): String = value.toString()
 }
@@ -65,6 +63,6 @@ private fun <T> toAllowedType(value: T?) : KosonType {
         is ObjectType -> value
         is ArrayType -> value
         null -> NullType
-        else -> throw IllegalArgumentException("Value [$value] is not one of allowed JSON value types (String, Number, Boolean, obj, array or null)")
+        else -> throw IllegalArgumentException("Value [$value] is not one of allowed JSON value types (String, Number, Boolean, obj{}, array[...], emptyArray or null)")
     }
 }
