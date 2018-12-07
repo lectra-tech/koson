@@ -32,9 +32,9 @@ object array {
 }
 
 fun obj(block: Koson.() -> Unit): ObjectType {
-    val builder = Koson()
-    builder.block()
-    return builder.objectType
+    val koson = Koson()
+    koson.block()
+    return koson.objectType
 }
 
 class Koson(val objectType: ObjectType = ObjectType()) {
