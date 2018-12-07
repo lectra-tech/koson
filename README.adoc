@@ -19,7 +19,7 @@ val object = obj {
 val array = array["aa",
   obj {
     "key" to 3.4
-     "anotherKey" to array("test", "test2", 1, 2.433, true)
+     "anotherKey" to array["test", "test2", 1, 2.433, true]
   }
 ]
 
