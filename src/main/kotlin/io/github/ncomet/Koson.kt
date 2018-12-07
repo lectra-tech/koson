@@ -42,7 +42,7 @@ class ObjectTypeBuilder(val objectType: ObjectType = ObjectType()) {
         if (!objectType.values.containsKey(this)) {
             objectType.values[this] = toAllowedType(value)
         } else {
-            throw IllegalArgumentException("Key \"$this\" is already defined for json object")
+            throw IllegalArgumentException("Key \"$this\" of ($this to $value) is already defined for json object")
         }
     }
 
@@ -51,8 +51,8 @@ class ObjectTypeBuilder(val objectType: ObjectType = ObjectType()) {
     operator fun ObjectTypeBuilder.get(vararg elements: Any?) : KosonType =
             ArrayType(elements.map { toAllowedType(it) }.toMutableList())
 
-    infix fun Any.to(ignored: Any?): Nothing =
-            throw IllegalArgumentException("Key \"$this\" is not of type String")
+    infix fun Any.to(value: Any?): Nothing =
+        throw IllegalArgumentException("Key \"$this\" of ($this to $value) is not of type String")
 }
 
 private fun <T> toAllowedType(value: T?) : KosonType {
@@ -63,6 +63,6 @@ private fun <T> toAllowedType(value: T?) : KosonType {
         is ObjectType -> value
         is ArrayType -> value
         null -> NullType
-        else -> throw IllegalArgumentException("Value [$value] is not one of allowed JSON value types (String, Number, Boolean, obj, array, null)")
+        else -> throw IllegalArgumentException("Value [$value] is not one of allowed JSON value types (String, Number, Boolean, obj, array or null)")
     }
 }

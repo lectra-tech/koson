@@ -38,6 +38,7 @@ class KosonTest : WithAssertions {
         }
 
         @Test
+        @Suppress("UNUSED_EXPRESSION")
         fun `object not containing a Koson_to() function`() {
             assertThat(obj { "content" }.toString()).isEqualTo("{}")
         }
@@ -109,6 +110,7 @@ class KosonTest : WithAssertions {
         }
 
         @Test
+        @Suppress("UNREACHABLE_CODE")
         fun `object containing a Pair_to() function`() {
             assertThrows<IllegalArgumentException> {
                 obj {
