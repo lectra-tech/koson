@@ -1,28 +1,35 @@
 package io.github.ncomet
 
-sealed class KosonTypes
+sealed class KosonType
 
-data class ObjectType(val values: MutableMap<String, KosonTypes> = mutableMapOf()) : KosonTypes() {
+data class ObjectType(val values: MutableMap<String, KosonType> = mutableMapOf()) : KosonType() {
     override fun toString(): String =
             values.entries.joinToString(",", "{", "}") { (k, v) -> "\"$k\":$v" }
 }
-data class ArrayType(val values: MutableList<KosonTypes> = mutableListOf()) : KosonTypes() {
+data class ArrayType(val values: MutableList<KosonType> = mutableListOf()) : KosonType() {
     override fun toString(): String = "[${values.joinToString(",")}]"
 }
-private data class StringType(val value: String) : KosonTypes() {
+private data class StringType(val value: String) : KosonType() {
     override fun toString(): String = "\"$value\""
 }
-private data class NumberType(val value: Double) : KosonTypes() {
+private data class NumberType(val value: Double) : KosonType() {
     override fun toString(): String = value.toString()
 }
-private data class IntType(val value: Int) : KosonTypes() {
+private data class IntType(val value: Int) : KosonType() {
     override fun toString(): String = value.toString()
 }
-private data class BooleanType(val value: Boolean) : KosonTypes() {
+private data class BooleanType(val value: Boolean) : KosonType() {
     override fun toString(): String = value.toString()
 }
-private object NullType : KosonTypes() {
+private object NullType : KosonType() {
     override fun toString(): String = "null"
+}
+
+val emptyArray: ArrayType = ArrayType()
+
+object array {
+    operator fun get(vararg elements: Any?) : KosonType =
+            ArrayType(elements.map { toAllowedType(it) }.toMutableList())
 }
 
 fun obj(block: ObjectTypeBuilder.() -> Unit): ObjectType {
@@ -30,14 +37,6 @@ fun obj(block: ObjectTypeBuilder.() -> Unit): ObjectType {
     builder.block()
     return builder.objectType
 }
-
-fun array(vararg elements: Any?): ArrayType {
-    val builder = ArrayTypeBuilder()
-    elements.forEach { builder.arrayType.values.add(toAllowedType(it)) }
-    return builder.arrayType
-}
-
-private class ArrayTypeBuilder(val arrayType: ArrayType = ArrayType())
 
 class ObjectTypeBuilder(val objectType: ObjectType = ObjectType()) {
     infix fun <T> String.to(value: T?) {
@@ -47,9 +46,18 @@ class ObjectTypeBuilder(val objectType: ObjectType = ObjectType()) {
             throw IllegalArgumentException("Key \"$this\" is already defined for json object")
         }
     }
+
+    val array : ObjectTypeBuilder = this
+
+    operator fun ObjectTypeBuilder.get(vararg elements: Any?) : KosonType =
+            ArrayType(elements.map { toAllowedType(it) }.toMutableList())
+
+    infix fun Any.to(ignored: Any?) {
+        throw IllegalArgumentException("Using Pair.to() function is not allowed by Koson")
+    }
 }
 
-private fun <T> toAllowedType(value: T?) : KosonTypes {
+private fun <T> toAllowedType(value: T?) : KosonType {
     return when (value) {
         is String -> StringType(value)
         is Int -> IntType(value)
