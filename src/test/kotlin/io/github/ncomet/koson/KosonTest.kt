@@ -17,14 +17,14 @@ class KosonTest : WithAssertions {
 
     @Test
     fun `empty array`() {
-        assertThat(emptyArray.toString()).isEqualTo("[]")
+        assertThat(arrayØ.toString()).isEqualTo("[]")
     }
 
     @Nested
     inner class ContainingCases : WithAssertions {
         @Test
         fun `object containing array`() {
-            assertThat(obj { "array" to emptyArray }.toString()).isEqualTo("{\"array\":[]}")
+            assertThat(obj { "array" to arrayØ }.toString()).isEqualTo("{\"array\":[]}")
         }
 
         @Test
@@ -45,7 +45,7 @@ class KosonTest : WithAssertions {
 
         @Test
         fun `array containing array`() {
-            assertThat(array[emptyArray].toString()).isEqualTo("[[]]")
+            assertThat(array[arrayØ].toString()).isEqualTo("[[]]")
         }
     }
 

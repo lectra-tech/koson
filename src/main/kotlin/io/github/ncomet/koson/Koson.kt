@@ -22,7 +22,7 @@ private object NullType : KosonType() {
     override fun toString(): String = "null"
 }
 
-val emptyArray: ArrayType = ArrayType(emptyList())
+val arrayØ: ArrayType = ArrayType(emptyList())
 
 object array {
     operator fun get(vararg elements: Any?) : KosonType =
@@ -63,6 +63,6 @@ private fun <T> toAllowedType(value: T?) : KosonType {
         is ObjectType -> value
         is ArrayType -> value
         null -> NullType
-        else -> throw IllegalArgumentException("Value [$value] is not one of allowed JSON value types (String, Number, Boolean, obj{}, array[...], emptyArray or null)")
+        else -> throw IllegalArgumentException("Value [$value] is not one of allowed JSON value types (String, Number, Boolean, obj{}, array[...], arrayØ or null)")
     }
 }
