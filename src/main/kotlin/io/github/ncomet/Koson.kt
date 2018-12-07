@@ -12,10 +12,8 @@ data class ArrayType(val values: MutableList<KosonType> = mutableListOf()) : Kos
 private data class StringType(val value: String) : KosonType() {
     override fun toString(): String = "\"$value\""
 }
-private data class NumberType(val value: Double) : KosonType() {
-    override fun toString(): String = value.toString()
-}
-private data class IntType(val value: Int) : KosonType() {
+
+private data class NumberType(val value: Number) : KosonType() {
     override fun toString(): String = value.toString()
 }
 private data class BooleanType(val value: Boolean) : KosonType() {
@@ -60,8 +58,7 @@ class ObjectTypeBuilder(val objectType: ObjectType = ObjectType()) {
 private fun <T> toAllowedType(value: T?) : KosonType {
     return when (value) {
         is String -> StringType(value)
-        is Int -> IntType(value)
-        is Double -> NumberType(value)
+        is Number -> NumberType(value)
         is Boolean -> BooleanType(value)
         is ObjectType -> value
         is ArrayType -> value
