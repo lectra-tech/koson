@@ -2,7 +2,7 @@
 
 Concise Kotlin DSL for building JSON objects
 
-== how to use
+== How to use
 
 [source, java]
 ----
@@ -61,9 +61,14 @@ A `Kotlin` `IllegalArgumentException` is raised on these conditions :
 ** obj
 ** array
 
+== Runtime prerequisites
+
+* `Kotlin`
+* `Java` 8 or later
+
 == Build prerequisites
 
-* `java` version 8 or later
+* `Java` 8 or later
 * `maven`
 
 [source]
