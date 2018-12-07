@@ -92,12 +92,12 @@ class KosonTest : WithAssertions {
     inner class ExceptionCases : WithAssertions {
         @Test
         fun `array must throw exception when illegal element is inserted`() {
-            assertThrows<IllegalArgumentException> { array[Pair("D", "D")] }
+            assertThrows<IllegalArgumentException> { array['c'] }
         }
 
         @Test
         fun `object must throw exception when illegal element is added`() {
-            assertThrows<IllegalArgumentException> { obj { "key" to Pair("D", "D") } }
+            assertThrows<IllegalArgumentException> { obj { "key" to 'c' } }
         }
 
         @Test
@@ -123,12 +123,17 @@ class KosonTest : WithAssertions {
 
         @Test
         fun `object containing a to function with this as a value`() {
-            assertThrows<IllegalArgumentException> { obj { "daad" to this } }
+            assertThrows<IllegalArgumentException> { obj { "error" to this } }
         }
 
         @Test
         fun `object containing a Pair_to() function with this as a value`() {
             assertThrows<IllegalArgumentException> { obj { 10 to this } }
+        }
+
+        @Test
+        fun `object containing a to function with array keyword as value`() {
+            assertThrows<IllegalArgumentException> { obj { "error" to array } }
         }
 
     }
