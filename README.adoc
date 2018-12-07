@@ -13,9 +13,8 @@ val object = obj {
   "emptyArrayIsPossible" to emptyArray
 }
 
-// print(object)
-// {"key":3.4,"anotherKey":["test","test2",1,2.433,true],"nullsAreAllowedToo":null}
-
+// println(object)
+// {"key":3.4,"anotherKey":["test","test2",1,2.433,true],"nullsAreAllowedToo":null,"emptyArrayIsPossible":[]}
 
 val array = array["aa",
   obj {
@@ -24,7 +23,7 @@ val array = array["aa",
   }
 ]
 
-// print(array)
+// println(array)
 // ["aa",{"key":3.4,"anotherKey":["test","test2",1,2.433,true]}]
 ----
 
