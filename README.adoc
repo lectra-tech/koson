@@ -30,11 +30,12 @@ val object = obj {
   "key" to 3.4
   "anotherKey" to array ["test", "test2", 1, 2.433, true]
   "nullsAreAllowedToo" to null
-  "emptyArrayIsPossible" to emptyArray
+  "emptyObject" to obj { }
+  "emptyArray" to emptyArray
 }
 
 // println(object)
-// {"key":3.4,"anotherKey":["test","test2",1,2.433,true],"nullsAreAllowedToo":null,"emptyArrayIsPossible":[]}
+// {"key":3.4,"anotherKey":["test","test2",1,2.433,true],"nullsAreAllowedToo":null,"emptyObject":{},"emptyArray":[]}
 
 val array = array ["aa",
   obj {
