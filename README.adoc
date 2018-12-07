@@ -33,7 +33,7 @@ NOTE: Any combination of these instructions is possible
 val obj = obj {
   "key" to 3.4
   "anotherKey" to array ["test", "test2", 1, 2.433, true]
-  "nullsAreAllowedToo" to null
+  "nullValue" to null
   "emptyObject" to obj { }
   "emptyArray" to emptyArray
 }
@@ -44,15 +44,15 @@ println(obj) // see below
 .println(obj)
 [source, json]
 ----
-{"key":3.4,"anotherKey":["test","test2",1,2.433,true],"nullsAreAllowedToo":null,"emptyObject":{},"emptyArray":[]}
+{"key":3.4,"anotherKey":["test","test2",1,2.433,true],"nullValue":null,"emptyObject":{},"emptyArray":[]}
 ----
 
 [source, Kotlin]
 ----
-val array = array ["aa",
+val array = array ["koson",
   obj {
     "key" to 3.4
-     "anotherKey" to array ["test", "test2", 1, 2.433, true]
+     "anotherKey" to array ["first", "second", 1, 2.433, true]
   }
 ]
 
@@ -62,7 +62,7 @@ println(array) // see below
 .println(array)
 [source, json]
 ----
-["aa",{"key":3.4,"anotherKey":["test","test2",1,2.433,true]}]
+["koson",{"key":3.4,"anotherKey":["first","second",1,2.433,true]}]
 ----
 
 == Strong type constraints
