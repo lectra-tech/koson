@@ -8,7 +8,7 @@ Concise Kotlin DSL for building JSON objects
 ----
 val object = obj {
   "key" to 3.4
-  "anotherKey" to array["test", "test2", 1, 2.433, true]
+  "anotherKey" to array ["test", "test2", 1, 2.433, true]
   "nullsAreAllowedToo" to null
   "emptyArrayIsPossible" to emptyArray
 }
@@ -16,10 +16,10 @@ val object = obj {
 // println(object)
 // {"key":3.4,"anotherKey":["test","test2",1,2.433,true],"nullsAreAllowedToo":null,"emptyArrayIsPossible":[]}
 
-val array = array["aa",
+val array = array ["aa",
   obj {
     "key" to 3.4
-     "anotherKey" to array["test", "test2", 1, 2.433, true]
+     "anotherKey" to array ["test", "test2", 1, 2.433, true]
   }
 ]
 
