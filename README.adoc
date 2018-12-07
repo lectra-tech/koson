@@ -6,18 +6,18 @@ Concise Kotlin DSL for building JSON objects
 
 [source, java]
 ----
-// to define an empty object
+// for an empty object
 obj { }
 
-// to define an object
+// for an object
 obj {
   "attribute" to 42
 }
 
-// to define an array
+// for an array
 array ["element"]
 
-// to an empty array
+// for an empty array
 emptyArray
 ----
 
