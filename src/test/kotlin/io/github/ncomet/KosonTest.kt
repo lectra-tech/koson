@@ -3,24 +3,32 @@ package io.github.ncomet
 import org.assertj.core.api.WithAssertions
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.TestInstance
+import org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS
 
+@TestInstance(PER_CLASS)
 class KosonTest : WithAssertions {
 
+    @Test
+    internal fun name() {
+        assertThat(true).isTrue()
+    }
+
     @Nested
-    class SimpleCases : WithAssertions {
+    inner class SimpleCases : WithAssertions {
         @Test
-        fun `emptyObject`() {
+        fun `empty object`() {
             assertThat(obj { }.toString()).isEqualTo("{}")
         }
 
         @Test
-        fun `emptyArray`() {
+        fun `empty array`() {
             assertThat(array().toString()).isEqualTo("[]")
         }
     }
 
     @Nested
-    class ContainingCases : WithAssertions {
+    inner class ContainingCases : WithAssertions {
         @Test
         fun `object containing array`() {
             assertThat(obj { "array" to array() }.toString()).isEqualTo("{\"array\":[]}")
@@ -43,7 +51,7 @@ class KosonTest : WithAssertions {
     }
 
     @Nested
-    class MoreComplexCases : WithAssertions {
+    inner class MoreComplexCases : WithAssertions {
         @Test
         fun `testing all types in an object`() {
             val obj = obj {

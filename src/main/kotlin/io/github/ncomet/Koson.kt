@@ -1,8 +1,10 @@
 package io.github.ncomet
 
 sealed class KosonTypes
+
 data class ObjectType(val values: MutableMap<String, KosonTypes> = mutableMapOf()) : KosonTypes() {
-    override fun toString(): String = values.entries.joinToString(",", "{", "}") { (k, v) -> "\"$k\":$v" }
+    override fun toString(): String =
+            values.entries.joinToString(",", "{", "}") { (k, v) -> "\"$k\":$v" }
 }
 data class ArrayType(val values: MutableList<KosonTypes> = mutableListOf()) : KosonTypes() {
     override fun toString(): String = "[${values.joinToString(",")}]"
