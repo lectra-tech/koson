@@ -1,3 +1,3 @@
-sudo: required
-
 language: java
+sudo: required
+jdk: openjdk11
