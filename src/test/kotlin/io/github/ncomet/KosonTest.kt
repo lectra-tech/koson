@@ -58,7 +58,17 @@ class KosonTest : WithAssertions {
                 "nullsAreAllowedToo" to null
             }
 
-            assertThat(obj.toString())
+            assertThat("$obj")
+                    .isEqualTo("{\"key\":3.4,\"anotherKey\":[\"test\",\"test2\",1,2.433,true],\"nullsAreAllowedToo\":null}")
+        }
+
+        @Test
+        fun `testing all types in an object inlined`() {
+            val obj = obj {
+                "key" to 3.4; "anotherKey" to array["test", "test2", 1, 2.433, true]; "nullsAreAllowedToo" to null
+            }
+
+            assertThat("$obj")
                     .isEqualTo("{\"key\":3.4,\"anotherKey\":[\"test\",\"test2\",1,2.433,true],\"nullsAreAllowedToo\":null}")
         }
 
@@ -71,7 +81,7 @@ class KosonTest : WithAssertions {
                     }
             ]
 
-            assertThat(array.toString())
+            assertThat("$array")
                     .isEqualTo("[\"aa\",{\"key\":3.4,\"anotherKey\":[\"test\",\"test2\",1,2.333,true,null]}]")
         }
     }
