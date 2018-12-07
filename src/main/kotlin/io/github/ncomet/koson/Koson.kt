@@ -45,11 +45,6 @@ class Koson(val objectType: ObjectType = ObjectType()) {
         }
     }
 
-    val array: Koson = this
-
-    operator fun Koson.get(vararg elements: Any?): KosonType =
-        ArrayType(elements.map { toAllowedType(it) }.toList())
-
     infix fun Any.to(value: Any?): Nothing =
         throw IllegalArgumentException("Key \"$this\" of ($this to $value) is not of type String")
 
