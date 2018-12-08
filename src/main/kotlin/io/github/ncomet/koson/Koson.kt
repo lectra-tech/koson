@@ -2,13 +2,16 @@ package io.github.ncomet.koson
 
 sealed class KosonType
 
-data class ObjectType(val values: MutableMap<String, KosonType> = mutableMapOf()) : KosonType() {
+data class ObjectType(internal val values: MutableMap<String, KosonType> = mutableMapOf()) : KosonType() {
     override fun toString(): String =
         values.entries.joinToString(",", "{", "}") { (k, v) -> "\"$k\":$v" }
+
+    operator fun get(key: String): KosonType? = values[key]
 }
 
-data class ArrayType(val values: List<KosonType> = listOf()) : KosonType() {
+data class ArrayType(private val values: List<KosonType> = listOf()) : KosonType() {
     override fun toString(): String = "[${values.joinToString(",")}]"
+    operator fun get(index: Int): KosonType = values[index]
 }
 
 private data class StringType(val value: String) : KosonType() {
