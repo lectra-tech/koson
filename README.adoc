@@ -72,16 +72,18 @@ println(array) // see below
 
 A detailed `Kotlin` `IllegalArgumentException` is raised on these conditions :
 
-* A JSON key (attribute) duplicate is found
-* A JSON key (attribute) is not of `Kotlin` type `String`
-* A JSON value is not one of the following `Kotlin`/DSL types :
+. A JSON key (attribute) duplicate is found in an _obj { }_
+. A JSON key (attribute) is not of `Kotlin` type `String` in an _obj { }_
+. A JSON value of an _obj { }_ or an _array [...]_ is not one of the following `Kotlin` or _Koson DSL_ types
 ** `String`
 ** `Number`
 ** `Boolean`
 ** `null`
-** obj { }
-** array [...]
-** arrayØ (empty array)
+** _obj { }_
+** _array [...]_
+** _arrayØ_ (empty array)
+
+NOTE: Inside an `obj { }`, any possible awaiting runtime exception of type 2. or 3. will flag next entries as unreachable code in the IDE.
 
 == Runtime prerequisites
 
