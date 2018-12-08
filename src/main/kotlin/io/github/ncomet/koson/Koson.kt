@@ -21,13 +21,10 @@ private object NullType : KosonType() {
 data class ObjectType(internal val values: MutableMap<String, KosonType> = mutableMapOf()) : KosonType() {
     override fun toString(): String =
         values.entries.joinToString(",", "{", "}") { (k, v) -> "\"$k\":$v" }
-
-    operator fun get(key: String): String = if (values.containsKey(key)) values[key].toString() else ""
 }
 
 data class ArrayType(private val values: List<KosonType> = listOf()) : KosonType() {
     override fun toString(): String = "[${values.joinToString(",")}]"
-    operator fun get(index: Int): String = if (index in 0 until values.size) values[index].toString() else ""
 }
 
 val arrayØ: ArrayType = ArrayType(emptyList())
