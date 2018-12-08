@@ -6,6 +6,8 @@ image:https://travis-ci.org/ncomet/koson.svg?branch=master["Build Status", link=
 
 A concise `Kotlin` DSL to build `JSON` objects and display their _String representations_
 
+Requiring no other dependency than `Kotlin`
+
 == DSL
 
 [source, Kotlin]
