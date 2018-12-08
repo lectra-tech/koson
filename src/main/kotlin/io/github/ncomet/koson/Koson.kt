@@ -2,18 +2,6 @@ package io.github.ncomet.koson
 
 sealed class KosonType
 
-data class ObjectType(internal val values: MutableMap<String, KosonType> = mutableMapOf()) : KosonType() {
-    override fun toString(): String =
-        values.entries.joinToString(",", "{", "}") { (k, v) -> "\"$k\":$v" }
-
-    operator fun get(key: String): KosonType? = values[key]
-}
-
-data class ArrayType(private val values: List<KosonType> = listOf()) : KosonType() {
-    override fun toString(): String = "[${values.joinToString(",")}]"
-    operator fun get(index: Int): KosonType = values[index]
-}
-
 private data class StringType(val value: String) : KosonType() {
     override fun toString(): String = "\"$value\""
 }
@@ -30,6 +18,18 @@ private object NullType : KosonType() {
     override fun toString(): String = "null"
 }
 
+data class ObjectType(internal val values: MutableMap<String, KosonType> = mutableMapOf()) : KosonType() {
+    override fun toString(): String =
+        values.entries.joinToString(",", "{", "}") { (k, v) -> "\"$k\":$v" }
+    operator fun get(key: String): KosonType? = values[key]
+
+}
+
+data class ArrayType(private val values: List<KosonType> = listOf()) : KosonType() {
+    override fun toString(): String = "[${values.joinToString(",")}]"
+    operator fun get(index: Int): KosonType = values[index]
+}
+
 val arrayØ: ArrayType = ArrayType(emptyList())
 
 object array {
@@ -43,7 +43,7 @@ fun obj(block: Koson.() -> Unit): ObjectType {
     return koson.objectType
 }
 
-class Koson(val objectType: ObjectType = ObjectType()) {
+class Koson(internal val objectType: ObjectType = ObjectType()) {
 
     infix fun String.to(value: String) {
         addValueIfFreeKey(StringType(value))
@@ -57,6 +57,7 @@ class Koson(val objectType: ObjectType = ObjectType()) {
         addValueIfFreeKey(BooleanType(value))
     }
 
+    @Suppress("UNUSED_PARAMETER")
     infix fun String.to(value: Nothing?) {
         addValueIfFreeKey(NullType)
     }
@@ -72,6 +73,7 @@ class Koson(val objectType: ObjectType = ObjectType()) {
     infix fun String.to(value: Any): Nothing =
         throw IllegalArgumentException("value <$value> of type [${value.javaClass.simpleName}] is not one of allowed JSON value types (String, Number, Boolean, null, obj{}, array[...] or arrayØ)")
 
+    @Suppress("UNUSED_PARAMETER")
     infix fun String.to(value: array): Nothing =
         throw IllegalArgumentException("<array> keyword cannot be used as value, to describe an empty array, use <arrayØ> instead")
 
