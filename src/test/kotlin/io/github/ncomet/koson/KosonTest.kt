@@ -41,6 +41,26 @@ class KosonTest : WithAssertions {
             .isEqualTo("[\"value\",9,7.6,3.2,false,{},[],[\"test\"],null]")
     }
 
+    @Test
+    fun `can access object content by key`() {
+        assertThat(obj { "toFind" to 42 }["toFind"]).isEqualTo("42")
+    }
+
+    @Test
+    fun `access to unknown key returns empty string`() {
+        assertThat(obj { "toFind" to 42 }["nope"]).isEqualTo("")
+    }
+
+    @Test
+    internal fun `can access array element by index`() {
+        assertThat(array[42, false, "4"][1]).isEqualTo("false")
+    }
+
+    @Test
+    internal fun `access to unknown array element returns empty string`() {
+        assertThat(array[42, false, "4"][3]).isEqualTo("")
+    }
+
     @Nested
     inner class ContainingCases : WithAssertions {
         @Test
