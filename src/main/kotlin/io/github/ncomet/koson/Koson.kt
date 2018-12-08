@@ -23,7 +23,6 @@ data class ObjectType(internal val values: MutableMap<String, KosonType> = mutab
         values.entries.joinToString(",", "{", "}") { (k, v) -> "\"$k\":$v" }
 
     operator fun get(key: String): String = if (values.containsKey(key)) values[key].toString() else ""
-
 }
 
 data class ArrayType(private val values: List<KosonType> = listOf()) : KosonType() {
