@@ -20,6 +20,27 @@ class KosonTest : WithAssertions {
         assertThat(arrayØ.toString()).isEqualTo("[]")
     }
 
+    @Test
+    fun `object with all possible types of value`() {
+        assertThat(obj {
+            "string" to "value"
+            "int" to 9
+            "double" to 7.6
+            "float" to 3.2f
+            "boolean" to false
+            "object" to obj { }
+            "emptyArray" to arrayØ
+            "array" to array["test"]
+            "null" to null
+        }.toString()).isEqualTo("{\"string\":\"value\",\"int\":9,\"double\":7.6,\"float\":3.2,\"boolean\":false,\"object\":{},\"emptyArray\":[],\"array\":[\"test\"],\"null\":null}")
+    }
+
+    @Test
+    internal fun `array with all possible types of value`() {
+        assertThat(array["value", 9, 7.6, 3.2f, false, obj { }, arrayØ, array["test"], null].toString())
+            .isEqualTo("[\"value\",9,7.6,3.2,false,{},[],[\"test\"],null]")
+    }
+
     @Nested
     inner class ContainingCases : WithAssertions {
         @Test
@@ -38,14 +59,14 @@ class KosonTest : WithAssertions {
         }
 
         @Test
-        @Suppress("UNUSED_EXPRESSION")
-        fun `object not containing a Koson_to() function`() {
-            assertThat(obj { "content" }.toString()).isEqualTo("{}")
+        fun `array containing array`() {
+            assertThat(array[arrayØ].toString()).isEqualTo("[[]]")
         }
 
         @Test
-        fun `array containing array`() {
-            assertThat(array[arrayØ].toString()).isEqualTo("[[]]")
+        @Suppress("UNUSED_EXPRESSION")
+        fun `expression object not containing a Koson_to() should do nothing`() {
+            assertThat(obj { "content" }.toString()).isEqualTo("{}")
         }
     }
 
@@ -60,7 +81,7 @@ class KosonTest : WithAssertions {
             }
 
             assertThat("$obj")
-                    .isEqualTo("{\"key\":3.4,\"anotherKey\":[\"test\",\"test2\",1,2.433,true],\"nullsAreAllowedToo\":null}")
+                .isEqualTo("{\"key\":3.4,\"anotherKey\":[\"test\",\"test2\",1,2.433,true],\"nullsAreAllowedToo\":null}")
         }
 
         @Test
@@ -70,7 +91,7 @@ class KosonTest : WithAssertions {
             }
 
             assertThat("$obj")
-                    .isEqualTo("{\"key\":3.4,\"anotherKey\":[\"test\",\"test2\",1,2.433,true],\"nullsAreAllowedToo\":null}")
+                .isEqualTo("{\"key\":3.4,\"anotherKey\":[\"test\",\"test2\",1,2.433,true],\"nullsAreAllowedToo\":null}")
         }
 
         @Test
@@ -97,8 +118,14 @@ class KosonTest : WithAssertions {
         }
 
         @Test
+        @Suppress("UNREACHABLE_CODE")
         fun `object must throw exception when illegal element is added`() {
-            val message = assertThrows<IllegalArgumentException> { obj { "key" to 'c' } }.message
+            val message = assertThrows<IllegalArgumentException> {
+                obj {
+                    "key" to 'c'
+                    "flaggedAsUnreachable" to true
+                }
+            }.message
             assertThat(message).isEqualTo("value <c> is not one of allowed JSON value types (String, Number, Boolean, obj{}, array[...], arrayØ or null)")
         }
 
@@ -118,7 +145,7 @@ class KosonTest : WithAssertions {
             val message = assertThrows<IllegalArgumentException> {
                 obj {
                     10 to "element"
-                    "correctKey" to 136.36
+                    "flaggedAsUnreachable" to 136.36
                 }
             }.message
             assertThat(message).isEqualTo("key <10> of (10 to element) is not of type String")
@@ -141,8 +168,14 @@ class KosonTest : WithAssertions {
         }
 
         @Test
+        @Suppress("UNREACHABLE_CODE")
         fun `object containing a to function with array keyword as value`() {
-            val message = assertThrows<IllegalArgumentException> { obj { "error" to array } }.message
+            val message = assertThrows<IllegalArgumentException> {
+                obj {
+                    "error" to array
+                    "flaggedAs" to "unreachable"
+                }
+            }.message
             assertThat(message).isEqualTo("<array> keyword cannot be used as value, to describe an empty array, use <arrayØ> instead")
         }
 
