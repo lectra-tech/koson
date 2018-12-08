@@ -83,7 +83,7 @@ A detailed `Kotlin` `IllegalArgumentException` is raised on these conditions :
 ** _array [...]_
 ** _arrayØ_ (empty array)
 
-NOTE: Inside an `obj { }`, any possible awaiting runtime exception of type 2. or 3. will flag next entries as unreachable code in the IDE.
+NOTE: Inside an `obj { }`, any possible awaiting runtime exception of type 2. or 3. will flag next entries as unreachable code in the IDE
 
 == Runtime prerequisites
 
