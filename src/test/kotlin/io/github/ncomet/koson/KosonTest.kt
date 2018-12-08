@@ -114,7 +114,7 @@ class KosonTest : WithAssertions {
         @Test
         fun `array must throw exception when illegal element is inserted`() {
             val message = assertThrows<IllegalArgumentException> { array['c'] }.message
-            assertThat(message).isEqualTo("value <c> is not one of allowed JSON value types (String, Number, Boolean, obj{}, array[...], arrayØ or null)")
+            assertThat(message).isEqualTo("value <c> of type [Character] is not one of allowed JSON value types (String, Number, Boolean, null, obj{}, array[...] or arrayØ)")
         }
 
         @Test
@@ -126,7 +126,7 @@ class KosonTest : WithAssertions {
                     "flaggedAsUnreachable" to true
                 }
             }.message
-            assertThat(message).isEqualTo("value <c> is not one of allowed JSON value types (String, Number, Boolean, obj{}, array[...], arrayØ or null)")
+            assertThat(message).isEqualTo("value <c> of type [Character] is not one of allowed JSON value types (String, Number, Boolean, null, obj{}, array[...] or arrayØ)")
         }
 
         @Test
@@ -148,13 +148,13 @@ class KosonTest : WithAssertions {
                     "flaggedAsUnreachable" to 136.36
                 }
             }.message
-            assertThat(message).isEqualTo("key <10> of (10 to element) is not of type String")
+            assertThat(message).isEqualTo("key <10> of (10 to element) must be of type String")
         }
 
         @Test
         fun `object containing a Pair_to() function with obj {} as key`() {
             val message = assertThrows<IllegalArgumentException> { obj { obj {} to 1.2 } }.message
-            assertThat(message).isEqualTo("key <{}> of ({} to 1.2) is not of type String")
+            assertThat(message).isEqualTo("key <{}> of ({} to 1.2) must be of type String")
         }
 
         @Test

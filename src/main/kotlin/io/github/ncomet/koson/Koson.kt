@@ -67,13 +67,13 @@ class Koson(val objectType: ObjectType = ObjectType()) {
     }
 
     infix fun String.to(value: Any): Nothing =
-        throw IllegalArgumentException("value <$value> is not one of allowed JSON value types (String, Number, Boolean, obj{}, array[...], arrayØ or null)")
+        throw IllegalArgumentException("value <$value> of type [${value.javaClass.simpleName}] is not one of allowed JSON value types (String, Number, Boolean, null, obj{}, array[...] or arrayØ)")
 
     infix fun String.to(value: array): Nothing =
         throw IllegalArgumentException("<array> keyword cannot be used as value, to describe an empty array, use <arrayØ> instead")
 
     infix fun Any.to(value: Any?): Nothing =
-        throw IllegalArgumentException("key <$this> of ($this to $value) is not of type String")
+        throw IllegalArgumentException("key <$this> of ($this to $value) must be of type String")
 
     private fun String.addValueIfFreeKey(type: KosonType) {
         if (!objectType.values.containsKey(this)) {
@@ -85,7 +85,7 @@ class Koson(val objectType: ObjectType = ObjectType()) {
 
 }
 
-private fun <T> toAllowedType(value: T?): KosonType {
+private fun toAllowedType(value: Any?): KosonType {
     return when (value) {
         is String -> StringType(value)
         is Number -> NumberType(value)
@@ -94,6 +94,6 @@ private fun <T> toAllowedType(value: T?): KosonType {
         is ArrayType -> value
         null -> NullType
         array -> throw IllegalArgumentException("<array> keyword cannot be used as value, to describe an empty array, use <arrayØ> instead")
-        else -> throw IllegalArgumentException("value <$value> is not one of allowed JSON value types (String, Number, Boolean, obj{}, array[...], arrayØ or null)")
+        else -> throw IllegalArgumentException("value <$value> of type [${value.javaClass.simpleName}] is not one of allowed JSON value types (String, Number, Boolean, null, obj{}, array[...] or arrayØ)")
     }
 }
