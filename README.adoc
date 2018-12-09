@@ -25,7 +25,7 @@ obj {
 arrayØ
 
 // for an array
-array ["element", 12.345, null]
+array["element", 12.345, null]
 ----
 
 NOTE: Any combination of these elements is possible
@@ -36,7 +36,7 @@ NOTE: Any combination of these elements is possible
 ----
 val obj = obj {
   "key" to 3.4
-  "anotherKey" to array ["test", "test2", 1, 2.433, true]
+  "anotherKey" to array["test", "test2", 1, 2.433, true]
   "nullValue" to null
   "emptyObject" to obj { }
   "emptyArray" to arrayØ
@@ -53,11 +53,11 @@ println(obj) // see below
 
 [source, Kotlin]
 ----
-val array = array [
+val array = array[
   "koson",
   obj {
     "key" to 3.4
-     "anotherKey" to array ["first", "second", 1, 2.433, true]
+     "anotherKey" to array["first", "second", 1, 2.433, true]
   }
 ]
 
@@ -82,7 +82,7 @@ A detailed `Kotlin` `IllegalArgumentException` is raised on these conditions :
 ** `Boolean`
 ** `null`
 ** _obj { }_
-** _array [...]_
+** _array[...]_
 ** _arrayØ_ (empty array)
 
 NOTE: Inside an `obj { }`, any possible awaiting runtime exception of type 2. or 3. will flag next entries as unreachable code in the IDE
