@@ -103,7 +103,7 @@ NOTE: Inside an `obj { }`, any possible awaiting runtime exception of type 2. or
 
 == Benchmarks
 
-Benchmarks have been conducted with the https://openjdk.java.net/projects/code-tools/jmh/[jmh] OpenJDK tool. Benchmark project can be found under `benchmarks folder.
+Benchmarks have been conducted with the https://openjdk.java.net/projects/code-tools/jmh/[jmh] OpenJDK tool. Benchmark project can be found under `benchmarks` folder.
 
 Two tests were done with the same objects and arrays
 
