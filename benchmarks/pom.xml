@@ -37,13 +37,7 @@ THE POSSIBILITY OF SUCH DAMAGE.
     <version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>JMH benchmark sample: Kotlin</name>
-
-    <!--
-       This is the demo/sample template build script for building Kotlin benchmarks with JMH.
-       Edit as needed. It needs a proper dependency on Kotlin library to compile, as well as
-       the plugin version set to most recent Kotlin compiler.
-    -->
+    <name>JMH benchmark for Koson</name>
 
     <dependencies>
         <dependency>
