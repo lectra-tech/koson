@@ -113,14 +113,14 @@ class KosonTest : WithAssertions {
     inner class ExceptionCases : WithAssertions {
         @Test
         fun `array must throw exception when illegal element is inserted`() {
-            val message = assertThrows<IllegalArgumentException> { array['c'] }.message
+            val message = assertThrows<KosonException> { array['c'] }.message
             assertThat(message).isEqualTo("value <c> of type [Character] is not one of allowed JSON value types (String, Number, Boolean, null, obj{}, array[...] or arrayØ)")
         }
 
         @Test
         @Suppress("UNREACHABLE_CODE")
         fun `object must throw exception when illegal element is added`() {
-            val message = assertThrows<IllegalArgumentException> {
+            val message = assertThrows<KosonException> {
                 obj {
                     "key" to 'c'
                     "flaggedAsUnreachable" to true
@@ -131,7 +131,7 @@ class KosonTest : WithAssertions {
 
         @Test
         fun `object must throw exception when illegal when duplicate key`() {
-            assertThrows<IllegalArgumentException> {
+            assertThrows<KosonException> {
                 obj {
                     "key" to "myVal"
                     "key" to 1.65
@@ -142,7 +142,7 @@ class KosonTest : WithAssertions {
         @Test
         @Suppress("UNREACHABLE_CODE")
         fun `object containing a Pair_to() function`() {
-            val message = assertThrows<IllegalArgumentException> {
+            val message = assertThrows<KosonException> {
                 obj {
                     10 to "element"
                     "flaggedAsUnreachable" to 136.36
@@ -153,24 +153,24 @@ class KosonTest : WithAssertions {
 
         @Test
         fun `object containing a Pair_to() function with obj {} as key`() {
-            val message = assertThrows<IllegalArgumentException> { obj { obj {} to 1.2 } }.message
+            val message = assertThrows<KosonException> { obj { obj {} to 1.2 } }.message
             assertThat(message).isEqualTo("key <{}> of ({} to 1.2) must be of type String")
         }
 
         @Test
         fun `object containing a to function with this as a value`() {
-            assertThrows<IllegalArgumentException> { obj { "error" to this } }
+            assertThrows<KosonException> { obj { "error" to this } }
         }
 
         @Test
         fun `object containing a Pair_to() function with this as a value`() {
-            assertThrows<IllegalArgumentException> { obj { 10 to this } }
+            assertThrows<KosonException> { obj { 10 to this } }
         }
 
         @Test
         @Suppress("UNREACHABLE_CODE")
         fun `object containing a to function with array keyword as value`() {
-            val message = assertThrows<IllegalArgumentException> {
+            val message = assertThrows<KosonException> {
                 obj {
                     "error" to array
                     "flaggedAs" to "unreachable"
@@ -181,7 +181,7 @@ class KosonTest : WithAssertions {
 
         @Test
         fun `array containing array keyword as value`() {
-            val message = assertThrows<IllegalArgumentException> { array[array] }.message
+            val message = assertThrows<KosonException> { array[array] }.message
             assertThat(message).isEqualTo("<array> keyword cannot be used as value, to describe an empty array, use <arrayØ> instead")
         }
     }

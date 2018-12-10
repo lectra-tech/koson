@@ -68,24 +68,26 @@ class Koson(internal val objectType: ObjectType = ObjectType()) {
     }
 
     infix fun String.to(value: Any): Nothing =
-        throw IllegalArgumentException("value <$value> of type [${value.javaClass.simpleName}] is not one of allowed JSON value types (String, Number, Boolean, null, obj{}, array[...] or arrayØ)")
+            throw KosonException("value <$value> of type [${value.javaClass.simpleName}] is not one of allowed JSON value types (String, Number, Boolean, null, obj{}, array[...] or arrayØ)")
 
     @Suppress("UNUSED_PARAMETER")
     infix fun String.to(value: array): Nothing =
-        throw IllegalArgumentException("<array> keyword cannot be used as value, to describe an empty array, use <arrayØ> instead")
+            throw KosonException("<array> keyword cannot be used as value, to describe an empty array, use <arrayØ> instead")
 
     infix fun Any.to(value: Any?): Nothing =
-        throw IllegalArgumentException("key <$this> of ($this to $value) must be of type String")
+            throw KosonException("key <$this> of ($this to $value) must be of type String")
 
     private fun String.addValueIfFreeKey(type: KosonType) {
         if (!objectType.values.containsKey(this)) {
             objectType.values[this] = type
         } else {
-            throw IllegalArgumentException("key <$this> of ($this to $type) is already defined for json object")
+            throw KosonException("key <$this> of ($this to $type) is already defined for json object")
         }
     }
 
 }
+
+class KosonException(message: String) : RuntimeException(message)
 
 private fun toAllowedType(value: Any?): KosonType {
     return when (value) {
@@ -95,7 +97,7 @@ private fun toAllowedType(value: Any?): KosonType {
         is ObjectType -> value
         is ArrayType -> value
         null -> NullType
-        array -> throw IllegalArgumentException("<array> keyword cannot be used as value, to describe an empty array, use <arrayØ> instead")
-        else -> throw IllegalArgumentException("value <$value> of type [${value.javaClass.simpleName}] is not one of allowed JSON value types (String, Number, Boolean, null, obj{}, array[...] or arrayØ)")
+        array -> throw KosonException("<array> keyword cannot be used as value, to describe an empty array, use <arrayØ> instead")
+        else -> throw KosonException("value <$value> of type [${value.javaClass.simpleName}] is not one of allowed JSON value types (String, Number, Boolean, null, obj{}, array[...] or arrayØ)")
     }
 }
