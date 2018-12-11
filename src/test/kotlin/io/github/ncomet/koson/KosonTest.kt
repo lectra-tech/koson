@@ -132,35 +132,6 @@ class KosonTest : WithAssertions {
             }
         }
 
-        @Test
-        @Suppress("UNREACHABLE_CODE")
-        fun `object containing a Pair_to() function`() {
-            val message = assertThrows<KosonException> {
-                obj {
-                    10 to "element"
-                    "flaggedAsUnreachable" to 136.36
-                }
-            }.message
-            assertThat(message).isEqualTo("key <10> of (10 to element) must be of type String")
-        }
-
-        @Test
-        fun `object containing a Pair_to() function with obj {} as key`() {
-            val message = assertThrows<KosonException> { obj { obj {} to 1.2 } }.message
-            assertThat(message).isEqualTo("key <{}> of ({} to 1.2) must be of type String")
-        }
-
-        @Test
-        fun `object containing a to function with this as a value`() {
-            val message = assertThrows<KosonException> { obj { "error" to this } }.message
-            assertThat(message).isEqualTo("<this> keyword cannot be used as value inside an obj { }")
-        }
-
-        @Test
-        fun `object containing a Pair_to() function with this as a value`() {
-            assertThrows<KosonException> { obj { 10 to this } }
-        }
-
     }
 
 }
