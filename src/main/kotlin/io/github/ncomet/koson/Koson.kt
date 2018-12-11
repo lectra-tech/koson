@@ -27,7 +27,7 @@ data class ObjectType(internal val values: MutableMap<String, KosonType> = mutab
         values.entries.joinToString(",", "{", "}") { (k, v) -> "\"$k\":$v" }
 }
 
-open class ArrayType(private val values: List<KosonType> = listOf()) : KosonType() {
+open class ArrayType(private val values: List<KosonType> = emptyList()) : KosonType() {
     override fun toString(): String = "[${values.joinToString(",")}]"
 }
 
