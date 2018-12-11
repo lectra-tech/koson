@@ -72,9 +72,11 @@ class Koson(internal val objectType: ObjectType = ObjectType()) {
     infix fun String.to(value: ArrayType) = addValueIfKeyIsAvailable(value)
 
     @Deprecated("<this> keyword cannot be used as value inside an obj { }", level = DeprecationLevel.ERROR, replaceWith = ReplaceWith(expression = ""))
+    @Suppress("UNUSED_PARAMETER")
     infix fun String.to(value: Koson): Unit = Unit
 
     @Deprecated("Key value left to <to> must be of type String", level = DeprecationLevel.ERROR, replaceWith = ReplaceWith(expression = ""))
+    @Suppress("UNUSED_PARAMETER")
     infix fun Any.to(value: Any?): Unit = Unit
 
     private fun String.addValueIfKeyIsAvailable(type: KosonType) {
