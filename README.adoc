@@ -117,7 +117,7 @@ Two tests were done with the same objects and arrays
 
 `Kson` was put side to side with one of the most popular JSON builder for `Java` : https://github.com/stleary/JSON-java[JSON-java]
 
-Testing environment : _2,3 GHz Intel Core i7, 4 cores, VM version: OpenJDK 11.0.1, 64-Bit Server VM, 11.0.1+13_
+Testing environment : _3.3 GHz Intel Core i5-6600, 4 cores, VM version: OpenJDK 11.0.1, 64-Bit Server VM, 11.0.1+13_
 
 .Benchmarks
 |===
@@ -126,29 +126,29 @@ Testing environment : _2,3 GHz Intel Core i7, 4 cores, VM version: OpenJDK 11.0.
 |BigArray json-java
 |thrpt
 |25
-|28499.680
-|± 312.652
+|33276,996
+|± 319,186
 |ops/s
 
 |BigArray Koson
 |thrpt
 |25
-|30352.135
-|± 306.386
+|35858,169
+|± 395,802
 |ops/s
 
 |BigObject json-java
 |thrpt
 |25
-|30834.024
-|± 598.824
+|36585,139
+|± 231,971
 |ops/s
 
 |BigObject Koson
 |thrpt
 |25
-|36130.597
-|± 403.820
+|42457,321
+|± 471,186
 |ops/s
 |===
 
