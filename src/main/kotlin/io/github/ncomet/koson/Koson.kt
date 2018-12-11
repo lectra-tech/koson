@@ -14,12 +14,12 @@ private data class BooleanType(val value: Boolean) : KosonType() {
     override fun toString(): String = value.toString()
 }
 
-private data class CustomType(val value: Any) : KosonType() {
-    override fun toString(): String = "\"${value.toString().replace("\"", "\\\"")}\""
-}
-
 private object NullType : KosonType() {
     override fun toString(): String = "null"
+}
+
+private data class CustomType(val value: Any) : KosonType() {
+    override fun toString(): String = "\"${value.toString().replace("\"", "\\\"")}\""
 }
 
 data class ObjectType(internal val values: MutableMap<String, KosonType> = mutableMapOf()) : KosonType() {
@@ -28,7 +28,7 @@ data class ObjectType(internal val values: MutableMap<String, KosonType> = mutab
 }
 
 open class ArrayType(private val values: List<KosonType> = emptyList()) : KosonType() {
-    override fun toString(): String = "[${values.joinToString(",")}]"
+    override fun toString(): String = values.joinToString(",", "[", "]")
 }
 
 object array : ArrayType() {
