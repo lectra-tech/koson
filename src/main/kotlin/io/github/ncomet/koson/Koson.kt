@@ -35,15 +35,16 @@ object array : ArrayType() {
     operator fun get(vararg elements: Any?): ArrayType =
         ArrayType(elements.map { toAllowedType(it) }.toList())
 
-    private fun toAllowedType(value: Any?): KosonType = when (value) {
-        is String -> StringType(value)
-        is Number -> NumberType(value)
-        is Boolean -> BooleanType(value)
-        is ObjectType -> value
-        is ArrayType -> value
-        null -> NullType
-        else -> CustomType(value)
-    }
+    private fun toAllowedType(value: Any?): KosonType =
+        when (value) {
+            is String -> StringType(value)
+            is Number -> NumberType(value)
+            is Boolean -> BooleanType(value)
+            is ObjectType -> value
+            is ArrayType -> value
+            null -> NullType
+            else -> CustomType(value)
+        }
 }
 
 fun obj(block: Koson.() -> Unit): ObjectType {
