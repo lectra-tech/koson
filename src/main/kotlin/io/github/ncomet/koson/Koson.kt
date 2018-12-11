@@ -27,13 +27,13 @@ data class ObjectType(internal val values: MutableMap<String, KosonType> = mutab
         values.entries.joinToString(",", "{", "}") { (k, v) -> "\"$k\":$v" }
 }
 
-data class ArrayType(private val values: List<KosonType> = listOf()) : KosonType() {
+open class ArrayType(private val values: List<KosonType> = listOf()) : KosonType() {
     override fun toString(): String = "[${values.joinToString(",")}]"
 }
 
-val arrayØ: ArrayType = ArrayType(emptyList())
+open class EmptyArrayType : ArrayType()
 
-object array {
+object array : EmptyArrayType() {
     operator fun get(vararg elements: Any?): ArrayType =
         ArrayType(elements.map { toAllowedType(it) }.toList())
 
@@ -45,7 +45,6 @@ object array {
             is ObjectType -> value
             is ArrayType -> value
             null -> NullType
-            array -> throw KosonException("<array> keyword cannot be used as value, to describe an empty array, use <arrayØ> instead")
             else -> CustomType(value)
         }
     }
@@ -73,10 +72,6 @@ class Koson(internal val objectType: ObjectType = ObjectType()) {
     infix fun String.to(value: ObjectType) = addValueIfKeyIsAvailable(value)
 
     infix fun String.to(value: ArrayType) = addValueIfKeyIsAvailable(value)
-
-    @Suppress("UNUSED_PARAMETER")
-    infix fun String.to(value: array): Nothing =
-        throw KosonException("<array> keyword cannot be used as value, to describe an empty array, use <arrayØ> instead")
 
     @Suppress("UNUSED_PARAMETER")
     infix fun String.to(value: Koson): Nothing =

@@ -17,7 +17,7 @@ class KosonTest : WithAssertions {
 
     @Test
     fun `empty array`() {
-        assertThat(arrayØ.toString()).isEqualTo("[]")
+        assertThat(array.toString()).isEqualTo("[]")
     }
 
     @Test
@@ -38,7 +38,7 @@ class KosonTest : WithAssertions {
             "float" to 3.2f
             "boolean" to false
             "object" to obj { }
-            "emptyArray" to arrayØ
+            "emptyArray" to array
             "array" to array["test"]
             "null" to null
             "custom" to ContainsDoubleQuotes
@@ -47,7 +47,7 @@ class KosonTest : WithAssertions {
 
     @Test
     internal fun `array with all possible types of value`() {
-        assertThat(array["value", 9, 7.6, 3.2f, false, obj { }, arrayØ, array["test"], null, ContainsDoubleQuotes].toString())
+        assertThat(array["value", 9, 7.6, 3.2f, false, obj { }, array, array["test"], null, ContainsDoubleQuotes].toString())
             .isEqualTo("[\"value\",9,7.6,3.2,false,{},[],[\"test\"],null,\"\\\"unfor\\\"tunate\\\"\"]")
     }
 
@@ -55,7 +55,7 @@ class KosonTest : WithAssertions {
     inner class ContainingCases : WithAssertions {
         @Test
         fun `object containing array`() {
-            assertThat(obj { "array" to arrayØ }.toString()).isEqualTo("{\"array\":[]}")
+            assertThat(obj { "array" to array }.toString()).isEqualTo("{\"array\":[]}")
         }
 
         @Test
@@ -70,7 +70,7 @@ class KosonTest : WithAssertions {
 
         @Test
         fun `array containing array`() {
-            assertThat(array[arrayØ].toString()).isEqualTo("[[]]")
+            assertThat(array[array].toString()).isEqualTo("[[]]")
         }
 
         @Test
@@ -161,23 +161,6 @@ class KosonTest : WithAssertions {
             assertThrows<KosonException> { obj { 10 to this } }
         }
 
-        @Test
-        @Suppress("UNREACHABLE_CODE")
-        fun `object containing a to function with array keyword as value`() {
-            val message = assertThrows<KosonException> {
-                obj {
-                    "error" to array
-                    "flaggedAs" to "unreachable"
-                }
-            }.message
-            assertThat(message).isEqualTo("<array> keyword cannot be used as value, to describe an empty array, use <arrayØ> instead")
-        }
-
-        @Test
-        fun `array containing array keyword as value`() {
-            val message = assertThrows<KosonException> { array[array] }.message
-            assertThat(message).isEqualTo("<array> keyword cannot be used as value, to describe an empty array, use <arrayØ> instead")
-        }
     }
 
 }
