@@ -71,7 +71,11 @@ class Koson(internal val objectType: ObjectType = ObjectType()) {
 
     infix fun String.to(value: ArrayType) = addValueIfKeyIsAvailable(value)
 
-    @Deprecated("<this> keyword cannot be used as value inside an obj { }", level = DeprecationLevel.ERROR, replaceWith = ReplaceWith(expression = ""))
+    @Deprecated(
+        "<this> keyword cannot be used as value inside an obj { }",
+        level = DeprecationLevel.ERROR,
+        replaceWith = ReplaceWith(expression = "")
+    )
     @Suppress("UNUSED_PARAMETER")
     infix fun String.to(value: Koson): Nothing =
         throw KosonException("<this> keyword cannot be used as value inside an obj { }")
