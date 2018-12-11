@@ -123,7 +123,7 @@ class KosonTest : WithAssertions {
     inner class ExceptionCases : WithAssertions {
 
         @Test
-        fun `object must throw exception when illegal when duplicate key`() {
+        fun `object must throw KosonException when duplicate key`() {
             assertThrows<KosonException> {
                 obj {
                     "key" to "myVal"
