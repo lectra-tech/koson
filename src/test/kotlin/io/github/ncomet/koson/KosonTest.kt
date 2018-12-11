@@ -21,6 +21,15 @@ class KosonTest : WithAssertions {
     }
 
     @Test
+    fun `array containing this as a value should render`() {
+        array[this]
+    }
+
+    object ContainsDoubleQuotes {
+        override fun toString(): String = "\"unfor\"tunate\""
+    }
+
+    @Test
     fun `object with all possible types of value`() {
         assertThat(obj {
             "string" to "value"
@@ -32,13 +41,14 @@ class KosonTest : WithAssertions {
             "emptyArray" to arrayØ
             "array" to array["test"]
             "null" to null
-        }.toString()).isEqualTo("{\"string\":\"value\",\"int\":9,\"double\":7.6,\"float\":3.2,\"boolean\":false,\"object\":{},\"emptyArray\":[],\"array\":[\"test\"],\"null\":null}")
+            "custom" to ContainsDoubleQuotes
+        }.toString()).isEqualTo("{\"string\":\"value\",\"int\":9,\"double\":7.6,\"float\":3.2,\"boolean\":false,\"object\":{},\"emptyArray\":[],\"array\":[\"test\"],\"null\":null,\"custom\":\"\\\"unfor\\\"tunate\\\"\"}")
     }
 
     @Test
     internal fun `array with all possible types of value`() {
-        assertThat(array["value", 9, 7.6, 3.2f, false, obj { }, arrayØ, array["test"], null].toString())
-            .isEqualTo("[\"value\",9,7.6,3.2,false,{},[],[\"test\"],null]")
+        assertThat(array["value", 9, 7.6, 3.2f, false, obj { }, arrayØ, array["test"], null, ContainsDoubleQuotes].toString())
+            .isEqualTo("[\"value\",9,7.6,3.2,false,{},[],[\"test\"],null,\"\\\"unfor\\\"tunate\\\"\"]")
     }
 
     @Nested
@@ -111,23 +121,6 @@ class KosonTest : WithAssertions {
 
     @Nested
     inner class ExceptionCases : WithAssertions {
-        @Test
-        fun `array must throw exception when illegal element is inserted`() {
-            val message = assertThrows<KosonException> { array['c'] }.message
-            assertThat(message).isEqualTo("value <c> of type [Character] is not one of allowed JSON value types (String, Number, Boolean, null, obj{}, array[...] or arrayØ)")
-        }
-
-        @Test
-        @Suppress("UNREACHABLE_CODE")
-        fun `object must throw exception when illegal element is added`() {
-            val message = assertThrows<KosonException> {
-                obj {
-                    "key" to 'c'
-                    "flaggedAsUnreachable" to true
-                }
-            }.message
-            assertThat(message).isEqualTo("value <c> of type [Character] is not one of allowed JSON value types (String, Number, Boolean, null, obj{}, array[...] or arrayØ)")
-        }
 
         @Test
         fun `object must throw exception when illegal when duplicate key`() {
@@ -159,7 +152,8 @@ class KosonTest : WithAssertions {
 
         @Test
         fun `object containing a to function with this as a value`() {
-            assertThrows<KosonException> { obj { "error" to this } }
+            val message = assertThrows<KosonException> { obj { "error" to this } }.message
+            assertThat(message).isEqualTo("<this> keyword cannot be used as value inside an obj { }")
         }
 
         @Test
