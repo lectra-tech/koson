@@ -31,9 +31,7 @@ open class ArrayType(private val values: List<KosonType> = listOf()) : KosonType
     override fun toString(): String = "[${values.joinToString(",")}]"
 }
 
-open class EmptyArrayType : ArrayType()
-
-object array : EmptyArrayType() {
+object array : ArrayType() {
     operator fun get(vararg elements: Any?): ArrayType =
         ArrayType(elements.map { toAllowedType(it) }.toList())
 
