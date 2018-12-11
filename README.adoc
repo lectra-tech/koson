@@ -74,8 +74,6 @@ println(array) // see below
 
 == Strong type constraints
 
-A detailed runtime `KosonException` is raised when a JSON key (attribute) duplicate is found in an _obj { }_
-
 * A JSON value of an _obj { }_ or an _array [...]_ can be one of the following `Kotlin` or _Koson DSL_ instances
 ** `String`
 ** `Number`
@@ -85,6 +83,8 @@ A detailed runtime `KosonException` is raised when a JSON key (attribute) duplic
 ** _obj { }_
 ** _array[...]_
 ** _array_ (empty array)
+
+NOTE: A detailed runtime `KosonException` is raised when a JSON key (attribute) duplicate is found in an _obj { }_
 
 == Runtime prerequisites
 
