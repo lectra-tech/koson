@@ -13,6 +13,17 @@ class KosonTest : WithAssertions {
     @Test
     fun `empty object`() {
         assertThat(obj { }.toString()).isEqualTo("{}")
+        obj {
+            "string" to "value"
+            "int" to 9
+            "double" to 7.6
+            "float" to 3.2f
+            "boolean" to false
+            "object" to obj { }
+            "emptyArray" to array
+            "array" to array["test"]
+            "null" to null
+        }
     }
 
     @Test
