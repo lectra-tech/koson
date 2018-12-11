@@ -40,7 +40,7 @@ import org.openjdk.jmh.annotations.Benchmark
 open class KosonBenchmark {
 
     @Benchmark
-    fun kosonWithBigObject() {
+    fun kosonWithBigObject(): String {
         val koson = obj {
             "string" to "value"
             "int" to 9
@@ -165,142 +165,11 @@ open class KosonBenchmark {
             }
         }
 
-        val result = koson.toString()
+        return koson.toString()
     }
 
     @Benchmark
-    fun kosonWithBigArray() {
-        val koson =
-            array[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, "firstElement",
-                    obj {
-                        "string" to "value"
-                        "int" to 9
-                        "double" to 7.6
-                        "float" to 3.2f
-                        "boolean" to false
-                        "object" to obj { }
-                        "emptyArray" to array
-                        "array" to array["test"]
-                        "null" to null
-                        "otherObj" to obj {
-                            "string" to "value"
-                            "int" to 9
-                            "double" to 7.6
-                            "float" to 3.2f
-                            "boolean" to false
-                            "object" to obj { }
-                            "emptyArray" to array
-                            "array" to array[
-                                    obj {
-                                        "string" to "value"
-                                        "int" to 9
-                                        "double" to 7.6
-                                        "float" to 3.2f
-                                        "boolean" to false
-                                        "object" to obj { }
-                                        "emptyArray" to array
-                                        "array" to array["test"]
-                                        "null" to null
-                                    },
-                                    obj {
-                                        "string" to "value"
-                                        "int" to 9
-                                        "double" to 7.6
-                                        "float" to 3.2f
-                                        "boolean" to false
-                                        "object" to obj { }
-                                        "emptyArray" to array
-                                        "array" to array["test"]
-                                        "null" to null
-                                    },
-                                    obj {
-                                        "string" to "value"
-                                        "int" to 9
-                                        "double" to 7.6
-                                        "float" to 3.2f
-                                        "boolean" to false
-                                        "object" to obj { }
-                                        "emptyArray" to array
-                                        "array" to array[
-                                                obj {
-                                                    "string" to "value"
-                                                    "int" to 9
-                                                    "double" to 7.6
-                                                    "float" to 3.2f
-                                                    "boolean" to false
-                                                    "object" to obj { }
-                                                    "emptyArray" to array
-                                                    "array" to array["test"]
-                                                    "null" to null
-                                                },
-                                                obj {
-                                                    "string" to "value"
-                                                    "int" to 9
-                                                    "double" to 7.6
-                                                    "float" to 3.2f
-                                                    "boolean" to false
-                                                    "object" to obj { }
-                                                    "emptyArray" to array
-                                                    "array" to array[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
-                                                    "null" to null
-                                                }
-                                        ]
-                                        "null" to null
-                                    }
-                            ]
-                            "null" to obj {
-                                "string" to "value"
-                                "int" to 9
-                                "double" to 7.6
-                                "float" to 3.2f
-                                "boolean" to false
-                                "object" to obj { }
-                                "emptyArray" to array
-                                "array" to array[
-                                        obj {
-                                            "string" to "value"
-                                            "int" to 9
-                                            "double" to 7.6
-                                            "float" to 3.2f
-                                            "boolean" to false
-                                            "object" to obj { }
-                                            "emptyArray" to array
-                                            "array" to array["test"]
-                                            "null" to null
-                                        },
-                                        obj {
-                                            "string" to "value"
-                                            "int" to 9
-                                            "double" to 7.6
-                                            "float" to 3.2f
-                                            "boolean" to false
-                                            "object" to obj { }
-                                            "emptyArray" to array
-                                            "array" to array[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
-                                            "null" to null
-                                        }
-                                ]
-                                "null" to null
-                            }
-                        }
-                        "anotherObj" to obj {
-                            "string" to "value"
-                            "int" to 9
-                            "double" to 7.6
-                            "float" to 3.2f
-                            "boolean" to false
-                            "object" to obj { }
-                            "emptyArray" to array
-                            "array" to array["test"]
-                            "null" to null
-                        }
-                    }]
-
-        val result = koson.toString()
-    }
-
-    @Benchmark
-    fun jsonWithBigObject() {
+    fun jsonWithBigObject(): String {
         val json = JSONObject()
             .put("string", "value")
             .put("int", 9)
@@ -474,12 +343,142 @@ open class KosonBenchmark {
                     .put("null", JSONObject.NULL)
             )
 
-        val result = json.toString()
+        return json.toString()
     }
 
     @Benchmark
-    fun jsonWithBigArray() {
+    fun kosonWithBigArray(): String {
+        val koson =
+            array[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, "firstElement",
+                    obj {
+                        "string" to "value"
+                        "int" to 9
+                        "double" to 7.6
+                        "float" to 3.2f
+                        "boolean" to false
+                        "object" to obj { }
+                        "emptyArray" to array
+                        "array" to array["test"]
+                        "null" to null
+                        "otherObj" to obj {
+                            "string" to "value"
+                            "int" to 9
+                            "double" to 7.6
+                            "float" to 3.2f
+                            "boolean" to false
+                            "object" to obj { }
+                            "emptyArray" to array
+                            "array" to array[
+                                    obj {
+                                        "string" to "value"
+                                        "int" to 9
+                                        "double" to 7.6
+                                        "float" to 3.2f
+                                        "boolean" to false
+                                        "object" to obj { }
+                                        "emptyArray" to array
+                                        "array" to array["test"]
+                                        "null" to null
+                                    },
+                                    obj {
+                                        "string" to "value"
+                                        "int" to 9
+                                        "double" to 7.6
+                                        "float" to 3.2f
+                                        "boolean" to false
+                                        "object" to obj { }
+                                        "emptyArray" to array
+                                        "array" to array["test"]
+                                        "null" to null
+                                    },
+                                    obj {
+                                        "string" to "value"
+                                        "int" to 9
+                                        "double" to 7.6
+                                        "float" to 3.2f
+                                        "boolean" to false
+                                        "object" to obj { }
+                                        "emptyArray" to array
+                                        "array" to array[
+                                                obj {
+                                                    "string" to "value"
+                                                    "int" to 9
+                                                    "double" to 7.6
+                                                    "float" to 3.2f
+                                                    "boolean" to false
+                                                    "object" to obj { }
+                                                    "emptyArray" to array
+                                                    "array" to array["test"]
+                                                    "null" to null
+                                                },
+                                                obj {
+                                                    "string" to "value"
+                                                    "int" to 9
+                                                    "double" to 7.6
+                                                    "float" to 3.2f
+                                                    "boolean" to false
+                                                    "object" to obj { }
+                                                    "emptyArray" to array
+                                                    "array" to array[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
+                                                    "null" to null
+                                                }
+                                        ]
+                                        "null" to null
+                                    }
+                            ]
+                            "null" to obj {
+                                "string" to "value"
+                                "int" to 9
+                                "double" to 7.6
+                                "float" to 3.2f
+                                "boolean" to false
+                                "object" to obj { }
+                                "emptyArray" to array
+                                "array" to array[
+                                        obj {
+                                            "string" to "value"
+                                            "int" to 9
+                                            "double" to 7.6
+                                            "float" to 3.2f
+                                            "boolean" to false
+                                            "object" to obj { }
+                                            "emptyArray" to array
+                                            "array" to array["test"]
+                                            "null" to null
+                                        },
+                                        obj {
+                                            "string" to "value"
+                                            "int" to 9
+                                            "double" to 7.6
+                                            "float" to 3.2f
+                                            "boolean" to false
+                                            "object" to obj { }
+                                            "emptyArray" to array
+                                            "array" to array[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
+                                            "null" to null
+                                        }
+                                ]
+                                "null" to null
+                            }
+                        }
+                        "anotherObj" to obj {
+                            "string" to "value"
+                            "int" to 9
+                            "double" to 7.6
+                            "float" to 3.2f
+                            "boolean" to false
+                            "object" to obj { }
+                            "emptyArray" to array
+                            "array" to array["test"]
+                            "null" to null
+                        }
+                    }]
 
+        return koson.toString()
+    }
+
+    @Benchmark
+    fun jsonWithBigArray(): String {
         val json = JSONArray().put(45).put(12.4).put(9.4).put(true).put(false).put(
             true
         ).put(JSONObject.NULL).put(45).put(12.4).put(9.4).put(true).put(
@@ -682,7 +681,7 @@ open class KosonBenchmark {
                     )
             )
 
-        val result = json.toString()
+        return json.toString()
     }
 
 }
