@@ -57,7 +57,8 @@ println(obj) // see below
 val array = array[
   "example",
   obj {
-    "key" to 3.4
+    "apple" to "pie"
+    "key" to 3.14
      "anotherKey" to array["first", "second", 1, 2.433, true]
   }
 ]
@@ -68,7 +69,7 @@ println(array) // see below
 .println(array)
 [source, json]
 ----
-["example",{"key":3.4,"anotherKey":["first","second",1,2.433,true]}]
+["example",{"apple":"pie","key":3.14,"anotherKey":["first","second",1,2.433,true]}]
 ----
 
 == Strong type constraints
