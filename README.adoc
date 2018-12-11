@@ -74,6 +74,10 @@ println(array) // see below
 
 == Strong type constraints
 
+* A JSON key (attribute) can only be of `Kotlin` type `String`
+
+NOTE: A runtime `KosonException` will be raised when a JSON key (attribute) duplicate is found in an _obj { }_
+
 * A JSON value of an _obj { }_ or an _array [...]_ can be one of the following `Kotlin` or _Koson DSL_ instances
 ** `String`
 ** `Number`
@@ -83,8 +87,6 @@ println(array) // see below
 ** _obj { }_
 ** _array[...]_
 ** _array_ (empty array)
-
-NOTE: A detailed runtime `KosonException` is raised when a JSON key (attribute) duplicate is found in an _obj { }_
 
 == Runtime prerequisites
 
