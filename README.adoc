@@ -122,29 +122,29 @@ Testing environment : _3.3 GHz Intel Core i5-6600, 4 cores, VM version: OpenJDK 
 |BigArray - JSON-java
 |thrpt
 |25
-|33276,996
-|± 319,186
+|16558,386
+|± 157,741
 |ops/s
 
 |BigArray - Koson
 |thrpt
 |25
-|35858,169
-|± 395,802
+|17046,020
+|± 209,765
 |ops/s
 
 |BigObject - JSON-java
 |thrpt
 |25
-|36585,139
-|± 231,971
+|16627,775
+|± 450,426
 |ops/s
 
 |BigObject - Koson
 |thrpt
 |25
-|42457,321
-|± 471,186
+|18491,871
+|± 461,434
 |ops/s
 |===
 
