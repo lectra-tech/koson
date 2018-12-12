@@ -224,553 +224,207 @@ open class KosonBenchmark {
                                                                         )
                                                                     )
                                                                     .put("null", JSONObject.NULL)
-                                                                    .put(
-                                                                        "onceAgain",
-                                                                        JSONArray().put(45).put(12.4).put(9.4).put(true).put(
-                                                                            false
-                                                                        ).put(
-                                                                            true
-                                                                        ).put(JSONObject.NULL).put(45).put(12.4).put(9.4).put(
-                                                                            true
-                                                                        ).put(
-                                                                            false
-                                                                        ).put(true).put(JSONObject.NULL).put(45).put(
-                                                                            12.4
-                                                                        ).put(9.4).put(
-                                                                            true
-                                                                        ).put(false).put(true).put(JSONObject.NULL).put(
-                                                                            45
-                                                                        ).put(12.4).put(
-                                                                            9.4
-                                                                        ).put(true).put(false).put(true).put(JSONObject.NULL).put(
-                                                                            45
-                                                                        ).put(
-                                                                            12.4
-                                                                        ).put(9.4).put(true).put(false).put(true).put(
-                                                                            JSONObject.NULL
-                                                                        ).put("firstElement")
-                                                                            .put(
-                                                                                JSONObject()
-                                                                                    .put("string", "value")
-                                                                                    .put("int", 9)
-                                                                                    .put("double", 7.6)
-                                                                                    .put("float", 3.2f)
-                                                                                    .put("boolean", false)
-                                                                                    .put("object", JSONObject())
-                                                                                    .put("emptyArray", JSONArray())
-                                                                                    .put(
-                                                                                        "array",
-                                                                                        JSONArray().put("test")
-                                                                                    )
-                                                                                    .put("null", JSONObject.NULL)
-                                                                                    .put(
-                                                                                        "otherObj", JSONObject()
-                                                                                            .put("string", "value")
-                                                                                            .put("int", 9)
-                                                                                            .put("double", 7.6)
-                                                                                            .put("float", 3.2f)
-                                                                                            .put("boolean", false)
-                                                                                            .put("object", JSONObject())
-                                                                                            .put(
-                                                                                                "emptyArray",
-                                                                                                JSONArray()
-                                                                                            )
-                                                                                            .put(
-                                                                                                "array",
-                                                                                                JSONArray().put("test")
-                                                                                            )
-                                                                                            .put(
-                                                                                                "null",
-                                                                                                JSONObject.NULL
-                                                                                            )
-                                                                                            .put(
-                                                                                                "array", JSONArray()
-                                                                                                    .put(
-                                                                                                        JSONObject()
-                                                                                                            .put(
-                                                                                                                "string",
-                                                                                                                "value"
-                                                                                                            )
-                                                                                                            .put(
-                                                                                                                "int",
-                                                                                                                9
-                                                                                                            )
-                                                                                                            .put(
-                                                                                                                "double",
-                                                                                                                7.6
-                                                                                                            )
-                                                                                                            .put(
-                                                                                                                "float",
-                                                                                                                3.2f
-                                                                                                            )
-                                                                                                            .put(
-                                                                                                                "boolean",
-                                                                                                                false
-                                                                                                            )
-                                                                                                            .put(
-                                                                                                                "object",
-                                                                                                                JSONObject()
-                                                                                                            )
-                                                                                                            .put(
-                                                                                                                "emptyArray",
-                                                                                                                JSONArray()
-                                                                                                            )
-                                                                                                            .put(
-                                                                                                                "array",
-                                                                                                                JSONArray().put(
-                                                                                                                    "test"
+                                                                    .put("onceAgain", JSONArray().put(45).put(12.4).put(9.4).put(true).put(false).put(
+                                                                        true
+                                                                    ).put(JSONObject.NULL).put(45).put(12.4).put(9.4).put(true).put(
+                                                                        false
+                                                                    ).put(true).put(JSONObject.NULL).put(45).put(12.4).put(9.4).put(
+                                                                        true
+                                                                    ).put(false).put(true).put(JSONObject.NULL).put(45).put(12.4).put(
+                                                                        9.4
+                                                                    ).put(true).put(false).put(true).put(JSONObject.NULL).put(45).put(
+                                                                        12.4
+                                                                    ).put(9.4).put(true).put(false).put(true).put(JSONObject.NULL).put("firstElement")
+                                                                        .put(
+                                                                            JSONObject()
+                                                                                .put("string", "value")
+                                                                                .put("int", 9)
+                                                                                .put("double", 7.6)
+                                                                                .put("float", 3.2f)
+                                                                                .put("boolean", false)
+                                                                                .put("object", JSONObject())
+                                                                                .put("emptyArray", JSONArray())
+                                                                                .put("array", JSONArray().put("test"))
+                                                                                .put("null", JSONObject.NULL)
+                                                                                .put(
+                                                                                    "otherObj", JSONObject()
+                                                                                        .put("string", "value")
+                                                                                        .put("int", 9)
+                                                                                        .put("double", 7.6)
+                                                                                        .put("float", 3.2f)
+                                                                                        .put("boolean", false)
+                                                                                        .put("object", JSONObject())
+                                                                                        .put("emptyArray", JSONArray())
+                                                                                        .put("array", JSONArray().put("test"))
+                                                                                        .put("null", JSONObject.NULL)
+                                                                                        .put(
+                                                                                            "array", JSONArray()
+                                                                                                .put(
+                                                                                                    JSONObject()
+                                                                                                        .put("string", "value")
+                                                                                                        .put("int", 9)
+                                                                                                        .put("double", 7.6)
+                                                                                                        .put("float", 3.2f)
+                                                                                                        .put("boolean", false)
+                                                                                                        .put("object", JSONObject())
+                                                                                                        .put("emptyArray", JSONArray())
+                                                                                                        .put("array", JSONArray().put("test"))
+                                                                                                        .put("null", JSONObject.NULL)
+                                                                                                )
+                                                                                                .put(
+                                                                                                    JSONObject()
+                                                                                                        .put("string", "value")
+                                                                                                        .put("int", 9)
+                                                                                                        .put("double", 7.6)
+                                                                                                        .put("float", 3.2f)
+                                                                                                        .put("boolean", false)
+                                                                                                        .put("object", JSONObject())
+                                                                                                        .put("emptyArray", JSONArray())
+                                                                                                        .put("array", JSONArray().put("test"))
+                                                                                                        .put("null", JSONObject.NULL)
+                                                                                                )
+                                                                                                .put(
+                                                                                                    JSONObject()
+                                                                                                        .put("string", "value")
+                                                                                                        .put("int", 9)
+                                                                                                        .put("double", 7.6)
+                                                                                                        .put("float", 3.2f)
+                                                                                                        .put("boolean", false)
+                                                                                                        .put("object", JSONObject())
+                                                                                                        .put("emptyArray", JSONArray())
+                                                                                                        .put("array", JSONArray().put("test"))
+                                                                                                        .put("null", JSONObject.NULL)
+                                                                                                        .put(
+                                                                                                            "array", JSONArray()
+                                                                                                                .put(
+                                                                                                                    JSONObject()
+                                                                                                                        .put("string", "value")
+                                                                                                                        .put("int", 9)
+                                                                                                                        .put("double", 7.6)
+                                                                                                                        .put("float", 3.2f)
+                                                                                                                        .put("boolean", false)
+                                                                                                                        .put("object", JSONObject())
+                                                                                                                        .put("emptyArray", JSONArray())
+                                                                                                                        .put("array", JSONArray().put("test"))
+                                                                                                                        .put("null", JSONObject.NULL)
                                                                                                                 )
-                                                                                                            )
-                                                                                                            .put(
-                                                                                                                "null",
-                                                                                                                JSONObject.NULL
-                                                                                                            )
-                                                                                                    )
-                                                                                                    .put(
-                                                                                                        JSONObject()
-                                                                                                            .put(
-                                                                                                                "string",
-                                                                                                                "value"
-                                                                                                            )
-                                                                                                            .put(
-                                                                                                                "int",
-                                                                                                                9
-                                                                                                            )
-                                                                                                            .put(
-                                                                                                                "double",
-                                                                                                                7.6
-                                                                                                            )
-                                                                                                            .put(
-                                                                                                                "float",
-                                                                                                                3.2f
-                                                                                                            )
-                                                                                                            .put(
-                                                                                                                "boolean",
-                                                                                                                false
-                                                                                                            )
-                                                                                                            .put(
-                                                                                                                "object",
-                                                                                                                JSONObject()
-                                                                                                            )
-                                                                                                            .put(
-                                                                                                                "emptyArray",
-                                                                                                                JSONArray()
-                                                                                                            )
-                                                                                                            .put(
-                                                                                                                "array",
-                                                                                                                JSONArray().put(
-                                                                                                                    "test"
-                                                                                                                )
-                                                                                                            )
-                                                                                                            .put(
-                                                                                                                "null",
-                                                                                                                JSONObject.NULL
-                                                                                                            )
-                                                                                                    )
-                                                                                                    .put(
-                                                                                                        JSONObject()
-                                                                                                            .put(
-                                                                                                                "string",
-                                                                                                                "value"
-                                                                                                            )
-                                                                                                            .put(
-                                                                                                                "int",
-                                                                                                                9
-                                                                                                            )
-                                                                                                            .put(
-                                                                                                                "double",
-                                                                                                                7.6
-                                                                                                            )
-                                                                                                            .put(
-                                                                                                                "float",
-                                                                                                                3.2f
-                                                                                                            )
-                                                                                                            .put(
-                                                                                                                "boolean",
-                                                                                                                false
-                                                                                                            )
-                                                                                                            .put(
-                                                                                                                "object",
-                                                                                                                JSONObject()
-                                                                                                            )
-                                                                                                            .put(
-                                                                                                                "emptyArray",
-                                                                                                                JSONArray()
-                                                                                                            )
-                                                                                                            .put(
-                                                                                                                "array",
-                                                                                                                JSONArray().put(
-                                                                                                                    "test"
-                                                                                                                )
-                                                                                                            )
-                                                                                                            .put(
-                                                                                                                "null",
-                                                                                                                JSONObject.NULL
-                                                                                                            )
-                                                                                                            .put(
-                                                                                                                "array",
-                                                                                                                JSONArray()
-                                                                                                                    .put(
-                                                                                                                        JSONObject()
-                                                                                                                            .put(
-                                                                                                                                "string",
-                                                                                                                                "value"
-                                                                                                                            )
-                                                                                                                            .put(
-                                                                                                                                "int",
-                                                                                                                                9
-                                                                                                                            )
-                                                                                                                            .put(
-                                                                                                                                "double",
-                                                                                                                                7.6
-                                                                                                                            )
-                                                                                                                            .put(
-                                                                                                                                "float",
-                                                                                                                                3.2f
-                                                                                                                            )
-                                                                                                                            .put(
-                                                                                                                                "boolean",
+                                                                                                                .put(
+                                                                                                                    JSONObject()
+                                                                                                                        .put("string", "value")
+                                                                                                                        .put("int", 9)
+                                                                                                                        .put("double", 7.6)
+                                                                                                                        .put("float", 3.2f)
+                                                                                                                        .put("boolean", false)
+                                                                                                                        .put("object", JSONObject())
+                                                                                                                        .put("emptyArray", JSONArray())
+                                                                                                                        .put(
+                                                                                                                            "array",
+                                                                                                                            JSONArray().put(45).put(12.4).put(9.4).put(true).put(
                                                                                                                                 false
-                                                                                                                            )
-                                                                                                                            .put(
-                                                                                                                                "object",
-                                                                                                                                JSONObject()
-                                                                                                                            )
-                                                                                                                            .put(
-                                                                                                                                "emptyArray",
-                                                                                                                                JSONArray()
-                                                                                                                            )
-                                                                                                                            .put(
-                                                                                                                                "array",
-                                                                                                                                JSONArray().put(
-                                                                                                                                    "test"
-                                                                                                                                )
-                                                                                                                            )
-                                                                                                                            .put(
-                                                                                                                                "null",
-                                                                                                                                JSONObject.NULL
-                                                                                                                            )
-                                                                                                                    )
-                                                                                                                    .put(
-                                                                                                                        JSONObject()
-                                                                                                                            .put(
-                                                                                                                                "string",
-                                                                                                                                "value"
-                                                                                                                            )
-                                                                                                                            .put(
-                                                                                                                                "int",
-                                                                                                                                9
-                                                                                                                            )
-                                                                                                                            .put(
-                                                                                                                                "double",
-                                                                                                                                7.6
-                                                                                                                            )
-                                                                                                                            .put(
-                                                                                                                                "float",
-                                                                                                                                3.2f
-                                                                                                                            )
-                                                                                                                            .put(
-                                                                                                                                "boolean",
+                                                                                                                            ).put(
+                                                                                                                                true
+                                                                                                                            ).put(JSONObject.NULL).put(45).put(12.4).put(9.4).put(
+                                                                                                                                true
+                                                                                                                            ).put(
                                                                                                                                 false
-                                                                                                                            )
-                                                                                                                            .put(
-                                                                                                                                "object",
-                                                                                                                                JSONObject()
-                                                                                                                            )
-                                                                                                                            .put(
-                                                                                                                                "emptyArray",
-                                                                                                                                JSONArray()
-                                                                                                                            )
-                                                                                                                            .put(
-                                                                                                                                "array",
-                                                                                                                                JSONArray().put(
-                                                                                                                                    45
-                                                                                                                                ).put(
-                                                                                                                                    12.4
-                                                                                                                                ).put(
-                                                                                                                                    9.4
-                                                                                                                                ).put(
-                                                                                                                                    true
-                                                                                                                                ).put(
-                                                                                                                                    false
-                                                                                                                                ).put(
-                                                                                                                                    true
-                                                                                                                                ).put(
-                                                                                                                                    JSONObject.NULL
-                                                                                                                                ).put(
-                                                                                                                                    45
-                                                                                                                                ).put(
-                                                                                                                                    12.4
-                                                                                                                                ).put(
-                                                                                                                                    9.4
-                                                                                                                                ).put(
-                                                                                                                                    true
-                                                                                                                                ).put(
-                                                                                                                                    false
-                                                                                                                                ).put(
-                                                                                                                                    true
-                                                                                                                                ).put(
-                                                                                                                                    JSONObject.NULL
-                                                                                                                                ).put(
-                                                                                                                                    45
-                                                                                                                                ).put(
-                                                                                                                                    12.4
-                                                                                                                                ).put(
-                                                                                                                                    9.4
-                                                                                                                                ).put(
-                                                                                                                                    true
-                                                                                                                                ).put(
-                                                                                                                                    false
-                                                                                                                                ).put(
-                                                                                                                                    true
-                                                                                                                                ).put(
-                                                                                                                                    JSONObject.NULL
-                                                                                                                                ).put(
-                                                                                                                                    45
-                                                                                                                                ).put(
-                                                                                                                                    12.4
-                                                                                                                                ).put(
-                                                                                                                                    9.4
-                                                                                                                                ).put(
-                                                                                                                                    true
-                                                                                                                                ).put(
-                                                                                                                                    false
-                                                                                                                                ).put(
-                                                                                                                                    true
-                                                                                                                                ).put(
-                                                                                                                                    JSONObject.NULL
-                                                                                                                                ).put(
-                                                                                                                                    45
-                                                                                                                                ).put(
-                                                                                                                                    12.4
-                                                                                                                                ).put(
-                                                                                                                                    9.4
-                                                                                                                                ).put(
-                                                                                                                                    true
-                                                                                                                                ).put(
-                                                                                                                                    false
-                                                                                                                                ).put(
-                                                                                                                                    true
-                                                                                                                                ).put(
-                                                                                                                                    JSONObject.NULL
-                                                                                                                                )
-                                                                                                                            )
-                                                                                                                            .put(
-                                                                                                                                "null",
-                                                                                                                                JSONObject.NULL
-                                                                                                                            )
-                                                                                                                    )
-                                                                                                            )
-                                                                                                            .put(
-                                                                                                                "null",
-                                                                                                                JSONObject()
-                                                                                                                    .put(
-                                                                                                                        "string",
-                                                                                                                        "value"
-                                                                                                                    )
-                                                                                                                    .put(
-                                                                                                                        "int",
-                                                                                                                        9
-                                                                                                                    )
-                                                                                                                    .put(
-                                                                                                                        "double",
-                                                                                                                        7.6
-                                                                                                                    )
-                                                                                                                    .put(
-                                                                                                                        "float",
-                                                                                                                        3.2f
-                                                                                                                    )
-                                                                                                                    .put(
-                                                                                                                        "boolean",
-                                                                                                                        false
-                                                                                                                    )
-                                                                                                                    .put(
-                                                                                                                        "object",
-                                                                                                                        JSONObject()
-                                                                                                                    )
-                                                                                                                    .put(
-                                                                                                                        "emptyArray",
-                                                                                                                        JSONArray()
-                                                                                                                    )
-                                                                                                                    .put(
-                                                                                                                        "array",
-                                                                                                                        JSONArray()
-                                                                                                                            .put(
-                                                                                                                                JSONObject()
-                                                                                                                                    .put(
-                                                                                                                                        "string",
-                                                                                                                                        "value"
-                                                                                                                                    )
-                                                                                                                                    .put(
-                                                                                                                                        "int",
-                                                                                                                                        9
-                                                                                                                                    )
-                                                                                                                                    .put(
-                                                                                                                                        "double",
-                                                                                                                                        7.6
-                                                                                                                                    )
-                                                                                                                                    .put(
-                                                                                                                                        "float",
-                                                                                                                                        3.2f
-                                                                                                                                    )
-                                                                                                                                    .put(
-                                                                                                                                        "boolean",
+                                                                                                                            ).put(true).put(JSONObject.NULL).put(45).put(12.4).put(
+                                                                                                                                9.4
+                                                                                                                            ).put(
+                                                                                                                                true
+                                                                                                                            ).put(false).put(true).put(JSONObject.NULL).put(45).put(
+                                                                                                                                12.4
+                                                                                                                            ).put(
+                                                                                                                                9.4
+                                                                                                                            ).put(true).put(false).put(true).put(JSONObject.NULL).put(
+                                                                                                                                45
+                                                                                                                            ).put(
+                                                                                                                                12.4
+                                                                                                                            ).put(9.4).put(true).put(false).put(true).put(JSONObject.NULL)
+                                                                                                                        )
+                                                                                                                        .put("null", JSONObject.NULL)
+                                                                                                                )
+                                                                                                        )
+                                                                                                        .put(
+                                                                                                            "null", JSONObject()
+                                                                                                                .put("string", "value")
+                                                                                                                .put("int", 9)
+                                                                                                                .put("double", 7.6)
+                                                                                                                .put("float", 3.2f)
+                                                                                                                .put("boolean", false)
+                                                                                                                .put("object", JSONObject())
+                                                                                                                .put("emptyArray", JSONArray())
+                                                                                                                .put(
+                                                                                                                    "array", JSONArray()
+                                                                                                                        .put(
+                                                                                                                            JSONObject()
+                                                                                                                                .put("string", "value")
+                                                                                                                                .put("int", 9)
+                                                                                                                                .put("double", 7.6)
+                                                                                                                                .put("float", 3.2f)
+                                                                                                                                .put("boolean", false)
+                                                                                                                                .put("object", JSONObject())
+                                                                                                                                .put("emptyArray", JSONArray())
+                                                                                                                                .put("array", JSONArray().put("test"))
+                                                                                                                                .put("null", JSONObject.NULL)
+                                                                                                                        )
+                                                                                                                        .put(
+                                                                                                                            JSONObject()
+                                                                                                                                .put("string", "value")
+                                                                                                                                .put("int", 9)
+                                                                                                                                .put("double", 7.6)
+                                                                                                                                .put("float", 3.2f)
+                                                                                                                                .put("boolean", false)
+                                                                                                                                .put("object", JSONObject())
+                                                                                                                                .put("emptyArray", JSONArray())
+                                                                                                                                .put(
+                                                                                                                                    "array",
+                                                                                                                                    JSONArray().put(45).put(12.4).put(9.4).put(true).put(
                                                                                                                                         false
-                                                                                                                                    )
-                                                                                                                                    .put(
-                                                                                                                                        "object",
-                                                                                                                                        JSONObject()
-                                                                                                                                    )
-                                                                                                                                    .put(
-                                                                                                                                        "emptyArray",
-                                                                                                                                        JSONArray()
-                                                                                                                                    )
-                                                                                                                                    .put(
-                                                                                                                                        "array",
-                                                                                                                                        JSONArray().put(
-                                                                                                                                            "test"
-                                                                                                                                        )
-                                                                                                                                    )
-                                                                                                                                    .put(
-                                                                                                                                        "null",
+                                                                                                                                    ).put(
+                                                                                                                                        true
+                                                                                                                                    ).put(JSONObject.NULL).put(45).put(12.4).put(9.4).put(
+                                                                                                                                        true
+                                                                                                                                    ).put(
+                                                                                                                                        false
+                                                                                                                                    ).put(true).put(JSONObject.NULL).put(45).put(
+                                                                                                                                        12.4
+                                                                                                                                    ).put(
+                                                                                                                                        9.4
+                                                                                                                                    ).put(
+                                                                                                                                        true
+                                                                                                                                    ).put(false).put(true).put(JSONObject.NULL).put(
+                                                                                                                                        45
+                                                                                                                                    ).put(
+                                                                                                                                        12.4
+                                                                                                                                    ).put(
+                                                                                                                                        9.4
+                                                                                                                                    ).put(true).put(false).put(true).put(JSONObject.NULL).put(
+                                                                                                                                        45
+                                                                                                                                    ).put(
+                                                                                                                                        12.4
+                                                                                                                                    ).put(9.4).put(true).put(false).put(true).put(
                                                                                                                                         JSONObject.NULL
                                                                                                                                     )
-                                                                                                                            )
-                                                                                                                            .put(
-                                                                                                                                JSONObject()
-                                                                                                                                    .put(
-                                                                                                                                        "string",
-                                                                                                                                        "value"
-                                                                                                                                    )
-                                                                                                                                    .put(
-                                                                                                                                        "int",
-                                                                                                                                        9
-                                                                                                                                    )
-                                                                                                                                    .put(
-                                                                                                                                        "double",
-                                                                                                                                        7.6
-                                                                                                                                    )
-                                                                                                                                    .put(
-                                                                                                                                        "float",
-                                                                                                                                        3.2f
-                                                                                                                                    )
-                                                                                                                                    .put(
-                                                                                                                                        "boolean",
-                                                                                                                                        false
-                                                                                                                                    )
-                                                                                                                                    .put(
-                                                                                                                                        "object",
-                                                                                                                                        JSONObject()
-                                                                                                                                    )
-                                                                                                                                    .put(
-                                                                                                                                        "emptyArray",
-                                                                                                                                        JSONArray()
-                                                                                                                                    )
-                                                                                                                                    .put(
-                                                                                                                                        "array",
-                                                                                                                                        JSONArray().put(
-                                                                                                                                            45
-                                                                                                                                        ).put(
-                                                                                                                                            12.4
-                                                                                                                                        ).put(
-                                                                                                                                            9.4
-                                                                                                                                        ).put(
-                                                                                                                                            true
-                                                                                                                                        ).put(
-                                                                                                                                            false
-                                                                                                                                        ).put(
-                                                                                                                                            true
-                                                                                                                                        ).put(
-                                                                                                                                            JSONObject.NULL
-                                                                                                                                        ).put(
-                                                                                                                                            45
-                                                                                                                                        ).put(
-                                                                                                                                            12.4
-                                                                                                                                        ).put(
-                                                                                                                                            9.4
-                                                                                                                                        ).put(
-                                                                                                                                            true
-                                                                                                                                        ).put(
-                                                                                                                                            false
-                                                                                                                                        ).put(
-                                                                                                                                            true
-                                                                                                                                        ).put(
-                                                                                                                                            JSONObject.NULL
-                                                                                                                                        ).put(
-                                                                                                                                            45
-                                                                                                                                        ).put(
-                                                                                                                                            12.4
-                                                                                                                                        ).put(
-                                                                                                                                            9.4
-                                                                                                                                        ).put(
-                                                                                                                                            true
-                                                                                                                                        ).put(
-                                                                                                                                            false
-                                                                                                                                        ).put(
-                                                                                                                                            true
-                                                                                                                                        ).put(
-                                                                                                                                            JSONObject.NULL
-                                                                                                                                        ).put(
-                                                                                                                                            45
-                                                                                                                                        ).put(
-                                                                                                                                            12.4
-                                                                                                                                        ).put(
-                                                                                                                                            9.4
-                                                                                                                                        ).put(
-                                                                                                                                            true
-                                                                                                                                        ).put(
-                                                                                                                                            false
-                                                                                                                                        ).put(
-                                                                                                                                            true
-                                                                                                                                        ).put(
-                                                                                                                                            JSONObject.NULL
-                                                                                                                                        ).put(
-                                                                                                                                            45
-                                                                                                                                        ).put(
-                                                                                                                                            12.4
-                                                                                                                                        ).put(
-                                                                                                                                            9.4
-                                                                                                                                        ).put(
-                                                                                                                                            true
-                                                                                                                                        ).put(
-                                                                                                                                            false
-                                                                                                                                        ).put(
-                                                                                                                                            true
-                                                                                                                                        ).put(
-                                                                                                                                            JSONObject.NULL
-                                                                                                                                        )
-                                                                                                                                    )
-                                                                                                                                    .put(
-                                                                                                                                        "null",
-                                                                                                                                        JSONObject.NULL
-                                                                                                                                    )
-                                                                                                                            )
-                                                                                                                    )
-                                                                                                            )
-                                                                                                    )
-                                                                                            )
-                                                                                    ).put(
-                                                                                        "anotherObject", JSONObject()
-                                                                                            .put("string", "value")
-                                                                                            .put("int", 9)
-                                                                                            .put("double", 7.6)
-                                                                                            .put("float", 3.2f)
-                                                                                            .put("boolean", false)
-                                                                                            .put("object", JSONObject())
-                                                                                            .put(
-                                                                                                "emptyArray",
-                                                                                                JSONArray()
-                                                                                            )
-                                                                                            .put(
-                                                                                                "array",
-                                                                                                JSONArray().put("test")
-                                                                                            )
-                                                                                            .put(
-                                                                                                "null",
-                                                                                                JSONObject.NULL
-                                                                                            )
-                                                                                    )
-                                                                            )
+                                                                                                                                )
+                                                                                                                                .put("null", JSONObject.NULL)
+                                                                                                                        )
+                                                                                                                )
+                                                                                                        )
+                                                                                                )
+                                                                                        )
+                                                                                ).put(
+                                                                                    "anotherObject", JSONObject()
+                                                                                        .put("string", "value")
+                                                                                        .put("int", 9)
+                                                                                        .put("double", 7.6)
+                                                                                        .put("float", 3.2f)
+                                                                                        .put("boolean", false)
+                                                                                        .put("object", JSONObject())
+                                                                                        .put("emptyArray", JSONArray())
+                                                                                        .put("array", JSONArray().put("test"))
+                                                                                        .put("null", JSONObject.NULL)
+                                                                                )
+                                                                        )
                                                                     )
                                                             )
                                                     )
@@ -1330,427 +984,178 @@ open class KosonBenchmark {
                                                                 ).put(9.4).put(true).put(false).put(true).put(JSONObject.NULL)
                                                             )
                                                             .put("null", JSONObject.NULL)
-                                                            .put(
-                                                                "onceAgain", JSONObject()
-                                                                    .put("string", "value")
-                                                                    .put("int", 9)
-                                                                    .put("double", 7.6)
-                                                                    .put("float", 3.2f)
-                                                                    .put("boolean", false)
-                                                                    .put("object", JSONObject())
-                                                                    .put("emptyArray", JSONArray())
-                                                                    .put("array", JSONArray().put("test"))
-                                                                    .put("null", JSONObject.NULL)
-                                                                    .put(
-                                                                        "otherObj", JSONObject()
-                                                                            .put("string", "value")
-                                                                            .put("int", 9)
-                                                                            .put("double", 7.6)
-                                                                            .put("float", 3.2f)
-                                                                            .put("boolean", false)
-                                                                            .put("object", JSONObject())
-                                                                            .put("emptyArray", JSONArray())
-                                                                            .put("array", JSONArray().put("test"))
-                                                                            .put("null", JSONObject.NULL)
-                                                                            .put(
-                                                                                "array", JSONArray()
-                                                                                    .put(
-                                                                                        JSONObject()
-                                                                                            .put("string", "value")
-                                                                                            .put("int", 9)
-                                                                                            .put("double", 7.6)
-                                                                                            .put("float", 3.2f)
-                                                                                            .put("boolean", false)
-                                                                                            .put("object", JSONObject())
-                                                                                            .put(
-                                                                                                "emptyArray",
-                                                                                                JSONArray()
-                                                                                            )
-                                                                                            .put(
-                                                                                                "array",
-                                                                                                JSONArray().put("test")
-                                                                                            )
-                                                                                            .put(
-                                                                                                "null",
-                                                                                                JSONObject.NULL
-                                                                                            )
-                                                                                    )
-                                                                                    .put(
-                                                                                        JSONObject()
-                                                                                            .put("string", "value")
-                                                                                            .put("int", 9)
-                                                                                            .put("double", 7.6)
-                                                                                            .put("float", 3.2f)
-                                                                                            .put("boolean", false)
-                                                                                            .put("object", JSONObject())
-                                                                                            .put(
-                                                                                                "emptyArray",
-                                                                                                JSONArray()
-                                                                                            )
-                                                                                            .put(
-                                                                                                "array",
-                                                                                                JSONArray().put("test")
-                                                                                            )
-                                                                                            .put(
-                                                                                                "null",
-                                                                                                JSONObject.NULL
-                                                                                            )
-                                                                                    )
-                                                                                    .put(
-                                                                                        JSONObject()
-                                                                                            .put("string", "value")
-                                                                                            .put("int", 9)
-                                                                                            .put("double", 7.6)
-                                                                                            .put("float", 3.2f)
-                                                                                            .put("boolean", false)
-                                                                                            .put("object", JSONObject())
-                                                                                            .put(
-                                                                                                "emptyArray",
-                                                                                                JSONArray()
-                                                                                            )
-                                                                                            .put(
-                                                                                                "array",
-                                                                                                JSONArray().put("test")
-                                                                                            )
-                                                                                            .put(
-                                                                                                "null",
-                                                                                                JSONObject.NULL
-                                                                                            )
-                                                                                            .put(
-                                                                                                "array", JSONArray()
-                                                                                                    .put(
-                                                                                                        JSONObject()
-                                                                                                            .put(
-                                                                                                                "string",
-                                                                                                                "value"
-                                                                                                            )
-                                                                                                            .put(
-                                                                                                                "int",
-                                                                                                                9
-                                                                                                            )
-                                                                                                            .put(
-                                                                                                                "double",
-                                                                                                                7.6
-                                                                                                            )
-                                                                                                            .put(
-                                                                                                                "float",
-                                                                                                                3.2f
-                                                                                                            )
-                                                                                                            .put(
-                                                                                                                "boolean",
+                                                            .put("onceAgain", JSONObject()
+                                                                .put("string", "value")
+                                                                .put("int", 9)
+                                                                .put("double", 7.6)
+                                                                .put("float", 3.2f)
+                                                                .put("boolean", false)
+                                                                .put("object", JSONObject())
+                                                                .put("emptyArray", JSONArray())
+                                                                .put("array", JSONArray().put("test"))
+                                                                .put("null", JSONObject.NULL)
+                                                                .put(
+                                                                    "otherObj", JSONObject()
+                                                                        .put("string", "value")
+                                                                        .put("int", 9)
+                                                                        .put("double", 7.6)
+                                                                        .put("float", 3.2f)
+                                                                        .put("boolean", false)
+                                                                        .put("object", JSONObject())
+                                                                        .put("emptyArray", JSONArray())
+                                                                        .put("array", JSONArray().put("test"))
+                                                                        .put("null", JSONObject.NULL)
+                                                                        .put(
+                                                                            "array", JSONArray()
+                                                                                .put(
+                                                                                    JSONObject()
+                                                                                        .put("string", "value")
+                                                                                        .put("int", 9)
+                                                                                        .put("double", 7.6)
+                                                                                        .put("float", 3.2f)
+                                                                                        .put("boolean", false)
+                                                                                        .put("object", JSONObject())
+                                                                                        .put("emptyArray", JSONArray())
+                                                                                        .put("array", JSONArray().put("test"))
+                                                                                        .put("null", JSONObject.NULL)
+                                                                                )
+                                                                                .put(
+                                                                                    JSONObject()
+                                                                                        .put("string", "value")
+                                                                                        .put("int", 9)
+                                                                                        .put("double", 7.6)
+                                                                                        .put("float", 3.2f)
+                                                                                        .put("boolean", false)
+                                                                                        .put("object", JSONObject())
+                                                                                        .put("emptyArray", JSONArray())
+                                                                                        .put("array", JSONArray().put("test"))
+                                                                                        .put("null", JSONObject.NULL)
+                                                                                )
+                                                                                .put(
+                                                                                    JSONObject()
+                                                                                        .put("string", "value")
+                                                                                        .put("int", 9)
+                                                                                        .put("double", 7.6)
+                                                                                        .put("float", 3.2f)
+                                                                                        .put("boolean", false)
+                                                                                        .put("object", JSONObject())
+                                                                                        .put("emptyArray", JSONArray())
+                                                                                        .put("array", JSONArray().put("test"))
+                                                                                        .put("null", JSONObject.NULL)
+                                                                                        .put(
+                                                                                            "array", JSONArray()
+                                                                                                .put(
+                                                                                                    JSONObject()
+                                                                                                        .put("string", "value")
+                                                                                                        .put("int", 9)
+                                                                                                        .put("double", 7.6)
+                                                                                                        .put("float", 3.2f)
+                                                                                                        .put("boolean", false)
+                                                                                                        .put("object", JSONObject())
+                                                                                                        .put("emptyArray", JSONArray())
+                                                                                                        .put("array", JSONArray().put("test"))
+                                                                                                        .put("null", JSONObject.NULL)
+                                                                                                )
+                                                                                                .put(
+                                                                                                    JSONObject()
+                                                                                                        .put("string", "value")
+                                                                                                        .put("int", 9)
+                                                                                                        .put("double", 7.6)
+                                                                                                        .put("float", 3.2f)
+                                                                                                        .put("boolean", false)
+                                                                                                        .put("object", JSONObject())
+                                                                                                        .put("emptyArray", JSONArray())
+                                                                                                        .put(
+                                                                                                            "array",
+                                                                                                            JSONArray().put(45).put(12.4).put(9.4).put(true).put(false).put(
+                                                                                                                true
+                                                                                                            ).put(JSONObject.NULL).put(45).put(12.4).put(9.4).put(true).put(
                                                                                                                 false
-                                                                                                            )
-                                                                                                            .put(
-                                                                                                                "object",
-                                                                                                                JSONObject()
-                                                                                                            )
-                                                                                                            .put(
-                                                                                                                "emptyArray",
-                                                                                                                JSONArray()
-                                                                                                            )
-                                                                                                            .put(
-                                                                                                                "array",
-                                                                                                                JSONArray().put(
-                                                                                                                    "test"
-                                                                                                                )
-                                                                                                            )
-                                                                                                            .put(
-                                                                                                                "null",
-                                                                                                                JSONObject.NULL
-                                                                                                            )
-                                                                                                    )
-                                                                                                    .put(
-                                                                                                        JSONObject()
-                                                                                                            .put(
-                                                                                                                "string",
-                                                                                                                "value"
-                                                                                                            )
-                                                                                                            .put(
-                                                                                                                "int",
-                                                                                                                9
-                                                                                                            )
-                                                                                                            .put(
-                                                                                                                "double",
-                                                                                                                7.6
-                                                                                                            )
-                                                                                                            .put(
-                                                                                                                "float",
-                                                                                                                3.2f
-                                                                                                            )
-                                                                                                            .put(
-                                                                                                                "boolean",
-                                                                                                                false
-                                                                                                            )
-                                                                                                            .put(
-                                                                                                                "object",
-                                                                                                                JSONObject()
-                                                                                                            )
-                                                                                                            .put(
-                                                                                                                "emptyArray",
-                                                                                                                JSONArray()
-                                                                                                            )
-                                                                                                            .put(
-                                                                                                                "array",
-                                                                                                                JSONArray().put(
-                                                                                                                    45
-                                                                                                                ).put(
-                                                                                                                    12.4
-                                                                                                                ).put(
-                                                                                                                    9.4
-                                                                                                                ).put(
-                                                                                                                    true
-                                                                                                                ).put(
-                                                                                                                    false
-                                                                                                                ).put(
-                                                                                                                    true
-                                                                                                                ).put(
-                                                                                                                    JSONObject.NULL
-                                                                                                                ).put(45).put(
-                                                                                                                    12.4
-                                                                                                                ).put(
-                                                                                                                    9.4
-                                                                                                                ).put(
-                                                                                                                    true
-                                                                                                                ).put(
-                                                                                                                    false
-                                                                                                                ).put(
-                                                                                                                    true
-                                                                                                                ).put(
-                                                                                                                    JSONObject.NULL
-                                                                                                                ).put(45).put(
-                                                                                                                    12.4
-                                                                                                                ).put(
-                                                                                                                    9.4
-                                                                                                                ).put(
-                                                                                                                    true
-                                                                                                                ).put(
-                                                                                                                    false
-                                                                                                                ).put(
-                                                                                                                    true
-                                                                                                                ).put(
-                                                                                                                    JSONObject.NULL
-                                                                                                                ).put(45).put(
-                                                                                                                    12.4
-                                                                                                                ).put(
-                                                                                                                    9.4
-                                                                                                                ).put(
-                                                                                                                    true
-                                                                                                                ).put(
-                                                                                                                    false
-                                                                                                                ).put(
-                                                                                                                    true
-                                                                                                                ).put(
-                                                                                                                    JSONObject.NULL
-                                                                                                                ).put(45).put(
-                                                                                                                    12.4
-                                                                                                                ).put(
-                                                                                                                    9.4
-                                                                                                                ).put(
-                                                                                                                    true
-                                                                                                                ).put(
-                                                                                                                    false
-                                                                                                                ).put(
-                                                                                                                    true
-                                                                                                                ).put(
-                                                                                                                    JSONObject.NULL
-                                                                                                                )
-                                                                                                            )
-                                                                                                            .put(
-                                                                                                                "null",
-                                                                                                                JSONObject.NULL
-                                                                                                            )
-                                                                                                    )
-                                                                                            )
-                                                                                            .put(
-                                                                                                "null", JSONObject()
-                                                                                                    .put(
-                                                                                                        "string",
-                                                                                                        "value"
-                                                                                                    )
-                                                                                                    .put("int", 9)
-                                                                                                    .put("double", 7.6)
-                                                                                                    .put("float", 3.2f)
-                                                                                                    .put(
-                                                                                                        "boolean",
-                                                                                                        false
-                                                                                                    )
-                                                                                                    .put(
-                                                                                                        "object",
-                                                                                                        JSONObject()
-                                                                                                    )
-                                                                                                    .put(
-                                                                                                        "emptyArray",
-                                                                                                        JSONArray()
-                                                                                                    )
-                                                                                                    .put(
-                                                                                                        "array",
-                                                                                                        JSONArray()
-                                                                                                            .put(
-                                                                                                                JSONObject()
-                                                                                                                    .put(
-                                                                                                                        "string",
-                                                                                                                        "value"
-                                                                                                                    )
-                                                                                                                    .put(
-                                                                                                                        "int",
-                                                                                                                        9
-                                                                                                                    )
-                                                                                                                    .put(
-                                                                                                                        "double",
-                                                                                                                        7.6
-                                                                                                                    )
-                                                                                                                    .put(
-                                                                                                                        "float",
-                                                                                                                        3.2f
-                                                                                                                    )
-                                                                                                                    .put(
-                                                                                                                        "boolean",
+                                                                                                            ).put(true).put(JSONObject.NULL).put(45).put(12.4).put(9.4).put(
+                                                                                                                true
+                                                                                                            ).put(false).put(true).put(JSONObject.NULL).put(45).put(12.4).put(
+                                                                                                                9.4
+                                                                                                            ).put(true).put(false).put(true).put(JSONObject.NULL).put(45).put(
+                                                                                                                12.4
+                                                                                                            ).put(9.4).put(true).put(false).put(true).put(JSONObject.NULL)
+                                                                                                        )
+                                                                                                        .put("null", JSONObject.NULL)
+                                                                                                )
+                                                                                        )
+                                                                                        .put(
+                                                                                            "null", JSONObject()
+                                                                                                .put("string", "value")
+                                                                                                .put("int", 9)
+                                                                                                .put("double", 7.6)
+                                                                                                .put("float", 3.2f)
+                                                                                                .put("boolean", false)
+                                                                                                .put("object", JSONObject())
+                                                                                                .put("emptyArray", JSONArray())
+                                                                                                .put(
+                                                                                                    "array", JSONArray()
+                                                                                                        .put(
+                                                                                                            JSONObject()
+                                                                                                                .put("string", "value")
+                                                                                                                .put("int", 9)
+                                                                                                                .put("double", 7.6)
+                                                                                                                .put("float", 3.2f)
+                                                                                                                .put("boolean", false)
+                                                                                                                .put("object", JSONObject())
+                                                                                                                .put("emptyArray", JSONArray())
+                                                                                                                .put("array", JSONArray().put("test"))
+                                                                                                                .put("null", JSONObject.NULL)
+                                                                                                        )
+                                                                                                        .put(
+                                                                                                            JSONObject()
+                                                                                                                .put("string", "value")
+                                                                                                                .put("int", 9)
+                                                                                                                .put("double", 7.6)
+                                                                                                                .put("float", 3.2f)
+                                                                                                                .put("boolean", false)
+                                                                                                                .put("object", JSONObject())
+                                                                                                                .put("emptyArray", JSONArray())
+                                                                                                                .put(
+                                                                                                                    "array",
+                                                                                                                    JSONArray().put(45).put(12.4).put(9.4).put(true).put(
                                                                                                                         false
-                                                                                                                    )
-                                                                                                                    .put(
-                                                                                                                        "object",
-                                                                                                                        JSONObject()
-                                                                                                                    )
-                                                                                                                    .put(
-                                                                                                                        "emptyArray",
-                                                                                                                        JSONArray()
-                                                                                                                    )
-                                                                                                                    .put(
-                                                                                                                        "array",
-                                                                                                                        JSONArray().put(
-                                                                                                                            "test"
-                                                                                                                        )
-                                                                                                                    )
-                                                                                                                    .put(
-                                                                                                                        "null",
-                                                                                                                        JSONObject.NULL
-                                                                                                                    )
-                                                                                                            )
-                                                                                                            .put(
-                                                                                                                JSONObject()
-                                                                                                                    .put(
-                                                                                                                        "string",
-                                                                                                                        "value"
-                                                                                                                    )
-                                                                                                                    .put(
-                                                                                                                        "int",
-                                                                                                                        9
-                                                                                                                    )
-                                                                                                                    .put(
-                                                                                                                        "double",
-                                                                                                                        7.6
-                                                                                                                    )
-                                                                                                                    .put(
-                                                                                                                        "float",
-                                                                                                                        3.2f
-                                                                                                                    )
-                                                                                                                    .put(
-                                                                                                                        "boolean",
+                                                                                                                    ).put(
+                                                                                                                        true
+                                                                                                                    ).put(JSONObject.NULL).put(45).put(12.4).put(9.4).put(
+                                                                                                                        true
+                                                                                                                    ).put(
                                                                                                                         false
-                                                                                                                    )
-                                                                                                                    .put(
-                                                                                                                        "object",
-                                                                                                                        JSONObject()
-                                                                                                                    )
-                                                                                                                    .put(
-                                                                                                                        "emptyArray",
-                                                                                                                        JSONArray()
-                                                                                                                    )
-                                                                                                                    .put(
-                                                                                                                        "array",
-                                                                                                                        JSONArray().put(
-                                                                                                                            45
-                                                                                                                        ).put(
-                                                                                                                            12.4
-                                                                                                                        ).put(
-                                                                                                                            9.4
-                                                                                                                        ).put(
-                                                                                                                            true
-                                                                                                                        ).put(
-                                                                                                                            false
-                                                                                                                        ).put(
-                                                                                                                            true
-                                                                                                                        ).put(
-                                                                                                                            JSONObject.NULL
-                                                                                                                        ).put(
-                                                                                                                            45
-                                                                                                                        ).put(
-                                                                                                                            12.4
-                                                                                                                        ).put(
-                                                                                                                            9.4
-                                                                                                                        ).put(
-                                                                                                                            true
-                                                                                                                        ).put(
-                                                                                                                            false
-                                                                                                                        ).put(
-                                                                                                                            true
-                                                                                                                        ).put(
-                                                                                                                            JSONObject.NULL
-                                                                                                                        ).put(
-                                                                                                                            45
-                                                                                                                        ).put(
-                                                                                                                            12.4
-                                                                                                                        ).put(
-                                                                                                                            9.4
-                                                                                                                        ).put(
-                                                                                                                            true
-                                                                                                                        ).put(
-                                                                                                                            false
-                                                                                                                        ).put(
-                                                                                                                            true
-                                                                                                                        ).put(
-                                                                                                                            JSONObject.NULL
-                                                                                                                        ).put(
-                                                                                                                            45
-                                                                                                                        ).put(
-                                                                                                                            12.4
-                                                                                                                        ).put(
-                                                                                                                            9.4
-                                                                                                                        ).put(
-                                                                                                                            true
-                                                                                                                        ).put(
-                                                                                                                            false
-                                                                                                                        ).put(
-                                                                                                                            true
-                                                                                                                        ).put(
-                                                                                                                            JSONObject.NULL
-                                                                                                                        ).put(
-                                                                                                                            45
-                                                                                                                        ).put(
-                                                                                                                            12.4
-                                                                                                                        ).put(
-                                                                                                                            9.4
-                                                                                                                        ).put(
-                                                                                                                            true
-                                                                                                                        ).put(
-                                                                                                                            false
-                                                                                                                        ).put(
-                                                                                                                            true
-                                                                                                                        ).put(
-                                                                                                                            JSONObject.NULL
-                                                                                                                        )
-                                                                                                                    )
-                                                                                                                    .put(
-                                                                                                                        "null",
-                                                                                                                        JSONObject.NULL
-                                                                                                                    )
-                                                                                                            )
-                                                                                                    )
-                                                                                            )
-                                                                                    )
-                                                                            )
-                                                                    ).put(
-                                                                        "anotherObject", JSONObject()
-                                                                            .put("string", "value")
-                                                                            .put("int", 9)
-                                                                            .put("double", 7.6)
-                                                                            .put("float", 3.2f)
-                                                                            .put("boolean", false)
-                                                                            .put("object", JSONObject())
-                                                                            .put("emptyArray", JSONArray())
-                                                                            .put("array", JSONArray().put("test"))
-                                                                            .put("null", JSONObject.NULL)
-                                                                    )
+                                                                                                                    ).put(true).put(JSONObject.NULL).put(45).put(12.4).put(
+                                                                                                                        9.4
+                                                                                                                    ).put(
+                                                                                                                        true
+                                                                                                                    ).put(false).put(true).put(JSONObject.NULL).put(45).put(
+                                                                                                                        12.4
+                                                                                                                    ).put(
+                                                                                                                        9.4
+                                                                                                                    ).put(true).put(false).put(true).put(JSONObject.NULL).put(
+                                                                                                                        45
+                                                                                                                    ).put(
+                                                                                                                        12.4
+                                                                                                                    ).put(9.4).put(true).put(false).put(true).put(JSONObject.NULL)
+                                                                                                                )
+                                                                                                                .put("null", JSONObject.NULL)
+                                                                                                        )
+                                                                                                )
+                                                                                        )
+                                                                                )
+                                                                        )
+                                                                ).put(
+                                                                    "anotherObject", JSONObject()
+                                                                        .put("string", "value")
+                                                                        .put("int", 9)
+                                                                        .put("double", 7.6)
+                                                                        .put("float", 3.2f)
+                                                                        .put("boolean", false)
+                                                                        .put("object", JSONObject())
+                                                                        .put("emptyArray", JSONArray())
+                                                                        .put("array", JSONArray().put("test"))
+                                                                        .put("null", JSONObject.NULL)
+                                                                )
                                                             )
                                                     )
                                             )
