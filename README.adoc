@@ -76,9 +76,12 @@ println(array) // see below
 
 * A JSON key (attribute) can only be of `Kotlin` type `String`
 
-NOTE: In IntelliJ, compilation errors will appear, and code will be flagged as not reachable
+[NOTE]
+====
+In IntelliJ, a compilation error will appear, and code will be flagged as not reachable
 
 image:https://github.com/ncomet/koson/blob/master/image/koson-typing.png["Koson Typing"]
+====
 
 IMPORTANT: A runtime `KosonException` will be raised when a JSON key (attribute) duplicate is found in an _obj { }_
 
