@@ -1,8 +1,8 @@
-image:https://github.com/ncomet/koson/blob/master/image/koson-logo.png["Koson Logo", link="https://github.com/ncomet/koson"]
+image::https://github.com/ncomet/koson/blob/master/image/koson-logo.png["Koson Logo", align="center"]
 
 = Koson
 
-image:https://travis-ci.org/ncomet/koson.svg?branch=master["Build Status", link="https://travis-ci.org/ncomet/koson"]
+image::https://travis-ci.org/ncomet/koson.svg?branch=master["Build Status", link="https://travis-ci.org/ncomet/koson"]
 
 A concise `Kotlin` DSL to build `JSON` objects and render their _String representations_
 
@@ -75,6 +75,8 @@ println(array) // see below
 == Strong type constraints
 
 * A JSON key (attribute) can only be of `Kotlin` type `String`
+
+image::https://github.com/ncomet/koson/blob/master/image/koson-typing.png[align="center"]
 
 NOTE: A runtime `KosonException` will be raised when a JSON key (attribute) duplicate is found in an _obj { }_
 
