@@ -1,4 +1,4 @@
-image:https://github.com/ncomet/koson/blob/master/image/koson-logo.png["Koson Logo"]
+image:https://github.com/ncomet/koson/blob/master/image/koson-logo.png["Koson Logo", link="https://travis-ci.org/ncomet/koson"]
 
 = Koson
 
