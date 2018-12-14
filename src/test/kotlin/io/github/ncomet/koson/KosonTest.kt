@@ -1,6 +1,5 @@
 package io.github.ncomet.koson
 
-import org.assertj.core.api.WithAssertions
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
@@ -8,21 +7,26 @@ import org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS
 import org.junit.jupiter.api.assertThrows
 
 @TestInstance(PER_CLASS)
-class KosonTest : WithAssertions {
+class KosonTest  {
 
     @Test
     fun `empty object`() {
-        assertThat(obj { }.toString()).isEqualTo("{}")
+        val representation = obj { }.toString()
+        assertThat(representation).isValidJSON()
+        assertThat(representation).isEqualTo("{}")
     }
 
     @Test
     fun `empty array`() {
-        assertThat(array.toString()).isEqualTo("[]")
+        val representation = array.toString()
+        assertThat(representation).isValidJSON()
+        assertThat(representation).isEqualTo("[]")
     }
 
     @Test
     fun `array containing this as a value should render`() {
-        array[this]
+        val representation = array[this]
+        assertThat(representation.toString()).isValidJSON()
     }
 
     object SimpleObject {
@@ -35,7 +39,7 @@ class KosonTest : WithAssertions {
 
     @Test
     fun `object with all possible types of value`() {
-        assertThat(obj {
+        val representation = obj {
             "string" to "value"
             "double" to 7.6
             "float" to 3.2f
@@ -51,63 +55,76 @@ class KosonTest : WithAssertions {
             "null" to null
             "any" to SimpleObject
             "custom" to ContainsDoubleQuotes
-        }.toString()).isEqualTo("{\"string\":\"value\",\"double\":7.6,\"float\":3.2,\"long\":34,\"int\":9,\"char\":\"e\",\"short\":12,\"byte\":50,\"boolean\":false,\"object\":{},\"emptyArray\":[],\"array\":[\"test\"],\"null\":null,\"any\":\"SimpleObject\",\"custom\":\"\\\"unfor\\\"tunate\\\"\"}")
+        }.toString()
+        assertThat(representation).isValidJSON()
+        assertThat(representation).isEqualTo("{\"string\":\"value\",\"double\":7.6,\"float\":3.2,\"long\":34,\"int\":9,\"char\":\"e\",\"short\":12,\"byte\":50,\"boolean\":false,\"object\":{},\"emptyArray\":[],\"array\":[\"test\"],\"null\":null,\"any\":\"SimpleObject\",\"custom\":\"\\\"unfor\\\"tunate\\\"\"}")
     }
 
     @Test
     internal fun `array with all possible types of value`() {
-        assertThat(
-            array[
-                    "value",
-                    7.6,
-                    3.2f,
-                    34L,
-                    9,
-                    'e',
-                    12.toShort(),
-                    0x32,
-                    false,
-                    obj { },
-                    array,
-                    array["test"],
-                    null,
-                    SimpleObject,
-                    ContainsDoubleQuotes
-            ].toString()
-        ).isEqualTo("[\"value\",7.6,3.2,34,9,\"e\",12,50,false,{},[],[\"test\"],null,\"SimpleObject\",\"\\\"unfor\\\"tunate\\\"\"]")
+        val representation = array[
+                "value",
+                7.6,
+                3.2f,
+                34L,
+                9,
+                'e',
+                12.toShort(),
+                0x32,
+                false,
+                obj { },
+                array,
+                array["test"],
+                null,
+                SimpleObject,
+                ContainsDoubleQuotes
+        ].toString()
+        assertThat(representation).isValidJSON()
+        assertThat(representation)
+            .isEqualTo("[\"value\",7.6,3.2,34,9,\"e\",12,50,false,{},[],[\"test\"],null,\"SimpleObject\",\"\\\"unfor\\\"tunate\\\"\"]")
     }
 
     @Nested
-    inner class ContainingCases : WithAssertions {
+    inner class ContainingCases {
         @Test
         fun `object containing array`() {
-            assertThat(obj { "array" to array }.toString()).isEqualTo("{\"array\":[]}")
+            val representation = obj { "array" to array }.toString()
+            assertThat(representation).isValidJSON()
+            assertThat(representation).isEqualTo("{\"array\":[]}")
         }
 
         @Test
         fun `array containing object`() {
-            assertThat(array[obj { }].toString()).isEqualTo("[{}]")
+            val representation = array[obj { }].toString()
+            assertThat(representation).isValidJSON()
+            assertThat(representation).isEqualTo("[{}]")
         }
 
         @Test
         fun `object containing object`() {
-            assertThat(obj { "object" to obj { } }.toString()).isEqualTo("{\"object\":{}}")
+            val representation = obj { "object" to obj { } }.toString()
+            assertThat(representation).isValidJSON()
+            assertThat(representation).isEqualTo("{\"object\":{}}")
         }
 
         @Test
         fun `array containing array`() {
-            assertThat(array[array].toString()).isEqualTo("[[]]")
+            val representation = array[array].toString()
+            assertThat(representation).isValidJSON()
+            assertThat(representation).isEqualTo("[[]]")
         }
 
         @Test
         @Suppress("UNUSED_EXPRESSION")
         fun `object not containing a to() should do nothing`() {
-            assertThat(obj { "content" }.toString()).isEqualTo("{}")
+            val representation = obj { "content" }.toString()
+            assertThat(representation).isValidJSON()
+            assertThat(representation).isEqualTo("{}")
         }
     }
 
     @Nested
-    inner class MoreComplexCases : WithAssertions {
+    inner class MoreComplexCases {
         @Test
         fun `constructing a bit more complex object`() {
             val obj = obj {
@@ -127,8 +144,9 @@ class KosonTest : WithAssertions {
                         }
                 ]
             }
-
-            assertThat("$obj")
+            val representation = obj.toString()
+            assertThat(representation).isValidJSON()
+            assertThat(representation)
                 .isEqualTo("{\"key\":3.4,\"anotherKey\":[\"test\",\"test2\",1,2.433,true],\"nullsAreAllowedToo\":null,\"array\":[{\"double\":33.4,\"float\":345.0,\"long\":21,\"int\":42,\"char\":\"a\",\"byte\":170,\"otherArray\":[],\"simpleObject\":\"SimpleObject\"}]}")
         }
 
@@ -141,8 +159,9 @@ class KosonTest : WithAssertions {
                         "otherArray" to array["element", ContainsDoubleQuotes, obj { }]
                     }
             ]
-
-            assertThat("$array")
+            val representation = array.toString()
+            assertThat(representation).isValidJSON()
+            assertThat(representation)
                 .isEqualTo("[\"koson\",33.4,345.0,21,42,\"a\",33,{\"aKey\":\"value\",\"insideArray\":[],\"otherArray\":[\"element\",\"\\\"unfor\\\"tunate\\\"\",{}]}]")
         }
 
@@ -150,14 +169,15 @@ class KosonTest : WithAssertions {
         fun `testing an object inlined`() {
             val obj =
                 obj { "key" to 3.4; "anotherKey" to array["test", "test2", 1, 2.433, true]; "nullsAreAllowedToo" to null }
-
-            assertThat("$obj")
+            val representation = obj.toString()
+            assertThat(representation).isValidJSON()
+            assertThat(representation)
                 .isEqualTo("{\"key\":3.4,\"anotherKey\":[\"test\",\"test2\",1,2.433,true],\"nullsAreAllowedToo\":null}")
         }
     }
 
     @Nested
-    inner class ExceptionCases : WithAssertions {
+    inner class ExceptionCases {
 
         @Test
         fun `object construction must throw KosonException when duplicate key`() {
@@ -168,7 +188,7 @@ class KosonTest : WithAssertions {
                 }
             }.message
 
-            assertThat(message).isEqualTo("key <key> of (key to 1.65) is already defined for json object")
+            assertThat(message!!).isEqualTo("key <key> of (key to 1.65) is already defined for json object")
         }
 
     }
