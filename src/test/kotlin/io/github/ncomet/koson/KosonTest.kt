@@ -333,18 +333,6 @@ class KosonTest {
                         "]"
             )
         }
-
-        @Test
-        internal fun name() {
-            println(array[
-                    "example",
-                    obj {
-                        "apple" to "pie"
-                        "key" to 3.14
-                        "anotherKey" to array["first", "second", 1, 2.433, true]
-                    }
-            ].pretty())
-        }
     }
 
 }
