@@ -117,7 +117,7 @@ println(array.pretty()) <2>
 
 == Pretty print
 
-When using the `pretty()` method on `obj` or `array`, you can define whitespaces number. Default value is `2`.
+When using the `pretty()` method on `obj` or `array`, you can define the number of whitespaces used for tabulation. Default value is `2`.
 
 [source, Kotlin]
 ----
