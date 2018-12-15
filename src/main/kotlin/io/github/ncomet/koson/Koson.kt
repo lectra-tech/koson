@@ -1,35 +1,35 @@
 package io.github.ncomet.koson
 
 sealed class KosonType {
-    abstract fun prettyPrint(level: Int, spaces: Int): String
+    internal abstract fun prettyPrint(level: Int, spaces: Int): String
 }
 
 private val cr = System.lineSeparator()
-private val sp = " "
+private const val sp = " "
 
 private data class StringType(val value: String) : KosonType() {
-    override fun prettyPrint(level: Int, spaces: Int): String = toString()
     override fun toString(): String = "\"$value\""
+    override fun prettyPrint(level: Int, spaces: Int): String = toString()
 }
 
 private data class NumberType(val value: Number) : KosonType() {
-    override fun prettyPrint(level: Int, spaces: Int): String = toString()
     override fun toString(): String = value.toString()
+    override fun prettyPrint(level: Int, spaces: Int): String = toString()
 }
 
 private data class BooleanType(val value: Boolean) : KosonType() {
-    override fun prettyPrint(level: Int, spaces: Int): String = toString()
     override fun toString(): String = value.toString()
+    override fun prettyPrint(level: Int, spaces: Int): String = toString()
 }
 
 private object NullType : KosonType() {
-    override fun prettyPrint(level: Int, spaces: Int): String = toString()
     override fun toString(): String = "null"
+    override fun prettyPrint(level: Int, spaces: Int): String = toString()
 }
 
 private data class CustomType(val value: Any) : KosonType() {
-    override fun prettyPrint(level: Int, spaces: Int): String = toString()
     override fun toString(): String = "\"${value.toString().replace("\"", "\\\"")}\""
+    override fun prettyPrint(level: Int, spaces: Int): String = toString()
 }
 
 data class ObjectType(internal val values: MutableMap<String, KosonType> = mutableMapOf()) : KosonType() {
@@ -40,7 +40,7 @@ data class ObjectType(internal val values: MutableMap<String, KosonType> = mutab
 
     override fun prettyPrint(level: Int, spaces: Int): String {
         val space = sp.repeat((level + 1) * spaces)
-        val closingSpace = sp.repeat(spaces * level)
+        val closingSpace = sp.repeat(level * spaces)
         return values.entries.joinToString(",$cr$space", "{$cr$space", "$cr$closingSpace}") { (k, v) ->
             "\"$k\": ${v.prettyPrint(
                 level + 1,
@@ -57,7 +57,7 @@ open class ArrayType(private val values: List<KosonType> = emptyList()) : KosonT
 
     override fun prettyPrint(level: Int, spaces: Int): String {
         val space = sp.repeat((level + 1) * spaces)
-        val closingSpace = sp.repeat(spaces * level)
+        val closingSpace = sp.repeat(level * spaces)
         return values.joinTo(StringBuilder(), ",$cr$space", "[$cr$space", "$cr$closingSpace]") {
             it.prettyPrint(
                 level + 1,

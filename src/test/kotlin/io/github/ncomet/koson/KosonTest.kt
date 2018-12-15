@@ -195,6 +195,7 @@ class KosonTest {
 
     @Nested
     inner class PrettyPrints {
+
         @Test
         fun `must pretty print an object`() {
             val pretty = obj {
@@ -331,6 +332,18 @@ class KosonTest {
                         "  }\n" +
                         "]"
             )
+        }
+
+        @Test
+        internal fun name() {
+            println(array[
+                    "example",
+                    obj {
+                        "apple" to "pie"
+                        "key" to 3.14
+                        "anotherKey" to array["first", "second", 1, 2.433, true]
+                    }
+            ].pretty())
         }
     }
 

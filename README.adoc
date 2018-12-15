@@ -43,13 +43,34 @@ val obj = obj {
   "custom" to Date()
 }
 
-println(obj) // see below
+println(obj) <1>
+println(obj.pretty()) <2>
 ----
 
-.println(obj)
 [source, json]
 ----
+<1>
 {"key":3.4,"anotherKey":["test","test2",1,2.433,true],"nullValue":null,"emptyObject":{},"emptyArray":[],"custom":"Tue Dec 11 13:14:14 CET 2018"}
+
+<2>
+{
+  "key": 3.4,
+  "anotherKey": [
+    "test",
+    "test2",
+    1,
+    2.433,
+    true
+  ],
+  "nullValue": null,
+  "emptyObject": {
+
+  },
+  "emptyArray": [
+
+  ],
+  "custom": "Tue Dec 11 13:14:14 CET 2018"
+}
 ----
 
 [source, Kotlin]
@@ -63,13 +84,46 @@ val array = array[
   }
 ]
 
-println(array) // see below
+println(array) <1>
+println(array.pretty()) <2>
 ----
 
-.println(array)
 [source, json]
 ----
+<1>
 ["example",{"apple":"pie","key":3.14,"anotherKey":["first","second",1,2.433,true]}]
+
+<2>
+[
+  "example",
+  {
+    "apple": "pie",
+    "key": 3.14,
+    "anotherKey": [
+      "first",
+      "second",
+      1,
+      2.433,
+      true
+    ]
+  }
+]
+----
+
+== Pretty print
+
+When using the `pretty()` method on `obj` or `array`, you can define whitespaces number. Default value is `2`.
+
+[source, Kotlin]
+----
+// "compact" mode
+obj { ... }
+
+// 2 whitespaces tabulation
+obj { ... }.pretty()
+
+// 3 whitespaces tabulation
+array[ ... ].pretty(3)
 ----
 
 == Strong type constraints
