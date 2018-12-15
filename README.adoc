@@ -4,7 +4,7 @@ image:https://github.com/ncomet/koson/blob/master/image/koson-logo.png["Koson Lo
 
 image:https://travis-ci.org/ncomet/koson.svg?branch=master["Build Status", link="https://travis-ci.org/ncomet/koson"]
 
-A concise `Kotlin` DSL to build `JSON` objects and render their _String representations_
+A concise and lightweight `Kotlin` DSL to build `JSON` objects and render their _String representations_
 
 Requiring no other dependency than `Kotlin`
 
