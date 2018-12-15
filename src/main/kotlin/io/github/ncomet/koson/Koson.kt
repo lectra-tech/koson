@@ -36,7 +36,10 @@ data class ObjectType(internal val values: MutableMap<String, KosonType> = mutab
     override fun toString(): String =
         values.entries.joinToString(",", "{", "}") { (k, v) -> "\"$k\":$v" }
 
-    fun pretty(spaces: Int = 2): String = prettyPrint(0, spaces)
+    fun pretty(spaces: Int = 2): String {
+        require(spaces >= 0) { "spaces Int must be positive, but was $spaces." }
+        return prettyPrint(0, spaces)
+    }
 
     override fun prettyPrint(level: Int, spaces: Int): String {
         val space = sp.repeat((level + 1) * spaces)
@@ -53,7 +56,10 @@ data class ObjectType(internal val values: MutableMap<String, KosonType> = mutab
 open class ArrayType(private val values: List<KosonType> = emptyList()) : KosonType() {
     override fun toString(): String = values.joinToString(",", "[", "]")
 
-    fun pretty(spaces: Int = 2): String = prettyPrint(0, spaces)
+    fun pretty(spaces: Int = 2): String {
+        require(spaces >= 0) { "spaces Int must be positive, but was $spaces." }
+        return prettyPrint(0, spaces)
+    }
 
     override fun prettyPrint(level: Int, spaces: Int): String {
         val space = sp.repeat((level + 1) * spaces)

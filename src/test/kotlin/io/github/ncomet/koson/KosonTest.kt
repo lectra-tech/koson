@@ -191,6 +191,18 @@ class KosonTest {
             assertThat(message!!).isEqualTo("key <key> of (key to 1.65) is already defined for json object")
         }
 
+        @Test
+        fun `obj pretty with negative spaces must throw an IAE`() {
+            val message = assertThrows<IllegalArgumentException> { obj { }.pretty(-3) }.message
+            assertThat(message!!).isEqualTo("spaces Int must be positive, but was -3.")
+        }
+
+        @Test
+        fun `array pretty with negative spaces must throw an IAE`() {
+            val message = assertThrows<IllegalArgumentException> { obj { }.pretty(-5) }.message
+            assertThat(message!!).isEqualTo("spaces Int must be positive, but was -5.")
+        }
+
     }
 
     @Nested
