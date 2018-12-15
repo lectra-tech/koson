@@ -1,34 +1,70 @@
 package io.github.ncomet.koson
 
-sealed class KosonType
+sealed class KosonType {
+    abstract fun prettyPrint(level: Int, spaces: Int): String
+}
+
+private val cr = System.lineSeparator()
+private val sp = " "
 
 private data class StringType(val value: String) : KosonType() {
+    override fun prettyPrint(level: Int, spaces: Int): String = toString()
     override fun toString(): String = "\"$value\""
 }
 
 private data class NumberType(val value: Number) : KosonType() {
+    override fun prettyPrint(level: Int, spaces: Int): String = toString()
     override fun toString(): String = value.toString()
 }
 
 private data class BooleanType(val value: Boolean) : KosonType() {
+    override fun prettyPrint(level: Int, spaces: Int): String = toString()
     override fun toString(): String = value.toString()
 }
 
 private object NullType : KosonType() {
+    override fun prettyPrint(level: Int, spaces: Int): String = toString()
     override fun toString(): String = "null"
 }
 
 private data class CustomType(val value: Any) : KosonType() {
+    override fun prettyPrint(level: Int, spaces: Int): String = toString()
     override fun toString(): String = "\"${value.toString().replace("\"", "\\\"")}\""
 }
 
 data class ObjectType(internal val values: MutableMap<String, KosonType> = mutableMapOf()) : KosonType() {
     override fun toString(): String =
         values.entries.joinToString(",", "{", "}") { (k, v) -> "\"$k\":$v" }
+
+    fun pretty(spaces: Int = 2): String = prettyPrint(0, spaces)
+
+    override fun prettyPrint(level: Int, spaces: Int): String {
+        val space = sp.repeat((level + 1) * spaces)
+        val closingSpace = sp.repeat(spaces * level)
+        return values.entries.joinToString(",$cr$space", "{$cr$space", "$cr$closingSpace}") { (k, v) ->
+            "\"$k\": ${v.prettyPrint(
+                level + 1,
+                spaces
+            )}"
+        }
+    }
 }
 
 open class ArrayType(private val values: List<KosonType> = emptyList()) : KosonType() {
     override fun toString(): String = values.joinToString(",", "[", "]")
+
+    fun pretty(spaces: Int = 2): String = prettyPrint(0, spaces)
+
+    override fun prettyPrint(level: Int, spaces: Int): String {
+        val space = sp.repeat((level + 1) * spaces)
+        val closingSpace = sp.repeat(spaces * level)
+        return values.joinTo(StringBuilder(), ",$cr$space", "[$cr$space", "$cr$closingSpace]") {
+            it.prettyPrint(
+                level + 1,
+                spaces
+            )
+        }.toString()
+    }
 }
 
 object array : ArrayType() {

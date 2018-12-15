@@ -7,7 +7,7 @@ import org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS
 import org.junit.jupiter.api.assertThrows
 
 @TestInstance(PER_CLASS)
-class KosonTest  {
+class KosonTest {
 
     @Test
     fun `empty object`() {
@@ -191,6 +191,147 @@ class KosonTest  {
             assertThat(message!!).isEqualTo("key <key> of (key to 1.65) is already defined for json object")
         }
 
+    }
+
+    @Nested
+    inner class PrettyPrints {
+        @Test
+        fun `must pretty print an object`() {
+            val pretty = obj {
+                "key" to 3.4
+                "anotherKey" to array["test", "test2", 1, 2.433, true]
+                "nullsAreAllowedToo" to null
+                "array" to array[
+                        obj {
+                            "double" to 33.4
+                            "float" to 345f
+                            "long" to 21L
+                            "int" to 42
+                            "char" to 'a'
+                            "byte" to 0xAA
+                            "otherArray" to array
+                            "simpleObject" to SimpleObject
+                            "objectInside" to obj {
+                                "to" to 34
+                                "too" to "Dog"
+                            }
+                            "innerArray" to array[
+                                    34, 44, "to", null
+                            ]
+                        }
+                ]
+            }.pretty()
+
+            assertThat(pretty).isValidJSON()
+            assertThat(pretty).isEqualTo(
+                "{\n" +
+                        "  \"key\": 3.4,\n" +
+                        "  \"anotherKey\": [\n" +
+                        "    \"test\",\n" +
+                        "    \"test2\",\n" +
+                        "    1,\n" +
+                        "    2.433,\n" +
+                        "    true\n" +
+                        "  ],\n" +
+                        "  \"nullsAreAllowedToo\": null,\n" +
+                        "  \"array\": [\n" +
+                        "    {\n" +
+                        "      \"double\": 33.4,\n" +
+                        "      \"float\": 345.0,\n" +
+                        "      \"long\": 21,\n" +
+                        "      \"int\": 42,\n" +
+                        "      \"char\": \"a\",\n" +
+                        "      \"byte\": 170,\n" +
+                        "      \"otherArray\": [\n" +
+                        "        \n" +
+                        "      ],\n" +
+                        "      \"simpleObject\": \"SimpleObject\",\n" +
+                        "      \"objectInside\": {\n" +
+                        "        \"to\": 34,\n" +
+                        "        \"too\": \"Dog\"\n" +
+                        "      },\n" +
+                        "      \"innerArray\": [\n" +
+                        "        34,\n" +
+                        "        44,\n" +
+                        "        \"to\",\n" +
+                        "        null\n" +
+                        "      ]\n" +
+                        "    }\n" +
+                        "  ]\n" +
+                        "}"
+            )
+        }
+
+        @Test
+        fun `must pretty print an array`() {
+            val pretty = array[
+                    obj {
+                        "key" to 3.4
+                        "anotherKey" to array["test", "test2", 1, 2.433, true]
+                        "nullsAreAllowedToo" to null
+                        "array" to array[
+                                obj {
+                                    "double" to 33.4
+                                    "float" to 345f
+                                    "long" to 21L
+                                    "int" to 42
+                                    "char" to 'a'
+                                    "byte" to 0xAA
+                                    "otherArray" to array
+                                    "simpleObject" to SimpleObject
+                                    "objectInside" to obj {
+                                        "to" to 34
+                                        "too" to "Dog"
+                                    }
+                                    "innerArray" to array[
+                                            34, 44, "to", null
+                                    ]
+                                }
+                        ]
+                    }
+            ].pretty()
+
+            assertThat(pretty).isValidJSON()
+            assertThat(pretty).isEqualTo(
+                "[\n" +
+                        "  {\n" +
+                        "    \"key\": 3.4,\n" +
+                        "    \"anotherKey\": [\n" +
+                        "      \"test\",\n" +
+                        "      \"test2\",\n" +
+                        "      1,\n" +
+                        "      2.433,\n" +
+                        "      true\n" +
+                        "    ],\n" +
+                        "    \"nullsAreAllowedToo\": null,\n" +
+                        "    \"array\": [\n" +
+                        "      {\n" +
+                        "        \"double\": 33.4,\n" +
+                        "        \"float\": 345.0,\n" +
+                        "        \"long\": 21,\n" +
+                        "        \"int\": 42,\n" +
+                        "        \"char\": \"a\",\n" +
+                        "        \"byte\": 170,\n" +
+                        "        \"otherArray\": [\n" +
+                        "          \n" +
+                        "        ],\n" +
+                        "        \"simpleObject\": \"SimpleObject\",\n" +
+                        "        \"objectInside\": {\n" +
+                        "          \"to\": 34,\n" +
+                        "          \"too\": \"Dog\"\n" +
+                        "        },\n" +
+                        "        \"innerArray\": [\n" +
+                        "          34,\n" +
+                        "          44,\n" +
+                        "          \"to\",\n" +
+                        "          null\n" +
+                        "        ]\n" +
+                        "      }\n" +
+                        "    ]\n" +
+                        "  }\n" +
+                        "]"
+            )
+        }
     }
 
 }
