@@ -10,7 +10,6 @@ Requiring no other dependency than `Kotlin`
 
 == DSL
 
-.Kotlin
 [source, Kotlin]
 ----
 // for an empty object
