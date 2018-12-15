@@ -10,6 +10,7 @@ Requiring no other dependency than `Kotlin`
 
 == DSL
 
+.Kotlin
 [source, Kotlin]
 ----
 // for an empty object
@@ -32,6 +33,7 @@ NOTE: Any combination of these elements is possible
 
 == How to use
 
+.Kotlin
 [source, Kotlin]
 ----
 val obj = obj {
@@ -47,6 +49,7 @@ println(obj) <1>
 println(obj.pretty()) <2>
 ----
 
+.JSON output
 [source, json]
 ----
 <1>
@@ -73,6 +76,7 @@ println(obj.pretty()) <2>
 }
 ----
 
+.Kotlin
 [source, Kotlin]
 ----
 val array = array[
@@ -88,6 +92,7 @@ println(array) <1>
 println(array.pretty()) <2>
 ----
 
+.JSON output
 [source, json]
 ----
 <1>
