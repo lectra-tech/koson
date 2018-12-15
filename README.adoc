@@ -121,7 +121,7 @@ When using the `pretty()` method on `obj` or `array`, you can define the number 
 
 [source, Kotlin]
 ----
-// "compact" mode
+// "compact", single line mode
 obj { ... }
 
 // 2 whitespaces tabulation
