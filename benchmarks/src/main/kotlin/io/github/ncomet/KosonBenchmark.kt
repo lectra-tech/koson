@@ -706,7 +706,673 @@ open class KosonBenchmark {
     }
 
     @Benchmark
-    fun _2_jsonWithBigObject(): String {
+    fun _2_jsonWithBigArray_pretty(): String {
+        val json = JSONArray().put(45).put(12.4).put(9.4).put(true).put(false).put(
+            true
+        ).put(JSONObject.NULL).put(45).put(12.4).put(9.4).put(true).put(
+            false
+        ).put(true).put(JSONObject.NULL).put(45).put(12.4).put(9.4).put(
+            true
+        ).put(false).put(true).put(JSONObject.NULL).put(45).put(12.4).put(
+            9.4
+        ).put(true).put(false).put(true).put(JSONObject.NULL).put(45).put(
+            12.4
+        ).put(9.4).put(true).put(false).put(true).put(JSONObject.NULL).put("firstElement")
+            .put(
+                JSONObject()
+                    .put("string", "value")
+                    .put("int", 9)
+                    .put("double", 7.6)
+                    .put("float", 3.2f)
+                    .put("boolean", false)
+                    .put("object", JSONObject())
+                    .put("emptyArray", JSONArray())
+                    .put("array", JSONArray().put("test"))
+                    .put("null", JSONObject.NULL)
+                    .put(
+                        "otherObj", JSONObject()
+                            .put("string", "value")
+                            .put("int", 9)
+                            .put("double", 7.6)
+                            .put("float", 3.2f)
+                            .put("boolean", false)
+                            .put("object", JSONObject())
+                            .put("emptyArray", JSONArray())
+                            .put("array", JSONArray().put("test"))
+                            .put("null", JSONObject.NULL)
+                            .put(
+                                "array", JSONArray()
+                                    .put(
+                                        JSONObject()
+                                            .put("string", "value")
+                                            .put("int", 9)
+                                            .put("double", 7.6)
+                                            .put("float", 3.2f)
+                                            .put("boolean", false)
+                                            .put("object", JSONObject())
+                                            .put("emptyArray", JSONArray())
+                                            .put("array", JSONArray().put("test"))
+                                            .put("null", JSONObject.NULL)
+                                    )
+                                    .put(
+                                        JSONObject()
+                                            .put("string", "value")
+                                            .put("int", 9)
+                                            .put("double", 7.6)
+                                            .put("float", 3.2f)
+                                            .put("boolean", false)
+                                            .put("object", JSONObject())
+                                            .put("emptyArray", JSONArray())
+                                            .put("array", JSONArray().put("test"))
+                                            .put("null", JSONObject.NULL)
+                                    )
+                                    .put(
+                                        JSONObject()
+                                            .put("string", "value")
+                                            .put("int", 9)
+                                            .put("double", 7.6)
+                                            .put("float", 3.2f)
+                                            .put("boolean", false)
+                                            .put("object", JSONObject())
+                                            .put("emptyArray", JSONArray())
+                                            .put("array", JSONArray().put("test"))
+                                            .put("null", JSONObject.NULL)
+                                            .put(
+                                                "array", JSONArray()
+                                                    .put(
+                                                        JSONObject()
+                                                            .put("string", "value")
+                                                            .put("int", 9)
+                                                            .put("double", 7.6)
+                                                            .put("float", 3.2f)
+                                                            .put("boolean", false)
+                                                            .put("object", JSONObject())
+                                                            .put("emptyArray", JSONArray())
+                                                            .put("array", JSONArray().put("test"))
+                                                            .put("null", JSONObject.NULL)
+                                                    )
+                                                    .put(
+                                                        JSONObject()
+                                                            .put("string", "value")
+                                                            .put("int", 9)
+                                                            .put("double", 7.6)
+                                                            .put("float", 3.2f)
+                                                            .put("boolean", false)
+                                                            .put("object", JSONObject())
+                                                            .put("emptyArray", JSONArray())
+                                                            .put(
+                                                                "array",
+                                                                JSONArray().put(45).put(12.4).put(9.4).put(true).put(
+                                                                    false
+                                                                ).put(
+                                                                    true
+                                                                ).put(JSONObject.NULL).put(45).put(12.4).put(9.4).put(
+                                                                    true
+                                                                ).put(
+                                                                    false
+                                                                ).put(true).put(JSONObject.NULL).put(45).put(12.4).put(
+                                                                    9.4
+                                                                ).put(
+                                                                    true
+                                                                ).put(false).put(true).put(JSONObject.NULL).put(45).put(
+                                                                    12.4
+                                                                ).put(
+                                                                    9.4
+                                                                ).put(true).put(false).put(true).put(JSONObject.NULL).put(
+                                                                    45
+                                                                ).put(
+                                                                    12.4
+                                                                ).put(9.4).put(true).put(false).put(true).put(JSONObject.NULL)
+                                                            )
+                                                            .put("null", JSONObject.NULL)
+                                                    )
+                                            )
+                                            .put(
+                                                "null", JSONObject()
+                                                    .put("string", "value")
+                                                    .put("int", 9)
+                                                    .put("double", 7.6)
+                                                    .put("float", 3.2f)
+                                                    .put("boolean", false)
+                                                    .put("object", JSONObject())
+                                                    .put("emptyArray", JSONArray())
+                                                    .put(
+                                                        "array", JSONArray()
+                                                            .put(
+                                                                JSONObject()
+                                                                    .put("string", "value")
+                                                                    .put("int", 9)
+                                                                    .put("double", 7.6)
+                                                                    .put("float", 3.2f)
+                                                                    .put("boolean", false)
+                                                                    .put("object", JSONObject())
+                                                                    .put("emptyArray", JSONArray())
+                                                                    .put("array", JSONArray().put("test"))
+                                                                    .put("null", JSONObject.NULL)
+                                                            )
+                                                            .put(
+                                                                JSONObject()
+                                                                    .put("string", "value")
+                                                                    .put("int", 9)
+                                                                    .put("double", 7.6)
+                                                                    .put("float", 3.2f)
+                                                                    .put("boolean", false)
+                                                                    .put("object", JSONObject())
+                                                                    .put("emptyArray", JSONArray())
+                                                                    .put(
+                                                                        "array",
+                                                                        JSONArray().put(45).put(12.4).put(9.4).put(true).put(
+                                                                            false
+                                                                        ).put(
+                                                                            true
+                                                                        ).put(JSONObject.NULL).put(45).put(12.4).put(9.4).put(
+                                                                            true
+                                                                        ).put(
+                                                                            false
+                                                                        ).put(true).put(JSONObject.NULL).put(45).put(
+                                                                            12.4
+                                                                        ).put(
+                                                                            9.4
+                                                                        ).put(
+                                                                            true
+                                                                        ).put(false).put(true).put(JSONObject.NULL).put(
+                                                                            45
+                                                                        ).put(
+                                                                            12.4
+                                                                        ).put(
+                                                                            9.4
+                                                                        ).put(true).put(false).put(true).put(JSONObject.NULL).put(
+                                                                            45
+                                                                        ).put(
+                                                                            12.4
+                                                                        ).put(9.4).put(true).put(false).put(true).put(
+                                                                            JSONObject.NULL
+                                                                        )
+                                                                    )
+                                                                    .put("null", JSONObject.NULL)
+                                                                    .put("onceAgain", JSONArray().put(45).put(12.4).put(9.4).put(true).put(false).put(
+                                                                        true
+                                                                    ).put(JSONObject.NULL).put(45).put(12.4).put(9.4).put(true).put(
+                                                                        false
+                                                                    ).put(true).put(JSONObject.NULL).put(45).put(12.4).put(9.4).put(
+                                                                        true
+                                                                    ).put(false).put(true).put(JSONObject.NULL).put(45).put(12.4).put(
+                                                                        9.4
+                                                                    ).put(true).put(false).put(true).put(JSONObject.NULL).put(45).put(
+                                                                        12.4
+                                                                    ).put(9.4).put(true).put(false).put(true).put(JSONObject.NULL).put("firstElement")
+                                                                        .put(
+                                                                            JSONObject()
+                                                                                .put("string", "value")
+                                                                                .put("int", 9)
+                                                                                .put("double", 7.6)
+                                                                                .put("float", 3.2f)
+                                                                                .put("boolean", false)
+                                                                                .put("object", JSONObject())
+                                                                                .put("emptyArray", JSONArray())
+                                                                                .put("array", JSONArray().put("test"))
+                                                                                .put("null", JSONObject.NULL)
+                                                                                .put(
+                                                                                    "otherObj", JSONObject()
+                                                                                        .put("string", "value")
+                                                                                        .put("int", 9)
+                                                                                        .put("double", 7.6)
+                                                                                        .put("float", 3.2f)
+                                                                                        .put("boolean", false)
+                                                                                        .put("object", JSONObject())
+                                                                                        .put("emptyArray", JSONArray())
+                                                                                        .put("array", JSONArray().put("test"))
+                                                                                        .put("null", JSONObject.NULL)
+                                                                                        .put(
+                                                                                            "array", JSONArray()
+                                                                                                .put(
+                                                                                                    JSONObject()
+                                                                                                        .put("string", "value")
+                                                                                                        .put("int", 9)
+                                                                                                        .put("double", 7.6)
+                                                                                                        .put("float", 3.2f)
+                                                                                                        .put("boolean", false)
+                                                                                                        .put("object", JSONObject())
+                                                                                                        .put("emptyArray", JSONArray())
+                                                                                                        .put("array", JSONArray().put("test"))
+                                                                                                        .put("null", JSONObject.NULL)
+                                                                                                )
+                                                                                                .put(
+                                                                                                    JSONObject()
+                                                                                                        .put("string", "value")
+                                                                                                        .put("int", 9)
+                                                                                                        .put("double", 7.6)
+                                                                                                        .put("float", 3.2f)
+                                                                                                        .put("boolean", false)
+                                                                                                        .put("object", JSONObject())
+                                                                                                        .put("emptyArray", JSONArray())
+                                                                                                        .put("array", JSONArray().put("test"))
+                                                                                                        .put("null", JSONObject.NULL)
+                                                                                                )
+                                                                                                .put(
+                                                                                                    JSONObject()
+                                                                                                        .put("string", "value")
+                                                                                                        .put("int", 9)
+                                                                                                        .put("double", 7.6)
+                                                                                                        .put("float", 3.2f)
+                                                                                                        .put("boolean", false)
+                                                                                                        .put("object", JSONObject())
+                                                                                                        .put("emptyArray", JSONArray())
+                                                                                                        .put("array", JSONArray().put("test"))
+                                                                                                        .put("null", JSONObject.NULL)
+                                                                                                        .put(
+                                                                                                            "array", JSONArray()
+                                                                                                                .put(
+                                                                                                                    JSONObject()
+                                                                                                                        .put("string", "value")
+                                                                                                                        .put("int", 9)
+                                                                                                                        .put("double", 7.6)
+                                                                                                                        .put("float", 3.2f)
+                                                                                                                        .put("boolean", false)
+                                                                                                                        .put("object", JSONObject())
+                                                                                                                        .put("emptyArray", JSONArray())
+                                                                                                                        .put("array", JSONArray().put("test"))
+                                                                                                                        .put("null", JSONObject.NULL)
+                                                                                                                )
+                                                                                                                .put(
+                                                                                                                    JSONObject()
+                                                                                                                        .put("string", "value")
+                                                                                                                        .put("int", 9)
+                                                                                                                        .put("double", 7.6)
+                                                                                                                        .put("float", 3.2f)
+                                                                                                                        .put("boolean", false)
+                                                                                                                        .put("object", JSONObject())
+                                                                                                                        .put("emptyArray", JSONArray())
+                                                                                                                        .put(
+                                                                                                                            "array",
+                                                                                                                            JSONArray().put(45).put(12.4).put(9.4).put(true).put(
+                                                                                                                                false
+                                                                                                                            ).put(
+                                                                                                                                true
+                                                                                                                            ).put(JSONObject.NULL).put(45).put(12.4).put(9.4).put(
+                                                                                                                                true
+                                                                                                                            ).put(
+                                                                                                                                false
+                                                                                                                            ).put(true).put(JSONObject.NULL).put(45).put(12.4).put(
+                                                                                                                                9.4
+                                                                                                                            ).put(
+                                                                                                                                true
+                                                                                                                            ).put(false).put(true).put(JSONObject.NULL).put(45).put(
+                                                                                                                                12.4
+                                                                                                                            ).put(
+                                                                                                                                9.4
+                                                                                                                            ).put(true).put(false).put(true).put(JSONObject.NULL).put(
+                                                                                                                                45
+                                                                                                                            ).put(
+                                                                                                                                12.4
+                                                                                                                            ).put(9.4).put(true).put(false).put(true).put(JSONObject.NULL)
+                                                                                                                        )
+                                                                                                                        .put("null", JSONObject.NULL)
+                                                                                                                )
+                                                                                                        )
+                                                                                                        .put(
+                                                                                                            "null", JSONObject()
+                                                                                                                .put("string", "value")
+                                                                                                                .put("int", 9)
+                                                                                                                .put("double", 7.6)
+                                                                                                                .put("float", 3.2f)
+                                                                                                                .put("boolean", false)
+                                                                                                                .put("object", JSONObject())
+                                                                                                                .put("emptyArray", JSONArray())
+                                                                                                                .put(
+                                                                                                                    "array", JSONArray()
+                                                                                                                        .put(
+                                                                                                                            JSONObject()
+                                                                                                                                .put("string", "value")
+                                                                                                                                .put("int", 9)
+                                                                                                                                .put("double", 7.6)
+                                                                                                                                .put("float", 3.2f)
+                                                                                                                                .put("boolean", false)
+                                                                                                                                .put("object", JSONObject())
+                                                                                                                                .put("emptyArray", JSONArray())
+                                                                                                                                .put("array", JSONArray().put("test"))
+                                                                                                                                .put("null", JSONObject.NULL)
+                                                                                                                        )
+                                                                                                                        .put(
+                                                                                                                            JSONObject()
+                                                                                                                                .put("string", "value")
+                                                                                                                                .put("int", 9)
+                                                                                                                                .put("double", 7.6)
+                                                                                                                                .put("float", 3.2f)
+                                                                                                                                .put("boolean", false)
+                                                                                                                                .put("object", JSONObject())
+                                                                                                                                .put("emptyArray", JSONArray())
+                                                                                                                                .put(
+                                                                                                                                    "array",
+                                                                                                                                    JSONArray().put(45).put(12.4).put(9.4).put(true).put(
+                                                                                                                                        false
+                                                                                                                                    ).put(
+                                                                                                                                        true
+                                                                                                                                    ).put(JSONObject.NULL).put(45).put(12.4).put(9.4).put(
+                                                                                                                                        true
+                                                                                                                                    ).put(
+                                                                                                                                        false
+                                                                                                                                    ).put(true).put(JSONObject.NULL).put(45).put(
+                                                                                                                                        12.4
+                                                                                                                                    ).put(
+                                                                                                                                        9.4
+                                                                                                                                    ).put(
+                                                                                                                                        true
+                                                                                                                                    ).put(false).put(true).put(JSONObject.NULL).put(
+                                                                                                                                        45
+                                                                                                                                    ).put(
+                                                                                                                                        12.4
+                                                                                                                                    ).put(
+                                                                                                                                        9.4
+                                                                                                                                    ).put(true).put(false).put(true).put(JSONObject.NULL).put(
+                                                                                                                                        45
+                                                                                                                                    ).put(
+                                                                                                                                        12.4
+                                                                                                                                    ).put(9.4).put(true).put(false).put(true).put(
+                                                                                                                                        JSONObject.NULL
+                                                                                                                                    )
+                                                                                                                                )
+                                                                                                                                .put("null", JSONObject.NULL)
+                                                                                                                        )
+                                                                                                                )
+                                                                                                        )
+                                                                                                )
+                                                                                        )
+                                                                                ).put(
+                                                                                    "anotherObject", JSONObject()
+                                                                                        .put("string", "value")
+                                                                                        .put("int", 9)
+                                                                                        .put("double", 7.6)
+                                                                                        .put("float", 3.2f)
+                                                                                        .put("boolean", false)
+                                                                                        .put("object", JSONObject())
+                                                                                        .put("emptyArray", JSONArray())
+                                                                                        .put("array", JSONArray().put("test"))
+                                                                                        .put("null", JSONObject.NULL)
+                                                                                )
+                                                                        )
+                                                                    )
+                                                            )
+                                                    )
+                                            )
+                                    )
+                            )
+                    ).put(
+                        "anotherObject", JSONObject()
+                            .put("string", "value")
+                            .put("int", 9)
+                            .put("double", 7.6)
+                            .put("float", 3.2f)
+                            .put("boolean", false)
+                            .put("object", JSONObject())
+                            .put("emptyArray", JSONArray())
+                            .put("array", JSONArray().put("test"))
+                            .put("null", JSONObject.NULL)
+                    )
+            )
+
+        return json.toString(2)
+    }
+
+    @Benchmark
+    fun _3_kosonWithBigArray_pretty(): String {
+        val koson =
+            array[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, "firstElement",
+                    obj {
+                        "string" to "value"
+                        "int" to 9
+                        "double" to 7.6
+                        "float" to 3.2f
+                        "boolean" to false
+                        "object" to obj { }
+                        "emptyArray" to array
+                        "array" to array["test"]
+                        "null" to null
+                        "otherObj" to obj {
+                            "string" to "value"
+                            "int" to 9
+                            "double" to 7.6
+                            "float" to 3.2f
+                            "boolean" to false
+                            "object" to obj { }
+                            "emptyArray" to array
+                            "array" to array[
+                                    obj {
+                                        "string" to "value"
+                                        "int" to 9
+                                        "double" to 7.6
+                                        "float" to 3.2f
+                                        "boolean" to false
+                                        "object" to obj { }
+                                        "emptyArray" to array
+                                        "array" to array["test"]
+                                        "null" to null
+                                    },
+                                    obj {
+                                        "string" to "value"
+                                        "int" to 9
+                                        "double" to 7.6
+                                        "float" to 3.2f
+                                        "boolean" to false
+                                        "object" to obj { }
+                                        "emptyArray" to array
+                                        "array" to array["test"]
+                                        "null" to null
+                                    },
+                                    obj {
+                                        "string" to "value"
+                                        "int" to 9
+                                        "double" to 7.6
+                                        "float" to 3.2f
+                                        "boolean" to false
+                                        "object" to obj { }
+                                        "emptyArray" to array
+                                        "array" to array[
+                                                obj {
+                                                    "string" to "value"
+                                                    "int" to 9
+                                                    "double" to 7.6
+                                                    "float" to 3.2f
+                                                    "boolean" to false
+                                                    "object" to obj { }
+                                                    "emptyArray" to array
+                                                    "array" to array["test"]
+                                                    "null" to null
+                                                },
+                                                obj {
+                                                    "string" to "value"
+                                                    "int" to 9
+                                                    "double" to 7.6
+                                                    "float" to 3.2f
+                                                    "boolean" to false
+                                                    "object" to obj { }
+                                                    "emptyArray" to array
+                                                    "array" to array[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
+                                                    "null" to null
+                                                }
+                                        ]
+                                        "null" to null
+                                    }
+                            ]
+                            "null" to obj {
+                                "string" to "value"
+                                "int" to 9
+                                "double" to 7.6
+                                "float" to 3.2f
+                                "boolean" to false
+                                "object" to obj { }
+                                "emptyArray" to array
+                                "array" to array[
+                                        obj {
+                                            "string" to "value"
+                                            "int" to 9
+                                            "double" to 7.6
+                                            "float" to 3.2f
+                                            "boolean" to false
+                                            "object" to obj { }
+                                            "emptyArray" to array
+                                            "array" to array["test"]
+                                            "null" to null
+                                        },
+                                        obj {
+                                            "string" to "value"
+                                            "int" to 9
+                                            "double" to 7.6
+                                            "float" to 3.2f
+                                            "boolean" to false
+                                            "object" to obj { }
+                                            "emptyArray" to array
+                                            "array" to array[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
+                                            "null" to null
+                                        }
+                                ]
+                                "null" to null
+                                "onceAgain" to array[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, "firstElement",
+                                        obj {
+                                            "string" to "value"
+                                            "int" to 9
+                                            "double" to 7.6
+                                            "float" to 3.2f
+                                            "boolean" to false
+                                            "object" to obj { }
+                                            "emptyArray" to array
+                                            "array" to array["test"]
+                                            "null" to null
+                                            "otherObj" to obj {
+                                                "string" to "value"
+                                                "int" to 9
+                                                "double" to 7.6
+                                                "float" to 3.2f
+                                                "boolean" to false
+                                                "object" to obj { }
+                                                "emptyArray" to array
+                                                "array" to array[
+                                                        obj {
+                                                            "string" to "value"
+                                                            "int" to 9
+                                                            "double" to 7.6
+                                                            "float" to 3.2f
+                                                            "boolean" to false
+                                                            "object" to obj { }
+                                                            "emptyArray" to array
+                                                            "array" to array["test"]
+                                                            "null" to null
+                                                        },
+                                                        obj {
+                                                            "string" to "value"
+                                                            "int" to 9
+                                                            "double" to 7.6
+                                                            "float" to 3.2f
+                                                            "boolean" to false
+                                                            "object" to obj { }
+                                                            "emptyArray" to array
+                                                            "array" to array["test"]
+                                                            "null" to null
+                                                        },
+                                                        obj {
+                                                            "string" to "value"
+                                                            "int" to 9
+                                                            "double" to 7.6
+                                                            "float" to 3.2f
+                                                            "boolean" to false
+                                                            "object" to obj { }
+                                                            "emptyArray" to array
+                                                            "array" to array[
+                                                                    obj {
+                                                                        "string" to "value"
+                                                                        "int" to 9
+                                                                        "double" to 7.6
+                                                                        "float" to 3.2f
+                                                                        "boolean" to false
+                                                                        "object" to obj { }
+                                                                        "emptyArray" to array
+                                                                        "array" to array["test"]
+                                                                        "null" to null
+                                                                    },
+                                                                    obj {
+                                                                        "string" to "value"
+                                                                        "int" to 9
+                                                                        "double" to 7.6
+                                                                        "float" to 3.2f
+                                                                        "boolean" to false
+                                                                        "object" to obj { }
+                                                                        "emptyArray" to array
+                                                                        "array" to array[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
+                                                                        "null" to null
+                                                                    }
+                                                            ]
+                                                            "null" to null
+                                                        }
+                                                ]
+                                                "null" to obj {
+                                                    "string" to "value"
+                                                    "int" to 9
+                                                    "double" to 7.6
+                                                    "float" to 3.2f
+                                                    "boolean" to false
+                                                    "object" to obj { }
+                                                    "emptyArray" to array
+                                                    "array" to array[
+                                                            obj {
+                                                                "string" to "value"
+                                                                "int" to 9
+                                                                "double" to 7.6
+                                                                "float" to 3.2f
+                                                                "boolean" to false
+                                                                "object" to obj { }
+                                                                "emptyArray" to array
+                                                                "array" to array["test"]
+                                                                "null" to null
+                                                            },
+                                                            obj {
+                                                                "string" to "value"
+                                                                "int" to 9
+                                                                "double" to 7.6
+                                                                "float" to 3.2f
+                                                                "boolean" to false
+                                                                "object" to obj { }
+                                                                "emptyArray" to array
+                                                                "array" to array[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
+                                                                "null" to null
+                                                            }
+                                                    ]
+                                                    "null" to null
+                                                }
+                                            }
+                                            "anotherObj" to obj {
+                                                "string" to "value"
+                                                "int" to 9
+                                                "double" to 7.6
+                                                "float" to 3.2f
+                                                "boolean" to false
+                                                "object" to obj { }
+                                                "emptyArray" to array
+                                                "array" to array["test"]
+                                                "null" to null
+                                            }
+                                        }
+                                ]
+                            }
+                        }
+                        "anotherObj" to obj {
+                            "string" to "value"
+                            "int" to 9
+                            "double" to 7.6
+                            "float" to 3.2f
+                            "boolean" to false
+                            "object" to obj { }
+                            "emptyArray" to array
+                            "array" to array["test"]
+                            "null" to null
+                        }
+                    }
+            ]
+
+        return koson.pretty()
+    }
+
+    @Benchmark
+    fun _4_jsonWithBigObject(): String {
         val json = JSONObject()
             .put("string", "value")
             .put("int", 9)
@@ -1057,7 +1723,7 @@ open class KosonBenchmark {
     }
 
     @Benchmark
-    fun _3_kosonWithBigObject(): String {
+    fun _5_kosonWithBigObject(): String {
         val koson = obj {
             "string" to "value"
             "int" to 9
@@ -1306,6 +1972,609 @@ open class KosonBenchmark {
         }
 
         return koson.toString()
+    }
+
+    @Benchmark
+    fun _6_jsonWithBigObject_pretty(): String {
+        val json = JSONObject()
+            .put("string", "value")
+            .put("int", 9)
+            .put("double", 7.6)
+            .put("float", 3.2f)
+            .put("boolean", false)
+            .put("object", JSONObject())
+            .put("emptyArray", JSONArray())
+            .put("array", JSONArray().put("test"))
+            .put("null", JSONObject.NULL)
+            .put(
+                "otherObj", JSONObject()
+                    .put("string", "value")
+                    .put("int", 9)
+                    .put("double", 7.6)
+                    .put("float", 3.2f)
+                    .put("boolean", false)
+                    .put("object", JSONObject())
+                    .put("emptyArray", JSONArray())
+                    .put("array", JSONArray().put("test"))
+                    .put("null", JSONObject.NULL)
+                    .put(
+                        "array", JSONArray()
+                            .put(
+                                JSONObject()
+                                    .put("string", "value")
+                                    .put("int", 9)
+                                    .put("double", 7.6)
+                                    .put("float", 3.2f)
+                                    .put("boolean", false)
+                                    .put("object", JSONObject())
+                                    .put("emptyArray", JSONArray())
+                                    .put("array", JSONArray().put("test"))
+                                    .put("null", JSONObject.NULL)
+                            )
+                            .put(
+                                JSONObject()
+                                    .put("string", "value")
+                                    .put("int", 9)
+                                    .put("double", 7.6)
+                                    .put("float", 3.2f)
+                                    .put("boolean", false)
+                                    .put("object", JSONObject())
+                                    .put("emptyArray", JSONArray())
+                                    .put("array", JSONArray().put("test"))
+                                    .put("null", JSONObject.NULL)
+                            )
+                            .put(
+                                JSONObject()
+                                    .put("string", "value")
+                                    .put("int", 9)
+                                    .put("double", 7.6)
+                                    .put("float", 3.2f)
+                                    .put("boolean", false)
+                                    .put("object", JSONObject())
+                                    .put("emptyArray", JSONArray())
+                                    .put("array", JSONArray().put("test"))
+                                    .put("null", JSONObject.NULL)
+                                    .put(
+                                        "array", JSONArray()
+                                            .put(
+                                                JSONObject()
+                                                    .put("string", "value")
+                                                    .put("int", 9)
+                                                    .put("double", 7.6)
+                                                    .put("float", 3.2f)
+                                                    .put("boolean", false)
+                                                    .put("object", JSONObject())
+                                                    .put("emptyArray", JSONArray())
+                                                    .put("array", JSONArray().put("test"))
+                                                    .put("null", JSONObject.NULL)
+                                            )
+                                            .put(
+                                                JSONObject()
+                                                    .put("string", "value")
+                                                    .put("int", 9)
+                                                    .put("double", 7.6)
+                                                    .put("float", 3.2f)
+                                                    .put("boolean", false)
+                                                    .put("object", JSONObject())
+                                                    .put("emptyArray", JSONArray())
+                                                    .put(
+                                                        "array",
+                                                        JSONArray().put(45).put(12.4).put(9.4).put(true).put(false).put(
+                                                            true
+                                                        ).put(JSONObject.NULL).put(45).put(12.4).put(9.4).put(true).put(
+                                                            false
+                                                        ).put(true).put(JSONObject.NULL).put(45).put(12.4).put(9.4).put(
+                                                            true
+                                                        ).put(false).put(true).put(JSONObject.NULL).put(45).put(12.4).put(
+                                                            9.4
+                                                        ).put(true).put(false).put(true).put(JSONObject.NULL).put(45).put(
+                                                            12.4
+                                                        ).put(9.4).put(true).put(false).put(true).put(JSONObject.NULL)
+                                                    )
+                                                    .put("null", JSONObject.NULL)
+                                            )
+                                    )
+                                    .put(
+                                        "null", JSONObject()
+                                            .put("string", "value")
+                                            .put("int", 9)
+                                            .put("double", 7.6)
+                                            .put("float", 3.2f)
+                                            .put("boolean", false)
+                                            .put("object", JSONObject())
+                                            .put("emptyArray", JSONArray())
+                                            .put(
+                                                "array", JSONArray()
+                                                    .put(
+                                                        JSONObject()
+                                                            .put("string", "value")
+                                                            .put("int", 9)
+                                                            .put("double", 7.6)
+                                                            .put("float", 3.2f)
+                                                            .put("boolean", false)
+                                                            .put("object", JSONObject())
+                                                            .put("emptyArray", JSONArray())
+                                                            .put("array", JSONArray().put("test"))
+                                                            .put("null", JSONObject.NULL)
+                                                    )
+                                                    .put(
+                                                        JSONObject()
+                                                            .put("string", "value")
+                                                            .put("int", 9)
+                                                            .put("double", 7.6)
+                                                            .put("float", 3.2f)
+                                                            .put("boolean", false)
+                                                            .put("object", JSONObject())
+                                                            .put("emptyArray", JSONArray())
+                                                            .put(
+                                                                "array",
+                                                                JSONArray().put(45).put(12.4).put(9.4).put(true).put(
+                                                                    false
+                                                                ).put(
+                                                                    true
+                                                                ).put(JSONObject.NULL).put(45).put(12.4).put(9.4).put(
+                                                                    true
+                                                                ).put(
+                                                                    false
+                                                                ).put(true).put(JSONObject.NULL).put(45).put(12.4).put(
+                                                                    9.4
+                                                                ).put(
+                                                                    true
+                                                                ).put(false).put(true).put(JSONObject.NULL).put(45).put(
+                                                                    12.4
+                                                                ).put(
+                                                                    9.4
+                                                                ).put(true).put(false).put(true).put(JSONObject.NULL).put(
+                                                                    45
+                                                                ).put(
+                                                                    12.4
+                                                                ).put(9.4).put(true).put(false).put(true).put(JSONObject.NULL)
+                                                            )
+                                                            .put("null", JSONObject.NULL)
+                                                            .put("onceAgain", JSONObject()
+                                                                .put("string", "value")
+                                                                .put("int", 9)
+                                                                .put("double", 7.6)
+                                                                .put("float", 3.2f)
+                                                                .put("boolean", false)
+                                                                .put("object", JSONObject())
+                                                                .put("emptyArray", JSONArray())
+                                                                .put("array", JSONArray().put("test"))
+                                                                .put("null", JSONObject.NULL)
+                                                                .put(
+                                                                    "otherObj", JSONObject()
+                                                                        .put("string", "value")
+                                                                        .put("int", 9)
+                                                                        .put("double", 7.6)
+                                                                        .put("float", 3.2f)
+                                                                        .put("boolean", false)
+                                                                        .put("object", JSONObject())
+                                                                        .put("emptyArray", JSONArray())
+                                                                        .put("array", JSONArray().put("test"))
+                                                                        .put("null", JSONObject.NULL)
+                                                                        .put(
+                                                                            "array", JSONArray()
+                                                                                .put(
+                                                                                    JSONObject()
+                                                                                        .put("string", "value")
+                                                                                        .put("int", 9)
+                                                                                        .put("double", 7.6)
+                                                                                        .put("float", 3.2f)
+                                                                                        .put("boolean", false)
+                                                                                        .put("object", JSONObject())
+                                                                                        .put("emptyArray", JSONArray())
+                                                                                        .put("array", JSONArray().put("test"))
+                                                                                        .put("null", JSONObject.NULL)
+                                                                                )
+                                                                                .put(
+                                                                                    JSONObject()
+                                                                                        .put("string", "value")
+                                                                                        .put("int", 9)
+                                                                                        .put("double", 7.6)
+                                                                                        .put("float", 3.2f)
+                                                                                        .put("boolean", false)
+                                                                                        .put("object", JSONObject())
+                                                                                        .put("emptyArray", JSONArray())
+                                                                                        .put("array", JSONArray().put("test"))
+                                                                                        .put("null", JSONObject.NULL)
+                                                                                )
+                                                                                .put(
+                                                                                    JSONObject()
+                                                                                        .put("string", "value")
+                                                                                        .put("int", 9)
+                                                                                        .put("double", 7.6)
+                                                                                        .put("float", 3.2f)
+                                                                                        .put("boolean", false)
+                                                                                        .put("object", JSONObject())
+                                                                                        .put("emptyArray", JSONArray())
+                                                                                        .put("array", JSONArray().put("test"))
+                                                                                        .put("null", JSONObject.NULL)
+                                                                                        .put(
+                                                                                            "array", JSONArray()
+                                                                                                .put(
+                                                                                                    JSONObject()
+                                                                                                        .put("string", "value")
+                                                                                                        .put("int", 9)
+                                                                                                        .put("double", 7.6)
+                                                                                                        .put("float", 3.2f)
+                                                                                                        .put("boolean", false)
+                                                                                                        .put("object", JSONObject())
+                                                                                                        .put("emptyArray", JSONArray())
+                                                                                                        .put("array", JSONArray().put("test"))
+                                                                                                        .put("null", JSONObject.NULL)
+                                                                                                )
+                                                                                                .put(
+                                                                                                    JSONObject()
+                                                                                                        .put("string", "value")
+                                                                                                        .put("int", 9)
+                                                                                                        .put("double", 7.6)
+                                                                                                        .put("float", 3.2f)
+                                                                                                        .put("boolean", false)
+                                                                                                        .put("object", JSONObject())
+                                                                                                        .put("emptyArray", JSONArray())
+                                                                                                        .put(
+                                                                                                            "array",
+                                                                                                            JSONArray().put(45).put(12.4).put(9.4).put(true).put(false).put(
+                                                                                                                true
+                                                                                                            ).put(JSONObject.NULL).put(45).put(12.4).put(9.4).put(true).put(
+                                                                                                                false
+                                                                                                            ).put(true).put(JSONObject.NULL).put(45).put(12.4).put(9.4).put(
+                                                                                                                true
+                                                                                                            ).put(false).put(true).put(JSONObject.NULL).put(45).put(12.4).put(
+                                                                                                                9.4
+                                                                                                            ).put(true).put(false).put(true).put(JSONObject.NULL).put(45).put(
+                                                                                                                12.4
+                                                                                                            ).put(9.4).put(true).put(false).put(true).put(JSONObject.NULL)
+                                                                                                        )
+                                                                                                        .put("null", JSONObject.NULL)
+                                                                                                )
+                                                                                        )
+                                                                                        .put(
+                                                                                            "null", JSONObject()
+                                                                                                .put("string", "value")
+                                                                                                .put("int", 9)
+                                                                                                .put("double", 7.6)
+                                                                                                .put("float", 3.2f)
+                                                                                                .put("boolean", false)
+                                                                                                .put("object", JSONObject())
+                                                                                                .put("emptyArray", JSONArray())
+                                                                                                .put(
+                                                                                                    "array", JSONArray()
+                                                                                                        .put(
+                                                                                                            JSONObject()
+                                                                                                                .put("string", "value")
+                                                                                                                .put("int", 9)
+                                                                                                                .put("double", 7.6)
+                                                                                                                .put("float", 3.2f)
+                                                                                                                .put("boolean", false)
+                                                                                                                .put("object", JSONObject())
+                                                                                                                .put("emptyArray", JSONArray())
+                                                                                                                .put("array", JSONArray().put("test"))
+                                                                                                                .put("null", JSONObject.NULL)
+                                                                                                        )
+                                                                                                        .put(
+                                                                                                            JSONObject()
+                                                                                                                .put("string", "value")
+                                                                                                                .put("int", 9)
+                                                                                                                .put("double", 7.6)
+                                                                                                                .put("float", 3.2f)
+                                                                                                                .put("boolean", false)
+                                                                                                                .put("object", JSONObject())
+                                                                                                                .put("emptyArray", JSONArray())
+                                                                                                                .put(
+                                                                                                                    "array",
+                                                                                                                    JSONArray().put(45).put(12.4).put(9.4).put(true).put(
+                                                                                                                        false
+                                                                                                                    ).put(
+                                                                                                                        true
+                                                                                                                    ).put(JSONObject.NULL).put(45).put(12.4).put(9.4).put(
+                                                                                                                        true
+                                                                                                                    ).put(
+                                                                                                                        false
+                                                                                                                    ).put(true).put(JSONObject.NULL).put(45).put(12.4).put(
+                                                                                                                        9.4
+                                                                                                                    ).put(
+                                                                                                                        true
+                                                                                                                    ).put(false).put(true).put(JSONObject.NULL).put(45).put(
+                                                                                                                        12.4
+                                                                                                                    ).put(
+                                                                                                                        9.4
+                                                                                                                    ).put(true).put(false).put(true).put(JSONObject.NULL).put(
+                                                                                                                        45
+                                                                                                                    ).put(
+                                                                                                                        12.4
+                                                                                                                    ).put(9.4).put(true).put(false).put(true).put(JSONObject.NULL)
+                                                                                                                )
+                                                                                                                .put("null", JSONObject.NULL)
+                                                                                                        )
+                                                                                                )
+                                                                                        )
+                                                                                )
+                                                                        )
+                                                                ).put(
+                                                                    "anotherObject", JSONObject()
+                                                                        .put("string", "value")
+                                                                        .put("int", 9)
+                                                                        .put("double", 7.6)
+                                                                        .put("float", 3.2f)
+                                                                        .put("boolean", false)
+                                                                        .put("object", JSONObject())
+                                                                        .put("emptyArray", JSONArray())
+                                                                        .put("array", JSONArray().put("test"))
+                                                                        .put("null", JSONObject.NULL)
+                                                                )
+                                                            )
+                                                    )
+                                            )
+                                    )
+                            )
+                    )
+            ).put(
+                "anotherObject", JSONObject()
+                    .put("string", "value")
+                    .put("int", 9)
+                    .put("double", 7.6)
+                    .put("float", 3.2f)
+                    .put("boolean", false)
+                    .put("object", JSONObject())
+                    .put("emptyArray", JSONArray())
+                    .put("array", JSONArray().put("test"))
+                    .put("null", JSONObject.NULL)
+            )
+
+        return json.toString(2)
+    }
+
+    @Benchmark
+    fun _7_kosonWithBigObject_pretty(): String {
+        val koson = obj {
+            "string" to "value"
+            "int" to 9
+            "double" to 7.6
+            "float" to 3.2f
+            "boolean" to false
+            "object" to obj { }
+            "emptyArray" to array
+            "array" to array["test"]
+            "null" to null
+            "otherObj" to obj {
+                "string" to "value"
+                "int" to 9
+                "double" to 7.6
+                "float" to 3.2f
+                "boolean" to false
+                "object" to obj { }
+                "emptyArray" to array
+                "array" to array[
+                        obj {
+                            "string" to "value"
+                            "int" to 9
+                            "double" to 7.6
+                            "float" to 3.2f
+                            "boolean" to false
+                            "object" to obj { }
+                            "emptyArray" to array
+                            "array" to array["test"]
+                            "null" to null
+                        },
+                        obj {
+                            "string" to "value"
+                            "int" to 9
+                            "double" to 7.6
+                            "float" to 3.2f
+                            "boolean" to false
+                            "object" to obj { }
+                            "emptyArray" to array
+                            "array" to array["test"]
+                            "null" to null
+                        },
+                        obj {
+                            "string" to "value"
+                            "int" to 9
+                            "double" to 7.6
+                            "float" to 3.2f
+                            "boolean" to false
+                            "object" to obj { }
+                            "emptyArray" to array
+                            "array" to array[
+                                    obj {
+                                        "string" to "value"
+                                        "int" to 9
+                                        "double" to 7.6
+                                        "float" to 3.2f
+                                        "boolean" to false
+                                        "object" to obj { }
+                                        "emptyArray" to array
+                                        "array" to array["test"]
+                                        "null" to null
+                                    },
+                                    obj {
+                                        "string" to "value"
+                                        "int" to 9
+                                        "double" to 7.6
+                                        "float" to 3.2f
+                                        "boolean" to false
+                                        "object" to obj { }
+                                        "emptyArray" to array
+                                        "array" to array[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
+                                        "null" to null
+                                    }
+                            ]
+                            "null" to null
+                        }
+                ]
+                "null" to obj {
+                    "string" to "value"
+                    "int" to 9
+                    "double" to 7.6
+                    "float" to 3.2f
+                    "boolean" to false
+                    "object" to obj { }
+                    "emptyArray" to array
+                    "array" to array[
+                            obj {
+                                "string" to "value"
+                                "int" to 9
+                                "double" to 7.6
+                                "float" to 3.2f
+                                "boolean" to false
+                                "object" to obj { }
+                                "emptyArray" to array
+                                "array" to array["test"]
+                                "null" to null
+                            },
+                            obj {
+                                "string" to "value"
+                                "int" to 9
+                                "double" to 7.6
+                                "float" to 3.2f
+                                "boolean" to false
+                                "object" to obj { }
+                                "emptyArray" to array
+                                "array" to array[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
+                                "null" to null
+                            }
+                    ]
+                    "null" to null
+                    "onceAgain" to obj {
+                        "string" to "value"
+                        "int" to 9
+                        "double" to 7.6
+                        "float" to 3.2f
+                        "boolean" to false
+                        "object" to obj { }
+                        "emptyArray" to array
+                        "array" to array["test"]
+                        "null" to null
+                        "otherObj" to obj {
+                            "string" to "value"
+                            "int" to 9
+                            "double" to 7.6
+                            "float" to 3.2f
+                            "boolean" to false
+                            "object" to obj { }
+                            "emptyArray" to array
+                            "array" to array[
+                                    obj {
+                                        "string" to "value"
+                                        "int" to 9
+                                        "double" to 7.6
+                                        "float" to 3.2f
+                                        "boolean" to false
+                                        "object" to obj { }
+                                        "emptyArray" to array
+                                        "array" to array["test"]
+                                        "null" to null
+                                    },
+                                    obj {
+                                        "string" to "value"
+                                        "int" to 9
+                                        "double" to 7.6
+                                        "float" to 3.2f
+                                        "boolean" to false
+                                        "object" to obj { }
+                                        "emptyArray" to array
+                                        "array" to array["test"]
+                                        "null" to null
+                                    },
+                                    obj {
+                                        "string" to "value"
+                                        "int" to 9
+                                        "double" to 7.6
+                                        "float" to 3.2f
+                                        "boolean" to false
+                                        "object" to obj { }
+                                        "emptyArray" to array
+                                        "array" to array[
+                                                obj {
+                                                    "string" to "value"
+                                                    "int" to 9
+                                                    "double" to 7.6
+                                                    "float" to 3.2f
+                                                    "boolean" to false
+                                                    "object" to obj { }
+                                                    "emptyArray" to array
+                                                    "array" to array["test"]
+                                                    "null" to null
+                                                },
+                                                obj {
+                                                    "string" to "value"
+                                                    "int" to 9
+                                                    "double" to 7.6
+                                                    "float" to 3.2f
+                                                    "boolean" to false
+                                                    "object" to obj { }
+                                                    "emptyArray" to array
+                                                    "array" to array[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
+                                                    "null" to null
+                                                }
+                                        ]
+                                        "null" to null
+                                    }
+                            ]
+                            "null" to obj {
+                                "string" to "value"
+                                "int" to 9
+                                "double" to 7.6
+                                "float" to 3.2f
+                                "boolean" to false
+                                "object" to obj { }
+                                "emptyArray" to array
+                                "array" to array[
+                                        obj {
+                                            "string" to "value"
+                                            "int" to 9
+                                            "double" to 7.6
+                                            "float" to 3.2f
+                                            "boolean" to false
+                                            "object" to obj { }
+                                            "emptyArray" to array
+                                            "array" to array["test"]
+                                            "null" to null
+                                        },
+                                        obj {
+                                            "string" to "value"
+                                            "int" to 9
+                                            "double" to 7.6
+                                            "float" to 3.2f
+                                            "boolean" to false
+                                            "object" to obj { }
+                                            "emptyArray" to array
+                                            "array" to array[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
+                                            "null" to null
+                                        }
+                                ]
+                                "null" to null
+                            }
+                        }
+                        "anotherObj" to obj {
+                            "string" to "value"
+                            "int" to 9
+                            "double" to 7.6
+                            "float" to 3.2f
+                            "boolean" to false
+                            "object" to obj { }
+                            "emptyArray" to array
+                            "array" to array["test"]
+                            "null" to null
+                        }
+                    }
+                }
+            }
+            "anotherObj" to obj {
+                "string" to "value"
+                "int" to 9
+                "double" to 7.6
+                "float" to 3.2f
+                "boolean" to false
+                "object" to obj { }
+                "emptyArray" to array
+                "array" to array["test"]
+                "null" to null
+            }
+        }
+
+        return koson.pretty()
     }
 
 }
