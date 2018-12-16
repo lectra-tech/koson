@@ -207,6 +207,8 @@ class KosonTest {
 
     @Nested
     inner class PrettyPrints {
+        
+        private val cr = System.lineSeparator()!!
 
         @Test
         fun `must pretty print an object`() {
@@ -237,40 +239,40 @@ class KosonTest {
 
             assertThat(pretty).isValidJSON()
             assertThat(pretty).isEqualTo(
-                "{\n" +
-                        "  \"key\": 3.4,\n" +
-                        "  \"anotherKey\": [\n" +
-                        "    \"test\",\n" +
-                        "    \"test2\",\n" +
-                        "    1,\n" +
-                        "    2.433,\n" +
-                        "    true\n" +
-                        "  ],\n" +
-                        "  \"nullsAreAllowedToo\": null,\n" +
-                        "  \"array\": [\n" +
-                        "    {\n" +
-                        "      \"double\": 33.4,\n" +
-                        "      \"float\": 345.0,\n" +
-                        "      \"long\": 21,\n" +
-                        "      \"int\": 42,\n" +
-                        "      \"char\": \"a\",\n" +
-                        "      \"byte\": 170,\n" +
-                        "      \"otherArray\": [\n" +
-                        "        \n" +
-                        "      ],\n" +
-                        "      \"simpleObject\": \"SimpleObject\",\n" +
-                        "      \"objectInside\": {\n" +
-                        "        \"to\": 34,\n" +
-                        "        \"too\": \"Dog\"\n" +
-                        "      },\n" +
-                        "      \"innerArray\": [\n" +
-                        "        34,\n" +
-                        "        44,\n" +
-                        "        \"to\",\n" +
-                        "        null\n" +
-                        "      ]\n" +
-                        "    }\n" +
-                        "  ]\n" +
+                "{$cr" +
+                        "  \"key\": 3.4,$cr" +
+                        "  \"anotherKey\": [$cr" +
+                        "    \"test\",$cr" +
+                        "    \"test2\",$cr" +
+                        "    1,$cr" +
+                        "    2.433,$cr" +
+                        "    true$cr" +
+                        "  ],$cr" +
+                        "  \"nullsAreAllowedToo\": null,$cr" +
+                        "  \"array\": [$cr" +
+                        "    {$cr" +
+                        "      \"double\": 33.4,$cr" +
+                        "      \"float\": 345.0,$cr" +
+                        "      \"long\": 21,$cr" +
+                        "      \"int\": 42,$cr" +
+                        "      \"char\": \"a\",$cr" +
+                        "      \"byte\": 170,$cr" +
+                        "      \"otherArray\": [$cr" +
+                        "        $cr" +
+                        "      ],$cr" +
+                        "      \"simpleObject\": \"SimpleObject\",$cr" +
+                        "      \"objectInside\": {$cr" +
+                        "        \"to\": 34,$cr" +
+                        "        \"too\": \"Dog\"$cr" +
+                        "      },$cr" +
+                        "      \"innerArray\": [$cr" +
+                        "        34,$cr" +
+                        "        44,$cr" +
+                        "        \"to\",$cr" +
+                        "        null$cr" +
+                        "      ]$cr" +
+                        "    }$cr" +
+                        "  ]$cr" +
                         "}"
             )
         }
@@ -306,42 +308,42 @@ class KosonTest {
 
             assertThat(pretty).isValidJSON()
             assertThat(pretty).isEqualTo(
-                "[\n" +
-                        "  {\n" +
-                        "    \"key\": 3.4,\n" +
-                        "    \"anotherKey\": [\n" +
-                        "      \"test\",\n" +
-                        "      \"test2\",\n" +
-                        "      1,\n" +
-                        "      2.433,\n" +
-                        "      true\n" +
-                        "    ],\n" +
-                        "    \"nullsAreAllowedToo\": null,\n" +
-                        "    \"array\": [\n" +
-                        "      {\n" +
-                        "        \"double\": 33.4,\n" +
-                        "        \"float\": 345.0,\n" +
-                        "        \"long\": 21,\n" +
-                        "        \"int\": 42,\n" +
-                        "        \"char\": \"a\",\n" +
-                        "        \"byte\": 170,\n" +
-                        "        \"otherArray\": [\n" +
-                        "          \n" +
-                        "        ],\n" +
-                        "        \"simpleObject\": \"SimpleObject\",\n" +
-                        "        \"objectInside\": {\n" +
-                        "          \"to\": 34,\n" +
-                        "          \"too\": \"Dog\"\n" +
-                        "        },\n" +
-                        "        \"innerArray\": [\n" +
-                        "          34,\n" +
-                        "          44,\n" +
-                        "          \"to\",\n" +
-                        "          null\n" +
-                        "        ]\n" +
-                        "      }\n" +
-                        "    ]\n" +
-                        "  }\n" +
+                "[$cr" +
+                        "  {$cr" +
+                        "    \"key\": 3.4,$cr" +
+                        "    \"anotherKey\": [$cr" +
+                        "      \"test\",$cr" +
+                        "      \"test2\",$cr" +
+                        "      1,$cr" +
+                        "      2.433,$cr" +
+                        "      true$cr" +
+                        "    ],$cr" +
+                        "    \"nullsAreAllowedToo\": null,$cr" +
+                        "    \"array\": [$cr" +
+                        "      {$cr" +
+                        "        \"double\": 33.4,$cr" +
+                        "        \"float\": 345.0,$cr" +
+                        "        \"long\": 21,$cr" +
+                        "        \"int\": 42,$cr" +
+                        "        \"char\": \"a\",$cr" +
+                        "        \"byte\": 170,$cr" +
+                        "        \"otherArray\": [$cr" +
+                        "          $cr" +
+                        "        ],$cr" +
+                        "        \"simpleObject\": \"SimpleObject\",$cr" +
+                        "        \"objectInside\": {$cr" +
+                        "          \"to\": 34,$cr" +
+                        "          \"too\": \"Dog\"$cr" +
+                        "        },$cr" +
+                        "        \"innerArray\": [$cr" +
+                        "          34,$cr" +
+                        "          44,$cr" +
+                        "          \"to\",$cr" +
+                        "          null$cr" +
+                        "        ]$cr" +
+                        "      }$cr" +
+                        "    ]$cr" +
+                        "  }$cr" +
                         "]"
             )
         }
