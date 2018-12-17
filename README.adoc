@@ -180,62 +180,46 @@ Two tests were done with the same objects and arrays
 
 Testing environment : _3.3 GHz Intel Core i5-6600, 4 cores, VM version: OpenJDK 11.0.1, 64-Bit Server VM, 11.0.1+13_
 
-.Score in operations/second, higher = better
+.Score in operations/second (throughput mode), higher = better
 |===
-|Benchmark  |Mode |Cnt |Score |Error |Units
+|Benchmark |Score |Error |Units
 
 |BigArray - JSON-java
-|thrpt
-|25
 |15272,946
 |± 139,435
 |ops/s
 
 |BigArray - Koson
-|thrpt
-|25
 |15811,438
 |± 132,266
 |ops/s
 
 |BigArray (pretty) - JSON-java
-|thrpt
-|25
 |7601,470
 |± 41,067
 |ops/s
 
 |BigArray (pretty) - Koson
-|thrpt
-|25
 |9243,324
 |± 31,712
 |ops/s
 
 |BigObject - JSON-java
-|thrpt
-|25
 |16779,523
 |± 45,741
 |ops/s
 
 |BigObject - Koson
-|thrpt
-|25
 |18758,112
 |± 372,361
 |ops/s
 
 |BigObject (pretty) - JSON-java
-|thrpt
-|25
 |8802,073
 |± 19,417
 |ops/s
 
 |BigObject (pretty) - Koson
-|thrpt
-|25
 |11359,078
 |± 71,377
 |ops/s
