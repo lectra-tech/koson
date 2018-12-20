@@ -11,7 +11,7 @@ This section guides you through submitting a bug report for the project. Followi
 
 ### Before Submitting A Bug Report
 
-* Check the open issues](https://github.com/lectra-official/ld-react-feature-flags/issues/) to see if the problem has already been reported. If it has **and the issue is still open**, add a comment to the existing issue instead of opening a new one.
+* Check the open issues to see if the problem has already been reported. If it has **and the issue is still open**, add a comment to the existing issue instead of opening a new one.
 
 ### How Do I Submit A (Good) Bug Report?
 
