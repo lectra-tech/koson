@@ -7,11 +7,7 @@ email, or any other method with the owners of this repository before making a ch
 
 This section guides you through submitting a bug report for the project. Following these guidelines helps maintainers and the community understand your report, reproduce the behavior, and find related reports.
 
-____
-
-*Note:* If you find a *Closed* issue that seems like it is the same thing that you're experiencing, open a new issue and include a link to the original issue in the body of your new one.
-
-____
+NOTE: If you find a *Closed* issue that seems like it is the same thing that you're experiencing, open a new issue and include a link to the original issue in the body of your new one.
 
 === Before Submitting A Bug Report
 
@@ -43,7 +39,7 @@ git clone https://github.com/<your_username>/koson
 git checkout -b my_branch
 ----
 
-Note: Replace `&lt;your_username&gt;` with your GitHub username
+NOTE: Replace `&lt;your_username&gt;` with your GitHub username
 
 * Check you can run tests by typing `mvn package`
 
