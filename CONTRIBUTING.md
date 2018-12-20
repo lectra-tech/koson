@@ -34,8 +34,7 @@ _Before_ submitting a pull request, please make sure the following is done…
     Open terminal (e.g. Terminal, iTerm, Git Bash or Git Shell) and type:
 
     ```sh
-    git clone https://github.com/<your_username>/ld-react-feature-flags
-    cd ld-react-feature-flagsst
+    git clone https://github.com/<your_username>/koson
     git checkout -b my_branch
     ```
 
