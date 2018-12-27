@@ -20,14 +20,13 @@ private data class CustomType(val value: Any?) : KosonType() {
 private data class NumberType(val value: Number?) : KosonType() {
     override fun toString(): String = value.toString()
     override fun prettyPrint(level: Int, spaces: Int): String = toString()
-
 }
 
 private data class BooleanType(val value: Boolean?) : KosonType() {
     override fun toString(): String = value.toString()
     override fun prettyPrint(level: Int, spaces: Int): String = toString()
-
 }
+
 private object NullType : KosonType() {
     override fun toString(): String = "null"
     override fun prettyPrint(level: Int, spaces: Int): String = toString()
