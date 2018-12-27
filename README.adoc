@@ -172,7 +172,7 @@ IMPORTANT: A runtime `KosonException` will be raised when a JSON key (attribute)
 ** _obj { }_
 ** _array[...]_
 ** _array_ (empty array)
-** _rawJson("{...}")_ (will render as provided)
+** _rawJson("{...}")_ (will render _as is_)
 
 == Runtime prerequisites
 
