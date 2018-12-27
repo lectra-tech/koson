@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS
 import org.junit.jupiter.api.assertThrows
+import java.util.*
 
 @TestInstance(PER_CLASS)
 class KosonTest {
@@ -202,6 +203,115 @@ class KosonTest {
             val message = assertThrows<IllegalArgumentException> { obj { }.pretty(-5) }.message
             assertThat(message!!).isEqualTo("spaces Int must be positive, but was -5.")
         }
+
+    }
+
+    @Nested
+    inner class RuntimeNullablesTests {
+
+        @Test
+        fun `object with all nullable types must render`() {
+            val string: String? = null
+            val double: Double? = null
+            val float: Float? = null
+            val long: Long? = null
+            val int: Int? = null
+            val char: Char? = null
+            val short: Short? = null
+            val byte: Byte? = null
+            val boolean: Boolean? = null
+            val date: Date? = null
+
+            val obj = obj {
+                "string" to string
+                "double" to double
+                "float" to float
+                "long" to long
+                "int" to int
+                "char" to char
+                "short" to short
+                "byte" to byte
+                "boolean" to boolean
+                "date" to date
+            }
+
+            val representation = obj.toString()
+            assertThat(representation).isValidJSON()
+            assertThat(representation).isEqualTo("{\"string\":null,\"double\":null,\"float\":null,\"long\":null,\"int\":null,\"char\":null,\"short\":null,\"byte\":null,\"boolean\":null,\"date\":null}")
+        }
+
+        @Test
+        fun `object with all nullable Java types must render`() {
+            val obj = obj {
+                "string" to NullableTypes.STRING
+                "double" to NullableTypes.DOUBLE
+                "float" to NullableTypes.FLOAT
+                "long" to NullableTypes.LONG
+                "int" to NullableTypes.INT
+                "char" to NullableTypes.CHAR
+                "short" to NullableTypes.SHORT
+                "byte" to NullableTypes.BYTE
+                "boolean" to NullableTypes.BOOLEAN
+                "date" to NullableTypes.DATE
+            }
+
+            val representation = obj.toString()
+            assertThat(representation).isValidJSON()
+            assertThat(representation).isEqualTo("{\"string\":null,\"double\":null,\"float\":null,\"long\":null,\"int\":null,\"char\":null,\"short\":null,\"byte\":null,\"boolean\":null,\"date\":null}")
+        }
+
+        @Test
+        fun `array with all nullable types must render`() {
+            val string: String? = null
+            val double: Double? = null
+            val float: Float? = null
+            val long: Long? = null
+            val int: Int? = null
+            val char: Char? = null
+            val short: Short? = null
+            val byte: Byte? = null
+            val boolean: Boolean? = null
+            val date: Date? = null
+
+            val array = array[
+                    string,
+                    double,
+                    float,
+                    long,
+                    int,
+                    char,
+                    short,
+                    byte,
+                    boolean,
+                    date
+            ]
+
+            val representation = array.toString()
+            assertThat(representation).isValidJSON()
+            assertThat(representation).isEqualTo("[null,null,null,null,null,null,null,null,null,null]")
+        }
+
+        @Test
+        fun `array with all nullable Java types must render`() {
+
+            val array = array[
+                    NullableTypes.STRING,
+                    NullableTypes.DOUBLE,
+                    NullableTypes.FLOAT,
+                    NullableTypes.LONG,
+                    NullableTypes.INT,
+                    NullableTypes.CHAR,
+                    NullableTypes.SHORT,
+                    NullableTypes.BYTE,
+                    NullableTypes.BOOLEAN,
+                    NullableTypes.DATE
+            ]
+
+            val representation = array.toString()
+            assertThat(representation).isValidJSON()
+            assertThat(representation).isEqualTo("[null,null,null,null,null,null,null,null,null,null]")
+        }
+
 
     }
 

@@ -7,30 +7,33 @@ sealed class KosonType {
 private val cr = System.lineSeparator()
 private const val sp = " "
 
-private data class StringType(val value: String) : KosonType() {
-    override fun toString(): String = "\"$value\""
+private data class StringType(val value: String?) : KosonType() {
+    override fun toString(): String = value.escapedOrNull()
     override fun prettyPrint(level: Int, spaces: Int): String = toString()
 }
 
-private data class NumberType(val value: Number) : KosonType() {
+private data class CustomType(val value: Any?) : KosonType() {
+    override fun toString(): String = value.escapedOrNull()
+    override fun prettyPrint(level: Int, spaces: Int): String = toString()
+}
+
+private data class NumberType(val value: Number?) : KosonType() {
     override fun toString(): String = value.toString()
     override fun prettyPrint(level: Int, spaces: Int): String = toString()
+
 }
 
-private data class BooleanType(val value: Boolean) : KosonType() {
+private data class BooleanType(val value: Boolean?) : KosonType() {
     override fun toString(): String = value.toString()
     override fun prettyPrint(level: Int, spaces: Int): String = toString()
-}
 
+}
 private object NullType : KosonType() {
     override fun toString(): String = "null"
     override fun prettyPrint(level: Int, spaces: Int): String = toString()
 }
 
-private data class CustomType(val value: Any) : KosonType() {
-    override fun toString(): String = "\"${value.toString().replace("\"", "\\\"")}\""
-    override fun prettyPrint(level: Int, spaces: Int): String = toString()
-}
+private fun Any?.escapedOrNull(): String = if (this != null) "\"${this.toString().replace("\"", "\\\"")}\"" else "null"
 
 data class ObjectType(internal val values: MutableMap<String, KosonType> = mutableMapOf()) : KosonType() {
     override fun toString(): String =
@@ -97,16 +100,16 @@ fun obj(block: Koson.() -> Unit): ObjectType {
 
 class Koson(internal val objectType: ObjectType = ObjectType()) {
 
-    infix fun String.to(value: String) = addValueIfKeyIsAvailable(StringType(value))
+    infix fun String.to(value: String?) = addValueIfKeyIsAvailable(StringType(value))
 
-    infix fun String.to(value: Number) = addValueIfKeyIsAvailable(NumberType(value))
+    infix fun String.to(value: Number?) = addValueIfKeyIsAvailable(NumberType(value))
 
-    infix fun String.to(value: Boolean) = addValueIfKeyIsAvailable(BooleanType(value))
+    infix fun String.to(value: Boolean?) = addValueIfKeyIsAvailable(BooleanType(value))
 
     @Suppress("UNUSED_PARAMETER")
     infix fun String.to(value: Nothing?) = addValueIfKeyIsAvailable(NullType)
 
-    infix fun String.to(value: Any) = addValueIfKeyIsAvailable(CustomType(value))
+    infix fun String.to(value: Any?) = addValueIfKeyIsAvailable(CustomType(value))
 
     infix fun String.to(value: ObjectType) = addValueIfKeyIsAvailable(value)
 
