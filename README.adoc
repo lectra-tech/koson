@@ -130,6 +130,26 @@ obj { ... }.pretty()
 array[ ... ].pretty(3)
 ----
 
+== Raw Json
+
+If you want to include raw Json you can use the `rawJson(validJson: String?)` function.
+
+[source, Kotlin]
+----
+obj {
+  "rawContent" to rawJson(externalJsonSource())
+}
+----
+
+Rendering *will not* escape `"` and `\` chars, so you will need to take care of it.
+
+[WARNING]
+====
+You need to ensure the parameter `String?` is a valid Json (by format), otherwise the generated Json will not be valid.
+
+`rawJson()` is the only way to introduce a malformed Json with `Koson`
+====
+
 == Strong type constraints
 
 * A JSON key (attribute) can only be of `Kotlin` type `String`
@@ -144,14 +164,15 @@ image:https://github.com/ncomet/koson/blob/master/image/koson-typing.png["Koson 
 IMPORTANT: A runtime `KosonException` will be raised when a JSON key (attribute) duplicate is found in an _obj { }_
 
 * A JSON value of an _obj { }_ or an _array [...]_ can be one of the following `Kotlin` or _Koson DSL_ instances
-** `String`
-** `Number`
-** `Boolean`
-** `Any` (will render using `.toString()`, escaping `"` chars)
+** `String?` (will render escaping `"` and `\` chars)
+** `Number?`
+** `Boolean?`
+** `Any?` (will render using `.toString()`, escaping `"` and `\` chars)
 ** `null`
 ** _obj { }_
 ** _array[...]_
 ** _array_ (empty array)
+** _rawJson("{...}")_ (will render as provided)
 
 == Runtime prerequisites
 

@@ -1,11 +1,17 @@
 package io.github.ncomet.koson
 
+private val cr = System.lineSeparator()
+private const val sp = " "
+
+private fun Any?.escapedOrNull(): String = if (this != null) {
+    "\"${this.toString().replace("\\", "\\\\").replace("\"", "\\\"")}\""
+} else {
+    "null"
+}
+
 sealed class KosonType {
     internal abstract fun prettyPrint(level: Int, spaces: Int): String
 }
-
-private val cr = System.lineSeparator()
-private const val sp = " "
 
 private data class StringType(val value: String?) : KosonType() {
     override fun toString(): String = value.escapedOrNull()
@@ -32,7 +38,16 @@ private object NullType : KosonType() {
     override fun prettyPrint(level: Int, spaces: Int): String = toString()
 }
 
-private fun Any?.escapedOrNull(): String = if (this != null) "\"${this.toString().replace("\"", "\\\"")}\"" else "null"
+data class RawJsonType(val value: String?) : KosonType() {
+    override fun toString(): String = value ?: "null"
+    override fun prettyPrint(level: Int, spaces: Int): String = toString()
+}
+
+/**
+ * Use to render unescaped Json, note that the content will NOT be pretty printed
+ * @param validJson the content that will be printed 'as is'. You need to ensure the content is a valid Json String
+ */
+fun rawJson(validJson: String?): RawJsonType = RawJsonType(validJson)
 
 data class ObjectType(internal val values: MutableMap<String, KosonType> = mutableMapOf()) : KosonType() {
     override fun toString(): String =
@@ -84,6 +99,7 @@ object array : ArrayType() {
             is String -> StringType(value)
             is Number -> NumberType(value)
             is Boolean -> BooleanType(value)
+            is RawJsonType -> value
             is ObjectType -> value
             is ArrayType -> value
             null -> NullType
@@ -109,6 +125,8 @@ class Koson(internal val objectType: ObjectType = ObjectType()) {
     infix fun String.to(value: Nothing?) = addValueIfKeyIsAvailable(NullType)
 
     infix fun String.to(value: Any?) = addValueIfKeyIsAvailable(CustomType(value))
+
+    infix fun String.to(value: RawJsonType) = addValueIfKeyIsAvailable(value)
 
     infix fun String.to(value: ObjectType) = addValueIfKeyIsAvailable(value)
 

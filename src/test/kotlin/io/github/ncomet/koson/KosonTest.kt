@@ -34,8 +34,8 @@ class KosonTest {
         override fun toString(): String = this.javaClass.simpleName
     }
 
-    object ContainsDoubleQuotes {
-        override fun toString(): String = "\"unfor\"tunate\""
+    object ContainsDoubleQuotesAndBackslash {
+        override fun toString(): String = "\"un\\for\"tuna\\te\""
     }
 
     @Test
@@ -55,10 +55,11 @@ class KosonTest {
             "array" to array["test"]
             "null" to null
             "any" to SimpleObject
-            "custom" to ContainsDoubleQuotes
+            "custom" to ContainsDoubleQuotesAndBackslash
+            "raw" to rawJson("{}")
         }.toString()
         assertThat(representation).isValidJSON()
-        assertThat(representation).isEqualTo("{\"string\":\"value\",\"double\":7.6,\"float\":3.2,\"long\":34,\"int\":9,\"char\":\"e\",\"short\":12,\"byte\":50,\"boolean\":false,\"object\":{},\"emptyArray\":[],\"array\":[\"test\"],\"null\":null,\"any\":\"SimpleObject\",\"custom\":\"\\\"unfor\\\"tunate\\\"\"}")
+        assertThat(representation).isEqualTo("{\"string\":\"value\",\"double\":7.6,\"float\":3.2,\"long\":34,\"int\":9,\"char\":\"e\",\"short\":12,\"byte\":50,\"boolean\":false,\"object\":{},\"emptyArray\":[],\"array\":[\"test\"],\"null\":null,\"any\":\"SimpleObject\",\"custom\":\"\\\"un\\\\for\\\"tuna\\\\te\\\"\",\"raw\":{}}")
     }
 
     @Test
@@ -78,11 +79,32 @@ class KosonTest {
                 array["test"],
                 null,
                 SimpleObject,
-                ContainsDoubleQuotes
+                ContainsDoubleQuotesAndBackslash,
+                rawJson("{}")
         ].toString()
         assertThat(representation).isValidJSON()
         assertThat(representation)
-            .isEqualTo("[\"value\",7.6,3.2,34,9,\"e\",12,50,false,{},[],[\"test\"],null,\"SimpleObject\",\"\\\"unfor\\\"tunate\\\"\"]")
+            .isEqualTo("[\"value\",7.6,3.2,34,9,\"e\",12,50,false,{},[],[\"test\"],null,\"SimpleObject\",\"\\\"un\\\\for\\\"tuna\\\\te\\\"\",{}]")
+    }
+
+    @Test
+    internal fun `object with forbidden json token`() {
+        val obj = obj {
+            "content" to "[}[]}\\,{][,]\"\"\",\",,[,}}}[]],[}#{}"
+        }
+
+        val representation = obj.toString()
+
+        assertThat(representation).isValidJSON()
+    }
+
+    @Test
+    internal fun `array with forbidden json token`() {
+        val array = array["[}[]}\\,{][,]\"\"\",\",,[,}}}[]],[}#{}"]
+
+        val representation = array.toString()
+
+        assertThat(representation).isValidJSON()
     }
 
     @Nested
@@ -157,13 +179,13 @@ class KosonTest {
                     obj {
                         "aKey" to "value"
                         "insideArray" to array
-                        "otherArray" to array["element", ContainsDoubleQuotes, obj { }]
+                        "otherArray" to array["element", ContainsDoubleQuotesAndBackslash, obj { }]
                     }
             ]
             val representation = array.toString()
             assertThat(representation).isValidJSON()
             assertThat(representation)
-                .isEqualTo("[\"koson\",33.4,345.0,21,42,\"a\",33,{\"aKey\":\"value\",\"insideArray\":[],\"otherArray\":[\"element\",\"\\\"unfor\\\"tunate\\\"\",{}]}]")
+                .isEqualTo("[\"koson\",33.4,345.0,21,42,\"a\",33,{\"aKey\":\"value\",\"insideArray\":[],\"otherArray\":[\"element\",\"\\\"un\\\\for\\\"tuna\\\\te\\\"\",{}]}]")
         }
 
         @Test
@@ -207,7 +229,7 @@ class KosonTest {
     }
 
     @Nested
-    inner class RuntimeNullablesTests {
+    inner class RuntimeNullables {
 
         @Test
         fun `object with all nullable types must render`() {
@@ -316,6 +338,55 @@ class KosonTest {
     }
 
     @Nested
+    inner class RawJsonContents {
+
+        @Test
+        fun `object with inner raw object`() {
+            val obj = obj {
+                "jsonContent" to rawJson("{\"menu\":{\"id\":\"file\",\"value\":\"File\",\"popup\":{\"menuitem\":[{\"value\":\"New\",\"onclick\":\"CreateNewDoc()\"},{\"value\":\"Open\",\"onclick\":\"OpenDoc()\"},{\"value\":\"Close\",\"onclick\":\"CloseDoc()\"}]}}}")
+            }
+
+            val representation = obj.toString()
+
+            assertThat(representation).isValidJSON()
+            assertThat(representation).isEqualTo("{\"jsonContent\":{\"menu\":{\"id\":\"file\",\"value\":\"File\",\"popup\":{\"menuitem\":[{\"value\":\"New\",\"onclick\":\"CreateNewDoc()\"},{\"value\":\"Open\",\"onclick\":\"OpenDoc()\"},{\"value\":\"Close\",\"onclick\":\"CloseDoc()\"}]}}}}")
+        }
+
+        @Test
+        fun `array with inner raw object`() {
+            val array =
+                array[rawJson("{\"menu\":{\"id\":\"file\",\"value\":\"File\",\"popup\":{\"menuitem\":[{\"value\":\"New\",\"onclick\":\"CreateNewDoc()\"},{\"value\":\"Open\",\"onclick\":\"OpenDoc()\"},{\"value\":\"Close\",\"onclick\":\"CloseDoc()\"}]}}}")]
+
+            val representation = array.toString()
+
+            assertThat(representation).isValidJSON()
+            assertThat(representation).isEqualTo("[{\"menu\":{\"id\":\"file\",\"value\":\"File\",\"popup\":{\"menuitem\":[{\"value\":\"New\",\"onclick\":\"CreateNewDoc()\"},{\"value\":\"Open\",\"onclick\":\"OpenDoc()\"},{\"value\":\"Close\",\"onclick\":\"CloseDoc()\"}]}}}]")
+        }
+
+        @Test
+        fun `object with null inner raw object`() {
+            val obj = obj {
+                "jsonContent" to rawJson(null)
+            }
+
+            val representation = obj.toString()
+
+            assertThat(representation).isValidJSON()
+            assertThat(representation).isEqualTo("{\"jsonContent\":null}")
+        }
+
+        @Test
+        fun `array with null inner raw object`() {
+            val array = array[rawJson(null)]
+
+            val representation = array.toString()
+
+            assertThat(representation).isValidJSON()
+            assertThat(representation).isEqualTo("[null]")
+        }
+    }
+
+    @Nested
     inner class PrettyPrints {
         
         private val cr = System.lineSeparator()!!
@@ -336,6 +407,7 @@ class KosonTest {
                             "byte" to 0xAA
                             "otherArray" to array
                             "simpleObject" to SimpleObject
+                            "raw" to rawJson("[]")
                             "objectInside" to obj {
                                 "to" to 34
                                 "too" to "Dog"
@@ -371,6 +443,7 @@ class KosonTest {
                         "        $cr" +
                         "      ],$cr" +
                         "      \"simpleObject\": \"SimpleObject\",$cr" +
+                        "      \"raw\": [],$cr" +
                         "      \"objectInside\": {$cr" +
                         "        \"to\": 34,$cr" +
                         "        \"too\": \"Dog\"$cr" +
@@ -404,6 +477,7 @@ class KosonTest {
                                     "byte" to 0xAA
                                     "otherArray" to array
                                     "simpleObject" to SimpleObject
+                                    "raw" to rawJson("[]")
                                     "objectInside" to obj {
                                         "to" to 34
                                         "too" to "Dog"
@@ -441,6 +515,7 @@ class KosonTest {
                         "          $cr" +
                         "        ],$cr" +
                         "        \"simpleObject\": \"SimpleObject\",$cr" +
+                        "        \"raw\": [],$cr" +
                         "        \"objectInside\": {$cr" +
                         "          \"to\": 34,$cr" +
                         "          \"too\": \"Dog\"$cr" +
