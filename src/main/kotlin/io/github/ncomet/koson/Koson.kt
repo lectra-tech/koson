@@ -3,35 +3,31 @@ package io.github.ncomet.koson
 private val cr = System.lineSeparator()
 private const val sp = " "
 private const val nullPrint = "null"
+
 private val regex = Regex("[\\\\\"]")
 private fun String.escapeIllegalChars() = regex.replace(this) { mr -> "\\${mr.value}" }
-
-private fun Any?.escapedOrNull(): String = if (this != null) {
-    "\"${this.toString().escapeIllegalChars()}\""
-} else {
-    nullPrint
-}
+private fun Any.escaped(): String = "\"${this.toString().escapeIllegalChars()}\""
 
 sealed class KosonType {
     internal abstract fun prettyPrint(level: Int, spaces: Int): String
 }
 
-private data class StringType(val value: String?) : KosonType() {
-    override fun toString(): String = value.escapedOrNull()
+private data class StringType(val value: String) : KosonType() {
+    override fun toString(): String = value.escaped()
     override fun prettyPrint(level: Int, spaces: Int): String = toString()
 }
 
-private data class CustomType(val value: Any?) : KosonType() {
-    override fun toString(): String = value.escapedOrNull()
+private data class CustomType(val value: Any) : KosonType() {
+    override fun toString(): String = value.escaped()
     override fun prettyPrint(level: Int, spaces: Int): String = toString()
 }
 
-private data class NumberType(val value: Number?) : KosonType() {
+private data class NumberType(val value: Number) : KosonType() {
     override fun toString(): String = value.toString()
     override fun prettyPrint(level: Int, spaces: Int): String = toString()
 }
 
-private data class BooleanType(val value: Boolean?) : KosonType() {
+private data class BooleanType(val value: Boolean) : KosonType() {
     override fun toString(): String = value.toString()
     override fun prettyPrint(level: Int, spaces: Int): String = toString()
 }
@@ -103,10 +99,10 @@ object array : ArrayType() {
                 is String -> StringType(value)
                 is Number -> NumberType(value)
                 is Boolean -> BooleanType(value)
-                is RawJsonType -> value
                 is ObjectType -> value
                 is ArrayType -> value
                 null -> NullType
+                is RawJsonType -> value
                 else -> CustomType(value)
             }
 }
@@ -120,15 +116,15 @@ fun obj(block: Koson.() -> Unit): ObjectType {
 class Koson(internal val objectType: ObjectType = ObjectType()) {
 
     infix fun String.to(value: String?) {
-        objectType.values[this] = StringType(value)
+        objectType.values[this] = if (value == null) NullType else StringType(value)
     }
 
     infix fun String.to(value: Number?) {
-        objectType.values[this] = NumberType(value)
+        objectType.values[this] = if (value == null) NullType else NumberType(value)
     }
 
     infix fun String.to(value: Boolean?) {
-        objectType.values[this] = BooleanType(value)
+        objectType.values[this] = if (value == null) NullType else BooleanType(value)
     }
 
     @Suppress("UNUSED_PARAMETER")
@@ -137,7 +133,7 @@ class Koson(internal val objectType: ObjectType = ObjectType()) {
     }
 
     infix fun String.to(value: Any?) {
-        objectType.values[this] = CustomType(value)
+        objectType.values[this] = if (value == null) NullType else CustomType(value)
     }
 
     infix fun String.to(value: RawJsonType) {
