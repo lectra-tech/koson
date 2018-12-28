@@ -2,13 +2,14 @@ package io.github.ncomet.koson
 
 private val cr = System.lineSeparator()
 private const val sp = " "
-
-private fun String.escapeIllegalChars() = this.replace("\\", "\\\\").replace("\"", "\\\"")
+private const val nullPrint = "null"
+private val regex = Regex("[\\\\\"]")
+private fun String.escapeIllegalChars() = this.replace(regex) { mr -> "\\${mr.value}" }
 
 private fun Any?.escapedOrNull(): String = if (this != null) {
     "\"${this.toString().escapeIllegalChars()}\""
 } else {
-    "null"
+    nullPrint
 }
 
 sealed class KosonType {
@@ -36,12 +37,12 @@ private data class BooleanType(val value: Boolean?) : KosonType() {
 }
 
 private object NullType : KosonType() {
-    override fun toString(): String = "null"
+    override fun toString(): String = nullPrint
     override fun prettyPrint(level: Int, spaces: Int): String = toString()
 }
 
 data class RawJsonType(val value: String?) : KosonType() {
-    override fun toString(): String = value ?: "null"
+    override fun toString(): String = value ?: nullPrint
     override fun prettyPrint(level: Int, spaces: Int): String = toString()
 }
 
@@ -53,7 +54,7 @@ fun rawJson(validJson: String?): RawJsonType = RawJsonType(validJson)
 
 data class ObjectType(internal val values: MutableMap<String, KosonType> = mutableMapOf()) : KosonType() {
     override fun toString(): String =
-        values.entries.joinToString(",", "{", "}") { (k, v) -> "\"$k\":$v" }
+            values.entries.joinToString(",", "{", "}") { (k, v) -> "\"${k.escapeIllegalChars()}\":$v" }
 
     fun pretty(spaces: Int = 2): String {
         require(spaces >= 0) { "spaces Int must be positive, but was $spaces." }
@@ -64,7 +65,7 @@ data class ObjectType(internal val values: MutableMap<String, KosonType> = mutab
         val space = sp.repeat((level + 1) * spaces)
         val closingSpace = sp.repeat(level * spaces)
         return values.entries.joinToString(",$cr$space", "{$cr$space", "$cr$closingSpace}") { (k, v) ->
-            "\"$k\": ${v.prettyPrint(
+            "\"${k.escapeIllegalChars()}\": ${v.prettyPrint(
                 level + 1,
                 spaces
             )}"
@@ -118,22 +119,38 @@ fun obj(block: Koson.() -> Unit): ObjectType {
 
 class Koson(internal val objectType: ObjectType = ObjectType()) {
 
-    infix fun String.to(value: String?) = addValueIfKeyIsAvailable(StringType(value))
+    infix fun String.to(value: String?) {
+        objectType.values[this] = StringType(value)
+    }
 
-    infix fun String.to(value: Number?) = addValueIfKeyIsAvailable(NumberType(value))
+    infix fun String.to(value: Number?) {
+        objectType.values[this] = NumberType(value)
+    }
 
-    infix fun String.to(value: Boolean?) = addValueIfKeyIsAvailable(BooleanType(value))
+    infix fun String.to(value: Boolean?) {
+        objectType.values[this] = BooleanType(value)
+    }
 
     @Suppress("UNUSED_PARAMETER")
-    infix fun String.to(value: Nothing?) = addValueIfKeyIsAvailable(NullType)
+    infix fun String.to(value: Nothing?) {
+        objectType.values[this] = NullType
+    }
 
-    infix fun String.to(value: Any?) = addValueIfKeyIsAvailable(CustomType(value))
+    infix fun String.to(value: Any?) {
+        objectType.values[this] = CustomType(value)
+    }
 
-    infix fun String.to(value: RawJsonType) = addValueIfKeyIsAvailable(value)
+    infix fun String.to(value: RawJsonType) {
+        objectType.values[this] = value
+    }
 
-    infix fun String.to(value: ObjectType) = addValueIfKeyIsAvailable(value)
+    infix fun String.to(value: ObjectType) {
+        objectType.values[this] = value
+    }
 
-    infix fun String.to(value: ArrayType) = addValueIfKeyIsAvailable(value)
+    infix fun String.to(value: ArrayType) {
+        objectType.values[this] = value
+    }
 
     @Deprecated(
         "<this> cannot be used as value inside an obj { }",
@@ -142,7 +159,7 @@ class Koson(internal val objectType: ObjectType = ObjectType()) {
     )
     @Suppress("UNUSED_PARAMETER")
     infix fun String.to(value: Koson): Nothing =
-        throw KosonException("<this> cannot be used as value inside an obj { }")
+            throw IllegalStateException("<this> cannot be used as value inside an obj { }")
 
     @Deprecated(
         "Key to the left of <to> must be of type String",
@@ -150,17 +167,6 @@ class Koson(internal val objectType: ObjectType = ObjectType()) {
         replaceWith = ReplaceWith(expression = "")
     )
     infix fun Any.to(value: Any?): Nothing =
-        throw KosonException("key <$this> of ($this to $value) must be of type String")
-
-    private fun String.addValueIfKeyIsAvailable(type: KosonType) {
-        val escaped = this.escapeIllegalChars()
-        if (!objectType.values.containsKey(escaped)) {
-            objectType.values[escaped] = type
-        } else {
-            throw KosonException("key <$escaped> of ($escaped to $type) is already defined for json object")
-        }
-    }
+            throw IllegalStateException("key <$this> of ($this to $value) must be of type String")
 
 }
-
-class KosonException(message: String) : RuntimeException(message)

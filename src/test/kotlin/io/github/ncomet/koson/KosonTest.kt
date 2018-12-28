@@ -143,8 +143,6 @@ class KosonTest {
 
     }
 
-
-
     @Nested
     inner class ContainingCases {
         @Test
@@ -239,18 +237,6 @@ class KosonTest {
 
     @Nested
     inner class ExceptionCases {
-
-        @Test
-        fun `object construction must throw KosonException when duplicate key`() {
-            val message = assertThrows<KosonException> {
-                obj {
-                    "key" to "myVal"
-                    "key" to 1.65
-                }
-            }.message
-
-            assertThat(message!!).isEqualTo("key <key> of (key to 1.65) is already defined for json object")
-        }
 
         @Test
         fun `obj pretty with negative spaces must throw an IAE`() {

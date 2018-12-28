@@ -165,8 +165,6 @@ In IntelliJ, a compilation error will appear, and code will be flagged as not re
 image:https://github.com/ncomet/koson/blob/master/image/koson-typing.png["Koson Typing"]
 ====
 
-IMPORTANT: A runtime `KosonException` will be raised when a JSON key (attribute) duplicate is found in an _obj { }_
-
 * A JSON value of an _obj { }_ or an _array [...]_ can be one of the following `Kotlin` or _Koson DSL_ instances
 ** `String?` (will render escaping `"` and `\` chars)
 ** `Number?`
