@@ -92,21 +92,22 @@ open class ArrayType(private val values: List<KosonType> = emptyList()) : KosonT
     }
 }
 
+@Suppress("ClassName")
 object array : ArrayType() {
     operator fun get(vararg elements: Any?): ArrayType =
-        ArrayType(elements.map { toAllowedType(it) }.toList())
+            ArrayType(elements.map { toAllowedType(it) }.toList())
 
     private fun toAllowedType(value: Any?): KosonType =
-        when (value) {
-            is String -> StringType(value)
-            is Number -> NumberType(value)
-            is Boolean -> BooleanType(value)
-            is RawJsonType -> value
-            is ObjectType -> value
-            is ArrayType -> value
-            null -> NullType
-            else -> CustomType(value)
-        }
+            when (value) {
+                is String -> StringType(value)
+                is Number -> NumberType(value)
+                is Boolean -> BooleanType(value)
+                is RawJsonType -> value
+                is ObjectType -> value
+                is ArrayType -> value
+                null -> NullType
+                else -> CustomType(value)
+            }
 }
 
 fun obj(block: Koson.() -> Unit): ObjectType {
