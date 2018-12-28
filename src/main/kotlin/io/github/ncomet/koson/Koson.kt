@@ -4,7 +4,7 @@ private val cr = System.lineSeparator()
 private const val sp = " "
 private const val nullPrint = "null"
 private val regex = Regex("[\\\\\"]")
-private fun String.escapeIllegalChars() = this.replace(regex) { mr -> "\\${mr.value}" }
+private fun String.escapeIllegalChars() = regex.replace(this) { mr -> "\\${mr.value}" }
 
 private fun Any?.escapedOrNull(): String = if (this != null) {
     "\"${this.toString().escapeIllegalChars()}\""
