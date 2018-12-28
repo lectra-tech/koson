@@ -24,12 +24,6 @@ class KosonTest {
         assertThat(representation).isEqualTo("[]")
     }
 
-    @Test
-    fun `array containing this as a value should render`() {
-        val representation = array[this]
-        assertThat(representation.toString()).isValidJSON()
-    }
-
     object SimpleObject {
         override fun toString(): String = this.javaClass.simpleName
     }
@@ -63,7 +57,7 @@ class KosonTest {
     }
 
     @Test
-    internal fun `array with all possible types of value`() {
+    fun `array with all possible types of value`() {
         val representation = array[
                 "value",
                 7.6,
@@ -87,25 +81,69 @@ class KosonTest {
             .isEqualTo("[\"value\",7.6,3.2,34,9,\"e\",12,50,false,{},[],[\"test\"],null,\"SimpleObject\",\"\\\"un\\\\for\\\"tuna\\\\te\\\"\",{}]")
     }
 
-    @Test
-    internal fun `object with forbidden json token`() {
-        val obj = obj {
-            "content" to "[}[]}\\,{][,]\"\"\",\",,[,}}}[]],[}#{}"
+    @Nested
+    inner class EdgeCases {
+
+        @Test
+        fun `array containing this as a value should render`() {
+            val array = array[this]
+
+            val representation = array.toString()
+
+            assertThat(representation).isValidJSON()
+            assertThat(representation).startsWith("[")
+            assertThat(representation).endsWith("]")
         }
 
-        val representation = obj.toString()
+        @Test
+        fun `object with null as key should render`() {
+            val obj = obj {
+                null to "content"
+            }
 
-        assertThat(representation).isValidJSON()
+            val representation = obj.toString()
+
+            assertThat(representation).isValidJSON()
+            assertThat(representation).isEqualTo("{}")
+        }
+
+        @Test
+        fun `object with json value containing dangerous chars`() {
+            val obj = obj {
+                "content" to "[}[]}\\,{][,]\"\"\",\",,[,}}}[]],[}#{}"
+            }
+
+            val representation = obj.toString()
+
+            assertThat(representation).isValidJSON()
+            assertThat(representation).isEqualTo("{\"content\":\"[}[]}\\\\,{][,]\\\"\\\"\\\",\\\",,[,}}}[]],[}#{}\"}")
+        }
+
+        @Test
+        fun `object with json key containing dangerous chars`() {
+            val obj = obj {
+                "[}[]}\\,{][,]\"\"\",\",,[,}}}[]],[}#{}" to "content"
+            }
+
+            val representation = obj.toString()
+
+            assertThat(representation).isValidJSON()
+            assertThat(representation).isEqualTo("{\"[}[]}\\\\,{][,]\\\"\\\"\\\",\\\",,[,}}}[]],[}#{}\":\"content\"}")
+        }
+
+        @Test
+        fun `array with forbidden json token`() {
+            val array = array["[}[]}\\,{][,]\"\"\",\",,[,}}}[]],[}#{}"]
+
+            val representation = array.toString()
+
+            assertThat(representation).isValidJSON()
+            assertThat(representation).isEqualTo("[\"[}[]}\\\\,{][,]\\\"\\\"\\\",\\\",,[,}}}[]],[}#{}\"]")
+        }
+
     }
 
-    @Test
-    internal fun `array with forbidden json token`() {
-        val array = array["[}[]}\\,{][,]\"\"\",\",,[,}}}[]],[}#{}"]
 
-        val representation = array.toString()
-
-        assertThat(representation).isValidJSON()
-    }
 
     @Nested
     inner class ContainingCases {

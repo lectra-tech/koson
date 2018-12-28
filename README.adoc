@@ -132,7 +132,9 @@ array[ ... ].pretty(3)
 
 == Raw Json
 
-If you want to include raw Json you can use the `rawJson(validJson: String?)` function.
+In general if you know what to render, you should favor using DSL elements to build your Json.
+
+If you want to include an external source of Json you can use the `rawJson(validJson: String?)` function.
 
 [source, Kotlin]
 ----
@@ -147,14 +149,14 @@ You need to ensure the parameter `String?` is a valid Json (by format), otherwis
 
 Rendering *will not* escape `"` and `\` chars, so you will need to take care of it.
 
-`rawJson()` is the only way to introduce a malformed Json with `Koson`
+`rawJson` is the only way to introduce a malformed Json with `Koson`
 ====
 
 NOTE: `pretty()` will not work on `rawJson` Strings
 
 == Strong type constraints
 
-* A JSON key (attribute) can only be of `Kotlin` type `String`
+* A JSON key (attribute) can only be of `Kotlin` type `String` (will render escaping `"` and `\` chars)
 
 [NOTE]
 ====

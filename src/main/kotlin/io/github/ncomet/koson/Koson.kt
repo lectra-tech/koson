@@ -3,8 +3,10 @@ package io.github.ncomet.koson
 private val cr = System.lineSeparator()
 private const val sp = " "
 
+private fun String.escapeIllegalChars() = this.replace("\\", "\\\\").replace("\"", "\\\"")
+
 private fun Any?.escapedOrNull(): String = if (this != null) {
-    "\"${this.toString().replace("\\", "\\\\").replace("\"", "\\\"")}\""
+    "\"${this.toString().escapeIllegalChars()}\""
 } else {
     "null"
 }
@@ -150,10 +152,11 @@ class Koson(internal val objectType: ObjectType = ObjectType()) {
         throw KosonException("key <$this> of ($this to $value) must be of type String")
 
     private fun String.addValueIfKeyIsAvailable(type: KosonType) {
-        if (!objectType.values.containsKey(this)) {
-            objectType.values[this] = type
+        val escaped = this.escapeIllegalChars()
+        if (!objectType.values.containsKey(escaped)) {
+            objectType.values[escaped] = type
         } else {
-            throw KosonException("key <$this> of ($this to $type) is already defined for json object")
+            throw KosonException("key <$escaped> of ($escaped to $type) is already defined for json object")
         }
     }
 
