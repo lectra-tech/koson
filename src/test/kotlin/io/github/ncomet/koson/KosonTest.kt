@@ -28,10 +28,6 @@ class KosonTest {
         override fun toString(): String = this.javaClass.simpleName
     }
 
-    object ContainsDoubleQuotesAndBackslash {
-        override fun toString(): String = "\"un\\for\"tuna\\te\""
-    }
-
     @Test
     fun `object with all possible types of value`() {
         val representation = obj {
@@ -48,12 +44,11 @@ class KosonTest {
             "emptyArray" to array
             "array" to array["test"]
             "null" to null
-            "any" to SimpleObject
-            "custom" to ContainsDoubleQuotesAndBackslash
+            "custom" to SimpleObject
             "raw" to rawJson("{}")
         }.toString()
         assertThat(representation).isValidJSON()
-        assertThat(representation).isEqualTo("{\"string\":\"value\",\"double\":7.6,\"float\":3.2,\"long\":34,\"int\":9,\"char\":\"e\",\"short\":12,\"byte\":50,\"boolean\":false,\"object\":{},\"emptyArray\":[],\"array\":[\"test\"],\"null\":null,\"any\":\"SimpleObject\",\"custom\":\"\\\"un\\\\for\\\"tuna\\\\te\\\"\",\"raw\":{}}")
+        assertThat(representation).isEqualTo("{\"string\":\"value\",\"double\":7.6,\"float\":3.2,\"long\":34,\"int\":9,\"char\":\"e\",\"short\":12,\"byte\":50,\"boolean\":false,\"object\":{},\"emptyArray\":[],\"array\":[\"test\"],\"null\":null,\"custom\":\"SimpleObject\",\"raw\":{}}")
     }
 
     @Test
@@ -73,12 +68,23 @@ class KosonTest {
                 array["test"],
                 null,
                 SimpleObject,
-                ContainsDoubleQuotesAndBackslash,
                 rawJson("{}")
         ].toString()
         assertThat(representation).isValidJSON()
         assertThat(representation)
-            .isEqualTo("[\"value\",7.6,3.2,34,9,\"e\",12,50,false,{},[],[\"test\"],null,\"SimpleObject\",\"\\\"un\\\\for\\\"tuna\\\\te\\\"\",{}]")
+            .isEqualTo("[\"value\",7.6,3.2,34,9,\"e\",12,50,false,{},[],[\"test\"],null,\"SimpleObject\",{}]")
+    }
+
+    object ContainsDoubleQuotesAndBackslashes {
+        override fun toString(): String = "\"un\\for\"tuna\\te\""
+    }
+
+    object ContainsDoubleQuotes {
+        override fun toString(): String = "\"unfor\"tunate\""
+    }
+
+    object ContainsBackslashes {
+        override fun toString(): String = "\\unfor\\tunate\\"
     }
 
     @Nested
@@ -108,7 +114,91 @@ class KosonTest {
         }
 
         @Test
-        fun `object with json value containing dangerous chars`() {
+        fun `object with value containing backslash char`() {
+            val obj = obj {
+                "content" to "va\\lue"
+            }
+
+            val representation = obj.toString()
+
+            assertThat(representation).isValidJSON()
+            assertThat(representation).isEqualTo("{\"content\":\"va\\\\lue\"}")
+        }
+
+        @Test
+        fun `object with custom value containing backslash char`() {
+            val obj = obj {
+                "content" to ContainsBackslashes
+            }
+
+            val representation = obj.toString()
+
+            assertThat(representation).isValidJSON()
+            assertThat(representation).isEqualTo("{\"content\":\"\\\\unfor\\\\tunate\\\\\"}")
+        }
+
+        @Test
+        fun `object with value containing doublequotes char`() {
+            val obj = obj {
+                "content" to "va\"lue"
+            }
+
+            val representation = obj.toString()
+
+            assertThat(representation).isValidJSON()
+            assertThat(representation).isEqualTo("{\"content\":\"va\\\"lue\"}")
+        }
+
+        @Test
+        fun `object with custom value containing doublequotes char`() {
+            val obj = obj {
+                "content" to ContainsDoubleQuotes
+            }
+
+            val representation = obj.toString()
+
+            assertThat(representation).isValidJSON()
+            assertThat(representation).isEqualTo("{\"content\":\"\\\"unfor\\\"tunate\\\"\"}")
+        }
+
+        @Test
+        fun `object with custom value containing backslashes and doublequotes char`() {
+            val obj = obj {
+                "content" to ContainsDoubleQuotesAndBackslashes
+            }
+
+            val representation = obj.toString()
+
+            assertThat(representation).isValidJSON()
+            assertThat(representation).isEqualTo("{\"content\":\"\\\"un\\\\for\\\"tuna\\\\te\\\"\"}")
+        }
+
+        @Test
+        fun `object with key containing backslash char`() {
+            val obj = obj {
+                "va\\lue" to "content"
+            }
+
+            val representation = obj.toString()
+
+            assertThat(representation).isValidJSON()
+            assertThat(representation).isEqualTo("{\"va\\\\lue\":\"content\"}")
+        }
+
+        @Test
+        fun `object with key containing doublequotes char`() {
+            val obj = obj {
+                "va\"lue" to "content"
+            }
+
+            val representation = obj.toString()
+
+            assertThat(representation).isValidJSON()
+            assertThat(representation).isEqualTo("{\"va\\\"lue\":\"content\"}")
+        }
+
+        @Test
+        fun `object with value containing backslashes and doublequotes chars`() {
             val obj = obj {
                 "content" to "[}[]}\\,{][,]\"\"\",\",,[,}}}[]],[}#{}"
             }
@@ -120,7 +210,7 @@ class KosonTest {
         }
 
         @Test
-        fun `object with json key containing dangerous chars`() {
+        fun `object with key containing backslashes and doublequotes chars`() {
             val obj = obj {
                 "[}[]}\\,{][,]\"\"\",\",,[,}}}[]],[}#{}" to "content"
             }
@@ -132,7 +222,27 @@ class KosonTest {
         }
 
         @Test
-        fun `array with forbidden json token`() {
+        fun `array containing backslash car`() {
+            val array = array["va\\lue"]
+
+            val representation = array.toString()
+
+            assertThat(representation).isValidJSON()
+            assertThat(representation).isEqualTo("[\"va\\\\lue\"]")
+        }
+
+        @Test
+        fun `array containing doublequotes char`() {
+            val array = array["va\"lue"]
+
+            val representation = array.toString()
+
+            assertThat(representation).isValidJSON()
+            assertThat(representation).isEqualTo("[\"va\\\"lue\"]")
+        }
+
+        @Test
+        fun `array containing backslashes and doublequotes chars`() {
             val array = array["[}[]}\\,{][,]\"\"\",\",,[,}}}[]],[}#{}"]
 
             val representation = array.toString()
@@ -215,13 +325,13 @@ class KosonTest {
                     obj {
                         "aKey" to "value"
                         "insideArray" to array
-                        "otherArray" to array["element", ContainsDoubleQuotesAndBackslash, obj { }]
+                        "otherArray" to array["element", SimpleObject, obj { }]
                     }
             ]
             val representation = array.toString()
             assertThat(representation).isValidJSON()
             assertThat(representation)
-                .isEqualTo("[\"koson\",33.4,345.0,21,42,\"a\",33,{\"aKey\":\"value\",\"insideArray\":[],\"otherArray\":[\"element\",\"\\\"un\\\\for\\\"tuna\\\\te\\\"\",{}]}]")
+                .isEqualTo("[\"koson\",33.4,345.0,21,42,\"a\",33,{\"aKey\":\"value\",\"insideArray\":[],\"otherArray\":[\"element\",\"SimpleObject\",{}]}]")
         }
 
         @Test
