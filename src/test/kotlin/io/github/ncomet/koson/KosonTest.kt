@@ -222,7 +222,7 @@ class KosonTest {
         }
 
         @Test
-        fun `array containing backslash car`() {
+        fun `array containing backslash char`() {
             val array = array["va\\lue"]
 
             val representation = array.toString()
