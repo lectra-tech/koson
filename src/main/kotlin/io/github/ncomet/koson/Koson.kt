@@ -4,8 +4,18 @@ private val cr = System.lineSeparator()
 private const val sp = " "
 private const val nullPrint = "null"
 
-private val regex = Regex("[\\\\\"]")
-private fun String.escapeIllegalChars() = regex.replace(this) { mr -> "\\${mr.value}" }
+private const val backSlash = '\\'
+private const val doubleQuotes = '\"'
+private val regex = Regex("""[\\$backSlash$doubleQuotes]""")
+
+private fun String.escapeIllegalChars(): String {
+    return if (this.contains(backSlash) && this.contains(doubleQuotes)) {
+        regex.replace(this) { mr -> "\\${mr.value}" }
+    } else {
+        this
+    }
+}
+
 private fun String.quotedEscaped() = "\"${this.escapeIllegalChars()}\""
 
 sealed class KosonType {
@@ -50,7 +60,7 @@ fun rawJson(validJson: String?): RawJsonType = RawJsonType(validJson)
 
 data class ObjectType(internal val values: MutableMap<String, KosonType> = mutableMapOf()) : KosonType() {
     override fun toString(): String =
-            values.entries.joinToString(",", "{", "}") { (k, v) -> "\"${k.escapeIllegalChars()}\":$v" }
+        values.entries.joinToString(",", "{", "}") { (k, v) -> "\"${k.escapeIllegalChars()}\":$v" }
 
     fun pretty(spaces: Int = 2): String {
         require(spaces >= 0) { "spaces Int must be positive, but was $spaces." }
@@ -92,19 +102,19 @@ open class ArrayType(private val values: List<KosonType> = emptyList()) : KosonT
 @Suppress("ClassName")
 object array : ArrayType() {
     operator fun get(vararg elements: Any?): ArrayType =
-            ArrayType(elements.map { toAllowedType(it) }.toList())
+        ArrayType(elements.map { toAllowedType(it) }.toList())
 
     private fun toAllowedType(value: Any?): KosonType =
-            when (value) {
-                is String -> StringType(value)
-                is Number -> NumberType(value)
-                is Boolean -> BooleanType(value)
-                is ObjectType -> value
-                is ArrayType -> value
-                null -> NullType
-                is RawJsonType -> value
-                else -> CustomType(value)
-            }
+        when (value) {
+            is String -> StringType(value)
+            is Number -> NumberType(value)
+            is Boolean -> BooleanType(value)
+            is ObjectType -> value
+            is ArrayType -> value
+            null -> NullType
+            is RawJsonType -> value
+            else -> CustomType(value)
+        }
 }
 
 fun obj(block: Koson.() -> Unit): ObjectType {
@@ -155,7 +165,7 @@ class Koson(internal val objectType: ObjectType = ObjectType()) {
     )
     @Suppress("UNUSED_PARAMETER")
     infix fun String.to(value: Koson): Nothing =
-            throw IllegalStateException("<this> cannot be used as value inside an obj { }")
+        throw IllegalStateException("<this> cannot be used as value inside an obj { }")
 
     @Deprecated(
         "Key to the left of <to> must be of type String",
@@ -163,6 +173,6 @@ class Koson(internal val objectType: ObjectType = ObjectType()) {
         replaceWith = ReplaceWith(expression = "")
     )
     infix fun Any.to(value: Any?): Nothing =
-            throw IllegalStateException("key <$this> of ($this to $value) must be of type String")
+        throw IllegalStateException("key <$this> of ($this to $value) must be of type String")
 
 }
