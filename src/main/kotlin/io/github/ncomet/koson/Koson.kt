@@ -6,19 +6,19 @@ private const val nullPrint = "null"
 
 private val regex = Regex("[\\\\\"]")
 private fun String.escapeIllegalChars() = regex.replace(this) { mr -> "\\${mr.value}" }
-private fun Any.escaped(): String = "\"${this.toString().escapeIllegalChars()}\""
+private fun String.quotedEscaped() = "\"${this.escapeIllegalChars()}\""
 
 sealed class KosonType {
     internal abstract fun prettyPrint(level: Int, spaces: Int): String
 }
 
 private data class StringType(val value: String) : KosonType() {
-    override fun toString(): String = value.escaped()
+    override fun toString(): String = value.quotedEscaped()
     override fun prettyPrint(level: Int, spaces: Int): String = toString()
 }
 
 private data class CustomType(val value: Any) : KosonType() {
-    override fun toString(): String = value.escaped()
+    override fun toString(): String = value.toString().quotedEscaped()
     override fun prettyPrint(level: Int, spaces: Int): String = toString()
 }
 
