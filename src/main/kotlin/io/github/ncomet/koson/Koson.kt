@@ -9,7 +9,7 @@ private const val doubleQuotes = '\"'
 private val regex = Regex("""[\\$backSlash$doubleQuotes]""")
 
 private fun String.escapeIllegalChars(): String {
-    return if (this.contains(backSlash) && this.contains(doubleQuotes)) {
+    return if (this.contains(backSlash) || this.contains(doubleQuotes)) {
         regex.replace(this) { mr -> "\\${mr.value}" }
     } else {
         this
