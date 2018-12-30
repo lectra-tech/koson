@@ -111,8 +111,8 @@ object arr : ArrayType() {
             is Boolean -> BooleanType(value)
             is ObjectType -> value
             is ArrayType -> value
-            null -> NullType
             is RawJsonType -> value
+            null -> NullType
             else -> CustomType(value)
         }
 }
@@ -137,6 +137,18 @@ class Koson(internal val objectType: ObjectType = ObjectType()) {
         objectType.values[this] = if (value == null) NullType else BooleanType(value)
     }
 
+    infix fun String.to(value: ObjectType) {
+        objectType.values[this] = value
+    }
+
+    infix fun String.to(value: ArrayType) {
+        objectType.values[this] = value
+    }
+
+    infix fun String.to(value: RawJsonType) {
+        objectType.values[this] = value
+    }
+
     @Suppress("UNUSED_PARAMETER")
     infix fun String.to(value: Nothing?) {
         objectType.values[this] = NullType
@@ -144,18 +156,6 @@ class Koson(internal val objectType: ObjectType = ObjectType()) {
 
     infix fun String.to(value: Any?) {
         objectType.values[this] = if (value == null) NullType else CustomType(value)
-    }
-
-    infix fun String.to(value: RawJsonType) {
-        objectType.values[this] = value
-    }
-
-    infix fun String.to(value: ObjectType) {
-        objectType.values[this] = value
-    }
-
-    infix fun String.to(value: ArrayType) {
-        objectType.values[this] = value
     }
 
     @Deprecated(
