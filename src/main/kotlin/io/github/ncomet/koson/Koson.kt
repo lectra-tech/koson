@@ -100,7 +100,7 @@ open class ArrayType(private val values: List<KosonType> = emptyList()) : KosonT
 }
 
 @Suppress("ClassName")
-object array : ArrayType() {
+object arr : ArrayType() {
     operator fun get(vararg elements: Any?): ArrayType =
         ArrayType(elements.map { toAllowedType(it) }.toList())
 

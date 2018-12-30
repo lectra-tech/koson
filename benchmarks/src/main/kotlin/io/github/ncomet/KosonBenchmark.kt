@@ -31,7 +31,7 @@
 
 package io.github.ncomet
 
-import io.github.ncomet.koson.array
+import io.github.ncomet.koson.arr
 import io.github.ncomet.koson.obj
 import org.json.JSONArray
 import org.json.JSONObject
@@ -451,7 +451,7 @@ open class KosonBenchmark {
     @Benchmark
     fun _1_kosonWithBigArray(): String {
         val koson =
-            array[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, "firstElement",
+            arr[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, "firstElement",
                     obj {
                         "string" to "value"
                         "int" to 9
@@ -459,8 +459,8 @@ open class KosonBenchmark {
                         "float" to 3.2f
                         "boolean" to false
                         "object" to obj { }
-                        "emptyArray" to array
-                        "array" to array["test"]
+                        "emptyArray" to arr
+                        "array" to arr["test"]
                         "null" to null
                         "otherObj" to obj {
                             "string" to "value"
@@ -469,8 +469,8 @@ open class KosonBenchmark {
                             "float" to 3.2f
                             "boolean" to false
                             "object" to obj { }
-                            "emptyArray" to array
-                            "array" to array[
+                            "emptyArray" to arr
+                            "array" to arr[
                                     obj {
                                         "string" to "value"
                                         "int" to 9
@@ -478,8 +478,8 @@ open class KosonBenchmark {
                                         "float" to 3.2f
                                         "boolean" to false
                                         "object" to obj { }
-                                        "emptyArray" to array
-                                        "array" to array["test"]
+                                        "emptyArray" to arr
+                                        "array" to arr["test"]
                                         "null" to null
                                     },
                                     obj {
@@ -489,8 +489,8 @@ open class KosonBenchmark {
                                         "float" to 3.2f
                                         "boolean" to false
                                         "object" to obj { }
-                                        "emptyArray" to array
-                                        "array" to array["test"]
+                                        "emptyArray" to arr
+                                        "array" to arr["test"]
                                         "null" to null
                                     },
                                     obj {
@@ -500,8 +500,8 @@ open class KosonBenchmark {
                                         "float" to 3.2f
                                         "boolean" to false
                                         "object" to obj { }
-                                        "emptyArray" to array
-                                        "array" to array[
+                                        "emptyArray" to arr
+                                        "array" to arr[
                                                 obj {
                                                     "string" to "value"
                                                     "int" to 9
@@ -509,8 +509,8 @@ open class KosonBenchmark {
                                                     "float" to 3.2f
                                                     "boolean" to false
                                                     "object" to obj { }
-                                                    "emptyArray" to array
-                                                    "array" to array["test"]
+                                                    "emptyArray" to arr
+                                                    "array" to arr["test"]
                                                     "null" to null
                                                 },
                                                 obj {
@@ -520,8 +520,8 @@ open class KosonBenchmark {
                                                     "float" to 3.2f
                                                     "boolean" to false
                                                     "object" to obj { }
-                                                    "emptyArray" to array
-                                                    "array" to array[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
+                                                    "emptyArray" to arr
+                                                    "array" to arr[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
                                                     "null" to null
                                                 }
                                         ]
@@ -535,8 +535,8 @@ open class KosonBenchmark {
                                 "float" to 3.2f
                                 "boolean" to false
                                 "object" to obj { }
-                                "emptyArray" to array
-                                "array" to array[
+                                "emptyArray" to arr
+                                "array" to arr[
                                         obj {
                                             "string" to "value"
                                             "int" to 9
@@ -544,8 +544,8 @@ open class KosonBenchmark {
                                             "float" to 3.2f
                                             "boolean" to false
                                             "object" to obj { }
-                                            "emptyArray" to array
-                                            "array" to array["test"]
+                                            "emptyArray" to arr
+                                            "array" to arr["test"]
                                             "null" to null
                                         },
                                         obj {
@@ -555,13 +555,13 @@ open class KosonBenchmark {
                                             "float" to 3.2f
                                             "boolean" to false
                                             "object" to obj { }
-                                            "emptyArray" to array
-                                            "array" to array[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
+                                            "emptyArray" to arr
+                                            "array" to arr[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
                                             "null" to null
                                         }
                                 ]
                                 "null" to null
-                                "onceAgain" to array[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, "firstElement",
+                                "onceAgain" to arr[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, "firstElement",
                                         obj {
                                             "string" to "value"
                                             "int" to 9
@@ -569,8 +569,8 @@ open class KosonBenchmark {
                                             "float" to 3.2f
                                             "boolean" to false
                                             "object" to obj { }
-                                            "emptyArray" to array
-                                            "array" to array["test"]
+                                            "emptyArray" to arr
+                                            "array" to arr["test"]
                                             "null" to null
                                             "otherObj" to obj {
                                                 "string" to "value"
@@ -579,8 +579,8 @@ open class KosonBenchmark {
                                                 "float" to 3.2f
                                                 "boolean" to false
                                                 "object" to obj { }
-                                                "emptyArray" to array
-                                                "array" to array[
+                                                "emptyArray" to arr
+                                                "array" to arr[
                                                         obj {
                                                             "string" to "value"
                                                             "int" to 9
@@ -588,8 +588,8 @@ open class KosonBenchmark {
                                                             "float" to 3.2f
                                                             "boolean" to false
                                                             "object" to obj { }
-                                                            "emptyArray" to array
-                                                            "array" to array["test"]
+                                                            "emptyArray" to arr
+                                                            "array" to arr["test"]
                                                             "null" to null
                                                         },
                                                         obj {
@@ -599,8 +599,8 @@ open class KosonBenchmark {
                                                             "float" to 3.2f
                                                             "boolean" to false
                                                             "object" to obj { }
-                                                            "emptyArray" to array
-                                                            "array" to array["test"]
+                                                            "emptyArray" to arr
+                                                            "array" to arr["test"]
                                                             "null" to null
                                                         },
                                                         obj {
@@ -610,8 +610,8 @@ open class KosonBenchmark {
                                                             "float" to 3.2f
                                                             "boolean" to false
                                                             "object" to obj { }
-                                                            "emptyArray" to array
-                                                            "array" to array[
+                                                            "emptyArray" to arr
+                                                            "array" to arr[
                                                                     obj {
                                                                         "string" to "value"
                                                                         "int" to 9
@@ -619,8 +619,8 @@ open class KosonBenchmark {
                                                                         "float" to 3.2f
                                                                         "boolean" to false
                                                                         "object" to obj { }
-                                                                        "emptyArray" to array
-                                                                        "array" to array["test"]
+                                                                        "emptyArray" to arr
+                                                                        "array" to arr["test"]
                                                                         "null" to null
                                                                     },
                                                                     obj {
@@ -630,8 +630,8 @@ open class KosonBenchmark {
                                                                         "float" to 3.2f
                                                                         "boolean" to false
                                                                         "object" to obj { }
-                                                                        "emptyArray" to array
-                                                                        "array" to array[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
+                                                                        "emptyArray" to arr
+                                                                        "array" to arr[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
                                                                         "null" to null
                                                                     }
                                                             ]
@@ -645,8 +645,8 @@ open class KosonBenchmark {
                                                     "float" to 3.2f
                                                     "boolean" to false
                                                     "object" to obj { }
-                                                    "emptyArray" to array
-                                                    "array" to array[
+                                                    "emptyArray" to arr
+                                                    "array" to arr[
                                                             obj {
                                                                 "string" to "value"
                                                                 "int" to 9
@@ -654,8 +654,8 @@ open class KosonBenchmark {
                                                                 "float" to 3.2f
                                                                 "boolean" to false
                                                                 "object" to obj { }
-                                                                "emptyArray" to array
-                                                                "array" to array["test"]
+                                                                "emptyArray" to arr
+                                                                "array" to arr["test"]
                                                                 "null" to null
                                                             },
                                                             obj {
@@ -665,8 +665,8 @@ open class KosonBenchmark {
                                                                 "float" to 3.2f
                                                                 "boolean" to false
                                                                 "object" to obj { }
-                                                                "emptyArray" to array
-                                                                "array" to array[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
+                                                                "emptyArray" to arr
+                                                                "array" to arr[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
                                                                 "null" to null
                                                             }
                                                     ]
@@ -680,8 +680,8 @@ open class KosonBenchmark {
                                                 "float" to 3.2f
                                                 "boolean" to false
                                                 "object" to obj { }
-                                                "emptyArray" to array
-                                                "array" to array["test"]
+                                                "emptyArray" to arr
+                                                "array" to arr["test"]
                                                 "null" to null
                                             }
                                         }
@@ -695,8 +695,8 @@ open class KosonBenchmark {
                             "float" to 3.2f
                             "boolean" to false
                             "object" to obj { }
-                            "emptyArray" to array
-                            "array" to array["test"]
+                            "emptyArray" to arr
+                            "array" to arr["test"]
                             "null" to null
                         }
                     }
@@ -1117,7 +1117,7 @@ open class KosonBenchmark {
     @Benchmark
     fun _3_kosonWithBigArray_pretty(): String {
         val koson =
-            array[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, "firstElement",
+            arr[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, "firstElement",
                     obj {
                         "string" to "value"
                         "int" to 9
@@ -1125,8 +1125,8 @@ open class KosonBenchmark {
                         "float" to 3.2f
                         "boolean" to false
                         "object" to obj { }
-                        "emptyArray" to array
-                        "array" to array["test"]
+                        "emptyArray" to arr
+                        "array" to arr["test"]
                         "null" to null
                         "otherObj" to obj {
                             "string" to "value"
@@ -1135,8 +1135,8 @@ open class KosonBenchmark {
                             "float" to 3.2f
                             "boolean" to false
                             "object" to obj { }
-                            "emptyArray" to array
-                            "array" to array[
+                            "emptyArray" to arr
+                            "array" to arr[
                                     obj {
                                         "string" to "value"
                                         "int" to 9
@@ -1144,8 +1144,8 @@ open class KosonBenchmark {
                                         "float" to 3.2f
                                         "boolean" to false
                                         "object" to obj { }
-                                        "emptyArray" to array
-                                        "array" to array["test"]
+                                        "emptyArray" to arr
+                                        "array" to arr["test"]
                                         "null" to null
                                     },
                                     obj {
@@ -1155,8 +1155,8 @@ open class KosonBenchmark {
                                         "float" to 3.2f
                                         "boolean" to false
                                         "object" to obj { }
-                                        "emptyArray" to array
-                                        "array" to array["test"]
+                                        "emptyArray" to arr
+                                        "array" to arr["test"]
                                         "null" to null
                                     },
                                     obj {
@@ -1166,8 +1166,8 @@ open class KosonBenchmark {
                                         "float" to 3.2f
                                         "boolean" to false
                                         "object" to obj { }
-                                        "emptyArray" to array
-                                        "array" to array[
+                                        "emptyArray" to arr
+                                        "array" to arr[
                                                 obj {
                                                     "string" to "value"
                                                     "int" to 9
@@ -1175,8 +1175,8 @@ open class KosonBenchmark {
                                                     "float" to 3.2f
                                                     "boolean" to false
                                                     "object" to obj { }
-                                                    "emptyArray" to array
-                                                    "array" to array["test"]
+                                                    "emptyArray" to arr
+                                                    "array" to arr["test"]
                                                     "null" to null
                                                 },
                                                 obj {
@@ -1186,8 +1186,8 @@ open class KosonBenchmark {
                                                     "float" to 3.2f
                                                     "boolean" to false
                                                     "object" to obj { }
-                                                    "emptyArray" to array
-                                                    "array" to array[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
+                                                    "emptyArray" to arr
+                                                    "array" to arr[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
                                                     "null" to null
                                                 }
                                         ]
@@ -1201,8 +1201,8 @@ open class KosonBenchmark {
                                 "float" to 3.2f
                                 "boolean" to false
                                 "object" to obj { }
-                                "emptyArray" to array
-                                "array" to array[
+                                "emptyArray" to arr
+                                "array" to arr[
                                         obj {
                                             "string" to "value"
                                             "int" to 9
@@ -1210,8 +1210,8 @@ open class KosonBenchmark {
                                             "float" to 3.2f
                                             "boolean" to false
                                             "object" to obj { }
-                                            "emptyArray" to array
-                                            "array" to array["test"]
+                                            "emptyArray" to arr
+                                            "array" to arr["test"]
                                             "null" to null
                                         },
                                         obj {
@@ -1221,13 +1221,13 @@ open class KosonBenchmark {
                                             "float" to 3.2f
                                             "boolean" to false
                                             "object" to obj { }
-                                            "emptyArray" to array
-                                            "array" to array[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
+                                            "emptyArray" to arr
+                                            "array" to arr[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
                                             "null" to null
                                         }
                                 ]
                                 "null" to null
-                                "onceAgain" to array[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, "firstElement",
+                                "onceAgain" to arr[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, "firstElement",
                                         obj {
                                             "string" to "value"
                                             "int" to 9
@@ -1235,8 +1235,8 @@ open class KosonBenchmark {
                                             "float" to 3.2f
                                             "boolean" to false
                                             "object" to obj { }
-                                            "emptyArray" to array
-                                            "array" to array["test"]
+                                            "emptyArray" to arr
+                                            "array" to arr["test"]
                                             "null" to null
                                             "otherObj" to obj {
                                                 "string" to "value"
@@ -1245,8 +1245,8 @@ open class KosonBenchmark {
                                                 "float" to 3.2f
                                                 "boolean" to false
                                                 "object" to obj { }
-                                                "emptyArray" to array
-                                                "array" to array[
+                                                "emptyArray" to arr
+                                                "array" to arr[
                                                         obj {
                                                             "string" to "value"
                                                             "int" to 9
@@ -1254,8 +1254,8 @@ open class KosonBenchmark {
                                                             "float" to 3.2f
                                                             "boolean" to false
                                                             "object" to obj { }
-                                                            "emptyArray" to array
-                                                            "array" to array["test"]
+                                                            "emptyArray" to arr
+                                                            "array" to arr["test"]
                                                             "null" to null
                                                         },
                                                         obj {
@@ -1265,8 +1265,8 @@ open class KosonBenchmark {
                                                             "float" to 3.2f
                                                             "boolean" to false
                                                             "object" to obj { }
-                                                            "emptyArray" to array
-                                                            "array" to array["test"]
+                                                            "emptyArray" to arr
+                                                            "array" to arr["test"]
                                                             "null" to null
                                                         },
                                                         obj {
@@ -1276,8 +1276,8 @@ open class KosonBenchmark {
                                                             "float" to 3.2f
                                                             "boolean" to false
                                                             "object" to obj { }
-                                                            "emptyArray" to array
-                                                            "array" to array[
+                                                            "emptyArray" to arr
+                                                            "array" to arr[
                                                                     obj {
                                                                         "string" to "value"
                                                                         "int" to 9
@@ -1285,8 +1285,8 @@ open class KosonBenchmark {
                                                                         "float" to 3.2f
                                                                         "boolean" to false
                                                                         "object" to obj { }
-                                                                        "emptyArray" to array
-                                                                        "array" to array["test"]
+                                                                        "emptyArray" to arr
+                                                                        "array" to arr["test"]
                                                                         "null" to null
                                                                     },
                                                                     obj {
@@ -1296,8 +1296,8 @@ open class KosonBenchmark {
                                                                         "float" to 3.2f
                                                                         "boolean" to false
                                                                         "object" to obj { }
-                                                                        "emptyArray" to array
-                                                                        "array" to array[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
+                                                                        "emptyArray" to arr
+                                                                        "array" to arr[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
                                                                         "null" to null
                                                                     }
                                                             ]
@@ -1311,8 +1311,8 @@ open class KosonBenchmark {
                                                     "float" to 3.2f
                                                     "boolean" to false
                                                     "object" to obj { }
-                                                    "emptyArray" to array
-                                                    "array" to array[
+                                                    "emptyArray" to arr
+                                                    "array" to arr[
                                                             obj {
                                                                 "string" to "value"
                                                                 "int" to 9
@@ -1320,8 +1320,8 @@ open class KosonBenchmark {
                                                                 "float" to 3.2f
                                                                 "boolean" to false
                                                                 "object" to obj { }
-                                                                "emptyArray" to array
-                                                                "array" to array["test"]
+                                                                "emptyArray" to arr
+                                                                "array" to arr["test"]
                                                                 "null" to null
                                                             },
                                                             obj {
@@ -1331,8 +1331,8 @@ open class KosonBenchmark {
                                                                 "float" to 3.2f
                                                                 "boolean" to false
                                                                 "object" to obj { }
-                                                                "emptyArray" to array
-                                                                "array" to array[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
+                                                                "emptyArray" to arr
+                                                                "array" to arr[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
                                                                 "null" to null
                                                             }
                                                     ]
@@ -1346,8 +1346,8 @@ open class KosonBenchmark {
                                                 "float" to 3.2f
                                                 "boolean" to false
                                                 "object" to obj { }
-                                                "emptyArray" to array
-                                                "array" to array["test"]
+                                                "emptyArray" to arr
+                                                "array" to arr["test"]
                                                 "null" to null
                                             }
                                         }
@@ -1361,8 +1361,8 @@ open class KosonBenchmark {
                             "float" to 3.2f
                             "boolean" to false
                             "object" to obj { }
-                            "emptyArray" to array
-                            "array" to array["test"]
+                            "emptyArray" to arr
+                            "array" to arr["test"]
                             "null" to null
                         }
                     }
@@ -1731,8 +1731,8 @@ open class KosonBenchmark {
             "float" to 3.2f
             "boolean" to false
             "object" to obj { }
-            "emptyArray" to array
-            "array" to array["test"]
+            "emptyArray" to arr
+            "array" to arr["test"]
             "null" to null
             "otherObj" to obj {
                 "string" to "value"
@@ -1741,8 +1741,8 @@ open class KosonBenchmark {
                 "float" to 3.2f
                 "boolean" to false
                 "object" to obj { }
-                "emptyArray" to array
-                "array" to array[
+                "emptyArray" to arr
+                "array" to arr[
                         obj {
                             "string" to "value"
                             "int" to 9
@@ -1750,8 +1750,8 @@ open class KosonBenchmark {
                             "float" to 3.2f
                             "boolean" to false
                             "object" to obj { }
-                            "emptyArray" to array
-                            "array" to array["test"]
+                            "emptyArray" to arr
+                            "array" to arr["test"]
                             "null" to null
                         },
                         obj {
@@ -1761,8 +1761,8 @@ open class KosonBenchmark {
                             "float" to 3.2f
                             "boolean" to false
                             "object" to obj { }
-                            "emptyArray" to array
-                            "array" to array["test"]
+                            "emptyArray" to arr
+                            "array" to arr["test"]
                             "null" to null
                         },
                         obj {
@@ -1772,8 +1772,8 @@ open class KosonBenchmark {
                             "float" to 3.2f
                             "boolean" to false
                             "object" to obj { }
-                            "emptyArray" to array
-                            "array" to array[
+                            "emptyArray" to arr
+                            "array" to arr[
                                     obj {
                                         "string" to "value"
                                         "int" to 9
@@ -1781,8 +1781,8 @@ open class KosonBenchmark {
                                         "float" to 3.2f
                                         "boolean" to false
                                         "object" to obj { }
-                                        "emptyArray" to array
-                                        "array" to array["test"]
+                                        "emptyArray" to arr
+                                        "array" to arr["test"]
                                         "null" to null
                                     },
                                     obj {
@@ -1792,8 +1792,8 @@ open class KosonBenchmark {
                                         "float" to 3.2f
                                         "boolean" to false
                                         "object" to obj { }
-                                        "emptyArray" to array
-                                        "array" to array[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
+                                        "emptyArray" to arr
+                                        "array" to arr[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
                                         "null" to null
                                     }
                             ]
@@ -1807,8 +1807,8 @@ open class KosonBenchmark {
                     "float" to 3.2f
                     "boolean" to false
                     "object" to obj { }
-                    "emptyArray" to array
-                    "array" to array[
+                    "emptyArray" to arr
+                    "array" to arr[
                             obj {
                                 "string" to "value"
                                 "int" to 9
@@ -1816,8 +1816,8 @@ open class KosonBenchmark {
                                 "float" to 3.2f
                                 "boolean" to false
                                 "object" to obj { }
-                                "emptyArray" to array
-                                "array" to array["test"]
+                                "emptyArray" to arr
+                                "array" to arr["test"]
                                 "null" to null
                             },
                             obj {
@@ -1827,8 +1827,8 @@ open class KosonBenchmark {
                                 "float" to 3.2f
                                 "boolean" to false
                                 "object" to obj { }
-                                "emptyArray" to array
-                                "array" to array[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
+                                "emptyArray" to arr
+                                "array" to arr[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
                                 "null" to null
                             }
                     ]
@@ -1840,8 +1840,8 @@ open class KosonBenchmark {
                         "float" to 3.2f
                         "boolean" to false
                         "object" to obj { }
-                        "emptyArray" to array
-                        "array" to array["test"]
+                        "emptyArray" to arr
+                        "array" to arr["test"]
                         "null" to null
                         "otherObj" to obj {
                             "string" to "value"
@@ -1850,8 +1850,8 @@ open class KosonBenchmark {
                             "float" to 3.2f
                             "boolean" to false
                             "object" to obj { }
-                            "emptyArray" to array
-                            "array" to array[
+                            "emptyArray" to arr
+                            "array" to arr[
                                     obj {
                                         "string" to "value"
                                         "int" to 9
@@ -1859,8 +1859,8 @@ open class KosonBenchmark {
                                         "float" to 3.2f
                                         "boolean" to false
                                         "object" to obj { }
-                                        "emptyArray" to array
-                                        "array" to array["test"]
+                                        "emptyArray" to arr
+                                        "array" to arr["test"]
                                         "null" to null
                                     },
                                     obj {
@@ -1870,8 +1870,8 @@ open class KosonBenchmark {
                                         "float" to 3.2f
                                         "boolean" to false
                                         "object" to obj { }
-                                        "emptyArray" to array
-                                        "array" to array["test"]
+                                        "emptyArray" to arr
+                                        "array" to arr["test"]
                                         "null" to null
                                     },
                                     obj {
@@ -1881,8 +1881,8 @@ open class KosonBenchmark {
                                         "float" to 3.2f
                                         "boolean" to false
                                         "object" to obj { }
-                                        "emptyArray" to array
-                                        "array" to array[
+                                        "emptyArray" to arr
+                                        "array" to arr[
                                                 obj {
                                                     "string" to "value"
                                                     "int" to 9
@@ -1890,8 +1890,8 @@ open class KosonBenchmark {
                                                     "float" to 3.2f
                                                     "boolean" to false
                                                     "object" to obj { }
-                                                    "emptyArray" to array
-                                                    "array" to array["test"]
+                                                    "emptyArray" to arr
+                                                    "array" to arr["test"]
                                                     "null" to null
                                                 },
                                                 obj {
@@ -1901,8 +1901,8 @@ open class KosonBenchmark {
                                                     "float" to 3.2f
                                                     "boolean" to false
                                                     "object" to obj { }
-                                                    "emptyArray" to array
-                                                    "array" to array[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
+                                                    "emptyArray" to arr
+                                                    "array" to arr[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
                                                     "null" to null
                                                 }
                                         ]
@@ -1916,8 +1916,8 @@ open class KosonBenchmark {
                                 "float" to 3.2f
                                 "boolean" to false
                                 "object" to obj { }
-                                "emptyArray" to array
-                                "array" to array[
+                                "emptyArray" to arr
+                                "array" to arr[
                                         obj {
                                             "string" to "value"
                                             "int" to 9
@@ -1925,8 +1925,8 @@ open class KosonBenchmark {
                                             "float" to 3.2f
                                             "boolean" to false
                                             "object" to obj { }
-                                            "emptyArray" to array
-                                            "array" to array["test"]
+                                            "emptyArray" to arr
+                                            "array" to arr["test"]
                                             "null" to null
                                         },
                                         obj {
@@ -1936,8 +1936,8 @@ open class KosonBenchmark {
                                             "float" to 3.2f
                                             "boolean" to false
                                             "object" to obj { }
-                                            "emptyArray" to array
-                                            "array" to array[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
+                                            "emptyArray" to arr
+                                            "array" to arr[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
                                             "null" to null
                                         }
                                 ]
@@ -1951,8 +1951,8 @@ open class KosonBenchmark {
                             "float" to 3.2f
                             "boolean" to false
                             "object" to obj { }
-                            "emptyArray" to array
-                            "array" to array["test"]
+                            "emptyArray" to arr
+                            "array" to arr["test"]
                             "null" to null
                         }
                     }
@@ -1965,8 +1965,8 @@ open class KosonBenchmark {
                 "float" to 3.2f
                 "boolean" to false
                 "object" to obj { }
-                "emptyArray" to array
-                "array" to array["test"]
+                "emptyArray" to arr
+                "array" to arr["test"]
                 "null" to null
             }
         }
@@ -2334,8 +2334,8 @@ open class KosonBenchmark {
             "float" to 3.2f
             "boolean" to false
             "object" to obj { }
-            "emptyArray" to array
-            "array" to array["test"]
+            "emptyArray" to arr
+            "array" to arr["test"]
             "null" to null
             "otherObj" to obj {
                 "string" to "value"
@@ -2344,8 +2344,8 @@ open class KosonBenchmark {
                 "float" to 3.2f
                 "boolean" to false
                 "object" to obj { }
-                "emptyArray" to array
-                "array" to array[
+                "emptyArray" to arr
+                "array" to arr[
                         obj {
                             "string" to "value"
                             "int" to 9
@@ -2353,8 +2353,8 @@ open class KosonBenchmark {
                             "float" to 3.2f
                             "boolean" to false
                             "object" to obj { }
-                            "emptyArray" to array
-                            "array" to array["test"]
+                            "emptyArray" to arr
+                            "array" to arr["test"]
                             "null" to null
                         },
                         obj {
@@ -2364,8 +2364,8 @@ open class KosonBenchmark {
                             "float" to 3.2f
                             "boolean" to false
                             "object" to obj { }
-                            "emptyArray" to array
-                            "array" to array["test"]
+                            "emptyArray" to arr
+                            "array" to arr["test"]
                             "null" to null
                         },
                         obj {
@@ -2375,8 +2375,8 @@ open class KosonBenchmark {
                             "float" to 3.2f
                             "boolean" to false
                             "object" to obj { }
-                            "emptyArray" to array
-                            "array" to array[
+                            "emptyArray" to arr
+                            "array" to arr[
                                     obj {
                                         "string" to "value"
                                         "int" to 9
@@ -2384,8 +2384,8 @@ open class KosonBenchmark {
                                         "float" to 3.2f
                                         "boolean" to false
                                         "object" to obj { }
-                                        "emptyArray" to array
-                                        "array" to array["test"]
+                                        "emptyArray" to arr
+                                        "array" to arr["test"]
                                         "null" to null
                                     },
                                     obj {
@@ -2395,8 +2395,8 @@ open class KosonBenchmark {
                                         "float" to 3.2f
                                         "boolean" to false
                                         "object" to obj { }
-                                        "emptyArray" to array
-                                        "array" to array[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
+                                        "emptyArray" to arr
+                                        "array" to arr[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
                                         "null" to null
                                     }
                             ]
@@ -2410,8 +2410,8 @@ open class KosonBenchmark {
                     "float" to 3.2f
                     "boolean" to false
                     "object" to obj { }
-                    "emptyArray" to array
-                    "array" to array[
+                    "emptyArray" to arr
+                    "array" to arr[
                             obj {
                                 "string" to "value"
                                 "int" to 9
@@ -2419,8 +2419,8 @@ open class KosonBenchmark {
                                 "float" to 3.2f
                                 "boolean" to false
                                 "object" to obj { }
-                                "emptyArray" to array
-                                "array" to array["test"]
+                                "emptyArray" to arr
+                                "array" to arr["test"]
                                 "null" to null
                             },
                             obj {
@@ -2430,8 +2430,8 @@ open class KosonBenchmark {
                                 "float" to 3.2f
                                 "boolean" to false
                                 "object" to obj { }
-                                "emptyArray" to array
-                                "array" to array[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
+                                "emptyArray" to arr
+                                "array" to arr[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
                                 "null" to null
                             }
                     ]
@@ -2443,8 +2443,8 @@ open class KosonBenchmark {
                         "float" to 3.2f
                         "boolean" to false
                         "object" to obj { }
-                        "emptyArray" to array
-                        "array" to array["test"]
+                        "emptyArray" to arr
+                        "array" to arr["test"]
                         "null" to null
                         "otherObj" to obj {
                             "string" to "value"
@@ -2453,8 +2453,8 @@ open class KosonBenchmark {
                             "float" to 3.2f
                             "boolean" to false
                             "object" to obj { }
-                            "emptyArray" to array
-                            "array" to array[
+                            "emptyArray" to arr
+                            "array" to arr[
                                     obj {
                                         "string" to "value"
                                         "int" to 9
@@ -2462,8 +2462,8 @@ open class KosonBenchmark {
                                         "float" to 3.2f
                                         "boolean" to false
                                         "object" to obj { }
-                                        "emptyArray" to array
-                                        "array" to array["test"]
+                                        "emptyArray" to arr
+                                        "array" to arr["test"]
                                         "null" to null
                                     },
                                     obj {
@@ -2473,8 +2473,8 @@ open class KosonBenchmark {
                                         "float" to 3.2f
                                         "boolean" to false
                                         "object" to obj { }
-                                        "emptyArray" to array
-                                        "array" to array["test"]
+                                        "emptyArray" to arr
+                                        "array" to arr["test"]
                                         "null" to null
                                     },
                                     obj {
@@ -2484,8 +2484,8 @@ open class KosonBenchmark {
                                         "float" to 3.2f
                                         "boolean" to false
                                         "object" to obj { }
-                                        "emptyArray" to array
-                                        "array" to array[
+                                        "emptyArray" to arr
+                                        "array" to arr[
                                                 obj {
                                                     "string" to "value"
                                                     "int" to 9
@@ -2493,8 +2493,8 @@ open class KosonBenchmark {
                                                     "float" to 3.2f
                                                     "boolean" to false
                                                     "object" to obj { }
-                                                    "emptyArray" to array
-                                                    "array" to array["test"]
+                                                    "emptyArray" to arr
+                                                    "array" to arr["test"]
                                                     "null" to null
                                                 },
                                                 obj {
@@ -2504,8 +2504,8 @@ open class KosonBenchmark {
                                                     "float" to 3.2f
                                                     "boolean" to false
                                                     "object" to obj { }
-                                                    "emptyArray" to array
-                                                    "array" to array[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
+                                                    "emptyArray" to arr
+                                                    "array" to arr[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
                                                     "null" to null
                                                 }
                                         ]
@@ -2519,8 +2519,8 @@ open class KosonBenchmark {
                                 "float" to 3.2f
                                 "boolean" to false
                                 "object" to obj { }
-                                "emptyArray" to array
-                                "array" to array[
+                                "emptyArray" to arr
+                                "array" to arr[
                                         obj {
                                             "string" to "value"
                                             "int" to 9
@@ -2528,8 +2528,8 @@ open class KosonBenchmark {
                                             "float" to 3.2f
                                             "boolean" to false
                                             "object" to obj { }
-                                            "emptyArray" to array
-                                            "array" to array["test"]
+                                            "emptyArray" to arr
+                                            "array" to arr["test"]
                                             "null" to null
                                         },
                                         obj {
@@ -2539,8 +2539,8 @@ open class KosonBenchmark {
                                             "float" to 3.2f
                                             "boolean" to false
                                             "object" to obj { }
-                                            "emptyArray" to array
-                                            "array" to array[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
+                                            "emptyArray" to arr
+                                            "array" to arr[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
                                             "null" to null
                                         }
                                 ]
@@ -2554,8 +2554,8 @@ open class KosonBenchmark {
                             "float" to 3.2f
                             "boolean" to false
                             "object" to obj { }
-                            "emptyArray" to array
-                            "array" to array["test"]
+                            "emptyArray" to arr
+                            "array" to arr["test"]
                             "null" to null
                         }
                     }
@@ -2568,8 +2568,8 @@ open class KosonBenchmark {
                 "float" to 3.2f
                 "boolean" to false
                 "object" to obj { }
-                "emptyArray" to array
-                "array" to array["test"]
+                "emptyArray" to arr
+                "array" to arr["test"]
                 "null" to null
             }
         }

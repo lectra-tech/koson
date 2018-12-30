@@ -19,7 +19,7 @@ class KosonTest {
 
     @Test
     fun `empty array`() {
-        val representation = array.toString()
+        val representation = arr.toString()
         assertThat(representation).isValidJSON()
         assertThat(representation).isEqualTo("[]")
     }
@@ -41,8 +41,8 @@ class KosonTest {
             "byte" to 0x32
             "boolean" to false
             "object" to obj { }
-            "emptyArray" to array
-            "array" to array["test"]
+            "emptyArray" to arr
+            "array" to arr["test"]
             "null" to null
             "custom" to SimpleObject
             "raw" to rawJson("{}")
@@ -53,7 +53,7 @@ class KosonTest {
 
     @Test
     fun `array with all possible types of value`() {
-        val representation = array[
+        val representation = arr[
                 "value",
                 7.6,
                 3.2f,
@@ -64,8 +64,8 @@ class KosonTest {
                 0x32,
                 false,
                 obj { },
-                array,
-                array["test"],
+                arr,
+                arr["test"],
                 null,
                 SimpleObject,
                 rawJson("{}")
@@ -92,7 +92,7 @@ class KosonTest {
 
         @Test
         fun `array containing this as a value should render`() {
-            val array = array[this]
+            val array = arr[this]
 
             val representation = array.toString()
 
@@ -223,7 +223,7 @@ class KosonTest {
 
         @Test
         fun `array containing backslash char`() {
-            val array = array["va\\lue"]
+            val array = arr["va\\lue"]
 
             val representation = array.toString()
 
@@ -233,7 +233,7 @@ class KosonTest {
 
         @Test
         fun `array containing doublequotes char`() {
-            val array = array["va\"lue"]
+            val array = arr["va\"lue"]
 
             val representation = array.toString()
 
@@ -243,7 +243,7 @@ class KosonTest {
 
         @Test
         fun `array containing backslashes and doublequotes chars`() {
-            val array = array["[}[]}\\,{][,]\"\"\",\",,[,}}}[]],[}#{}"]
+            val array = arr["[}[]}\\,{][,]\"\"\",\",,[,}}}[]],[}#{}"]
 
             val representation = array.toString()
 
@@ -257,14 +257,14 @@ class KosonTest {
     inner class ContainingCases {
         @Test
         fun `object containing array`() {
-            val representation = obj { "array" to array }.toString()
+            val representation = obj { "array" to arr }.toString()
             assertThat(representation).isValidJSON()
             assertThat(representation).isEqualTo("{\"array\":[]}")
         }
 
         @Test
         fun `array containing object`() {
-            val representation = array[obj { }].toString()
+            val representation = arr[obj { }].toString()
             assertThat(representation).isValidJSON()
             assertThat(representation).isEqualTo("[{}]")
         }
@@ -278,7 +278,7 @@ class KosonTest {
 
         @Test
         fun `array containing array`() {
-            val representation = array[array].toString()
+            val representation = arr[arr].toString()
             assertThat(representation).isValidJSON()
             assertThat(representation).isEqualTo("[[]]")
         }
@@ -298,9 +298,9 @@ class KosonTest {
         fun `constructing a bit more complex object`() {
             val obj = obj {
                 "key" to 3.4
-                "anotherKey" to array["test", "test2", 1, 2.433, true]
+                "anotherKey" to arr["test", "test2", 1, 2.433, true]
                 "nullsAreAllowedToo" to null
-                "array" to array[
+                "array" to arr[
                         obj {
                             "double" to 33.4
                             "float" to 345f
@@ -308,7 +308,7 @@ class KosonTest {
                             "int" to 42
                             "char" to 'a'
                             "byte" to 0xAA
-                            "otherArray" to array
+                            "otherArray" to arr
                             "simpleObject" to SimpleObject
                         }
                 ]
@@ -321,11 +321,11 @@ class KosonTest {
 
         @Test
         fun `contructing a bit more complex array`() {
-            val array = array["koson", 33.4, 345f, 21L, 42, 'a', 0x21,
+            val array = arr["koson", 33.4, 345f, 21L, 42, 'a', 0x21,
                     obj {
                         "aKey" to "value"
-                        "insideArray" to array
-                        "otherArray" to array["element", SimpleObject, obj { }]
+                        "insideArray" to arr
+                        "otherArray" to arr["element", SimpleObject, obj { }]
                     }
             ]
             val representation = array.toString()
@@ -337,7 +337,7 @@ class KosonTest {
         @Test
         fun `testing an object inlined`() {
             val obj =
-                obj { "key" to 3.4; "anotherKey" to array["test", "test2", 1, 2.433, true]; "nullsAreAllowedToo" to null }
+                obj { "key" to 3.4; "anotherKey" to arr["test", "test2", 1, 2.433, true]; "nullsAreAllowedToo" to null }
             val representation = obj.toString()
             assertThat(representation).isValidJSON()
             assertThat(representation)
@@ -356,7 +356,7 @@ class KosonTest {
 
         @Test
         fun `array pretty with negative spaces must throw an IAE`() {
-            val message = assertThrows<IllegalArgumentException> { obj { }.pretty(-5) }.message
+            val message = assertThrows<IllegalArgumentException> { arr.pretty(-5) }.message
             assertThat(message!!).isEqualTo("spaces Int must be positive, but was -5.")
         }
 
@@ -429,7 +429,7 @@ class KosonTest {
             val boolean: Boolean? = null
             val date: Date? = null
 
-            val array = array[
+            val array = arr[
                     string,
                     double,
                     float,
@@ -450,7 +450,7 @@ class KosonTest {
         @Test
         fun `array with all nullable Java types must render`() {
 
-            val array = array[
+            val array = arr[
                     NullableTypes.STRING,
                     NullableTypes.DOUBLE,
                     NullableTypes.FLOAT,
@@ -489,7 +489,7 @@ class KosonTest {
         @Test
         fun `array with inner raw object`() {
             val array =
-                array[rawJson("{\"menu\":{\"id\":\"file\",\"value\":\"File\",\"popup\":{\"menuitem\":[{\"value\":\"New\",\"onclick\":\"CreateNewDoc()\"},{\"value\":\"Open\",\"onclick\":\"OpenDoc()\"},{\"value\":\"Close\",\"onclick\":\"CloseDoc()\"}]}}}")]
+                arr[rawJson("{\"menu\":{\"id\":\"file\",\"value\":\"File\",\"popup\":{\"menuitem\":[{\"value\":\"New\",\"onclick\":\"CreateNewDoc()\"},{\"value\":\"Open\",\"onclick\":\"OpenDoc()\"},{\"value\":\"Close\",\"onclick\":\"CloseDoc()\"}]}}}")]
 
             val representation = array.toString()
 
@@ -511,7 +511,7 @@ class KosonTest {
 
         @Test
         fun `array with null inner raw object`() {
-            val array = array[rawJson(null)]
+            val array = arr[rawJson(null)]
 
             val representation = array.toString()
 
@@ -529,9 +529,9 @@ class KosonTest {
         fun `must pretty print an object`() {
             val pretty = obj {
                 "key" to 3.4
-                "anotherKey" to array["test", "test2", 1, 2.433, true]
+                "anotherKey" to arr["test", "test2", 1, 2.433, true]
                 "nullsAreAllowedToo" to null
-                "array" to array[
+                "array" to arr[
                         obj {
                             "double" to 33.4
                             "float" to 345f
@@ -539,14 +539,14 @@ class KosonTest {
                             "int" to 42
                             "char" to 'a'
                             "byte" to 0xAA
-                            "otherArray" to array
+                            "otherArray" to arr
                             "simpleObject" to SimpleObject
                             "raw" to rawJson("[]")
                             "objectInside" to obj {
                                 "to" to 34
                                 "too" to "Dog"
                             }
-                            "innerArray" to array[
+                            "innerArray" to arr[
                                     34, 44, "to", null
                             ]
                         }
@@ -596,12 +596,12 @@ class KosonTest {
 
         @Test
         fun `must pretty print an array`() {
-            val pretty = array[
+            val pretty = arr[
                     obj {
                         "key" to 3.4
-                        "anotherKey" to array["test", "test2", 1, 2.433, true]
+                        "anotherKey" to arr["test", "test2", 1, 2.433, true]
                         "nullsAreAllowedToo" to null
-                        "array" to array[
+                        "array" to arr[
                                 obj {
                                     "double" to 33.4
                                     "float" to 345f
@@ -609,14 +609,14 @@ class KosonTest {
                                     "int" to 42
                                     "char" to 'a'
                                     "byte" to 0xAA
-                                    "otherArray" to array
+                                    "otherArray" to arr
                                     "simpleObject" to SimpleObject
                                     "raw" to rawJson("[]")
                                     "objectInside" to obj {
                                         "to" to 34
                                         "too" to "Dog"
                                     }
-                                    "innerArray" to array[
+                                    "innerArray" to arr[
                                             34, 44, "to", null
                                     ]
                                 }
@@ -676,8 +676,8 @@ class KosonTest {
                 "float" to 3.2f
                 "boolean" to false
                 "object" to obj { }
-                "emptyArray" to array
-                "array" to array["test"]
+                "emptyArray" to arr
+                "array" to arr["test"]
                 "null" to null
                 "otherObj" to obj {
                     "string" to "value"
@@ -686,8 +686,8 @@ class KosonTest {
                     "float" to 3.2f
                     "boolean" to false
                     "object" to obj { }
-                    "emptyArray" to array
-                    "array" to array[
+                    "emptyArray" to arr
+                    "array" to arr[
                             obj {
                                 "string" to "value"
                                 "int" to 9
@@ -695,8 +695,8 @@ class KosonTest {
                                 "float" to 3.2f
                                 "boolean" to false
                                 "object" to obj { }
-                                "emptyArray" to array
-                                "array" to array["test"]
+                                "emptyArray" to arr
+                                "array" to arr["test"]
                                 "null" to null
                             },
                             obj {
@@ -706,8 +706,8 @@ class KosonTest {
                                 "float" to 3.2f
                                 "boolean" to false
                                 "object" to obj { }
-                                "emptyArray" to array
-                                "array" to array["test"]
+                                "emptyArray" to arr
+                                "array" to arr["test"]
                                 "null" to null
                             },
                             obj {
@@ -717,8 +717,8 @@ class KosonTest {
                                 "float" to 3.2f
                                 "boolean" to false
                                 "object" to obj { }
-                                "emptyArray" to array
-                                "array" to array[
+                                "emptyArray" to arr
+                                "array" to arr[
                                         obj {
                                             "string" to "value"
                                             "int" to 9
@@ -726,8 +726,8 @@ class KosonTest {
                                             "float" to 3.2f
                                             "boolean" to false
                                             "object" to obj { }
-                                            "emptyArray" to array
-                                            "array" to array["test"]
+                                            "emptyArray" to arr
+                                            "array" to arr["test"]
                                             "null" to null
                                         },
                                         obj {
@@ -737,8 +737,8 @@ class KosonTest {
                                             "float" to 3.2f
                                             "boolean" to false
                                             "object" to obj { }
-                                            "emptyArray" to array
-                                            "array" to array[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
+                                            "emptyArray" to arr
+                                            "array" to arr[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
                                             "null" to null
                                         }
                                 ]
@@ -752,8 +752,8 @@ class KosonTest {
                         "float" to 3.2f
                         "boolean" to false
                         "object" to obj { }
-                        "emptyArray" to array
-                        "array" to array[
+                        "emptyArray" to arr
+                        "array" to arr[
                                 obj {
                                     "string" to "value"
                                     "int" to 9
@@ -761,8 +761,8 @@ class KosonTest {
                                     "float" to 3.2f
                                     "boolean" to false
                                     "object" to obj { }
-                                    "emptyArray" to array
-                                    "array" to array["test"]
+                                    "emptyArray" to arr
+                                    "array" to arr["test"]
                                     "null" to null
                                 },
                                 obj {
@@ -772,8 +772,8 @@ class KosonTest {
                                     "float" to 3.2f
                                     "boolean" to false
                                     "object" to obj { }
-                                    "emptyArray" to array
-                                    "array" to array[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
+                                    "emptyArray" to arr
+                                    "array" to arr[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
                                     "null" to null
                                 }
                         ]
@@ -785,8 +785,8 @@ class KosonTest {
                             "float" to 3.2f
                             "boolean" to false
                             "object" to obj { }
-                            "emptyArray" to array
-                            "array" to array["test"]
+                            "emptyArray" to arr
+                            "array" to arr["test"]
                             "null" to null
                             "otherObj" to obj {
                                 "string" to "value"
@@ -795,8 +795,8 @@ class KosonTest {
                                 "float" to 3.2f
                                 "boolean" to false
                                 "object" to obj { }
-                                "emptyArray" to array
-                                "array" to array[
+                                "emptyArray" to arr
+                                "array" to arr[
                                         obj {
                                             "string" to "value"
                                             "int" to 9
@@ -804,8 +804,8 @@ class KosonTest {
                                             "float" to 3.2f
                                             "boolean" to false
                                             "object" to obj { }
-                                            "emptyArray" to array
-                                            "array" to array["test"]
+                                            "emptyArray" to arr
+                                            "array" to arr["test"]
                                             "null" to null
                                         },
                                         obj {
@@ -815,8 +815,8 @@ class KosonTest {
                                             "float" to 3.2f
                                             "boolean" to false
                                             "object" to obj { }
-                                            "emptyArray" to array
-                                            "array" to array["test"]
+                                            "emptyArray" to arr
+                                            "array" to arr["test"]
                                             "null" to null
                                         },
                                         obj {
@@ -826,8 +826,8 @@ class KosonTest {
                                             "float" to 3.2f
                                             "boolean" to false
                                             "object" to obj { }
-                                            "emptyArray" to array
-                                            "array" to array[
+                                            "emptyArray" to arr
+                                            "array" to arr[
                                                     obj {
                                                         "string" to "value"
                                                         "int" to 9
@@ -835,8 +835,8 @@ class KosonTest {
                                                         "float" to 3.2f
                                                         "boolean" to false
                                                         "object" to obj { }
-                                                        "emptyArray" to array
-                                                        "array" to array["test"]
+                                                        "emptyArray" to arr
+                                                        "array" to arr["test"]
                                                         "null" to null
                                                     },
                                                     obj {
@@ -846,8 +846,8 @@ class KosonTest {
                                                         "float" to 3.2f
                                                         "boolean" to false
                                                         "object" to obj { }
-                                                        "emptyArray" to array
-                                                        "array" to array[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
+                                                        "emptyArray" to arr
+                                                        "array" to arr[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
                                                         "null" to null
                                                     }
                                             ]
@@ -861,8 +861,8 @@ class KosonTest {
                                     "float" to 3.2f
                                     "boolean" to false
                                     "object" to obj { }
-                                    "emptyArray" to array
-                                    "array" to array[
+                                    "emptyArray" to arr
+                                    "array" to arr[
                                             obj {
                                                 "string" to "value"
                                                 "int" to 9
@@ -870,8 +870,8 @@ class KosonTest {
                                                 "float" to 3.2f
                                                 "boolean" to false
                                                 "object" to obj { }
-                                                "emptyArray" to array
-                                                "array" to array["test"]
+                                                "emptyArray" to arr
+                                                "array" to arr["test"]
                                                 "null" to null
                                             },
                                             obj {
@@ -881,8 +881,8 @@ class KosonTest {
                                                 "float" to 3.2f
                                                 "boolean" to false
                                                 "object" to obj { }
-                                                "emptyArray" to array
-                                                "array" to array[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
+                                                "emptyArray" to arr
+                                                "array" to arr[45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null, 45, 12.4, 9.4, true, false, true, null]
                                                 "null" to null
                                             }
                                     ]
@@ -896,8 +896,8 @@ class KosonTest {
                                 "float" to 3.2f
                                 "boolean" to false
                                 "object" to obj { }
-                                "emptyArray" to array
-                                "array" to array["test"]
+                                "emptyArray" to arr
+                                "array" to arr["test"]
                                 "null" to null
                             }
                         }
@@ -910,8 +910,8 @@ class KosonTest {
                     "float" to 3.2f
                     "boolean" to false
                     "object" to obj { }
-                    "emptyArray" to array
-                    "array" to array["test"]
+                    "emptyArray" to arr
+                    "array" to arr["test"]
                     "null" to null
                 }
             }

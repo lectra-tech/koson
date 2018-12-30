@@ -22,10 +22,10 @@ obj {
 }
 
 // for an empty array
-array
+arr
 
 // for an array
-array["element", 12.345, null]
+arr["element", 12.345, null]
 ----
 
 NOTE: Any combination of these elements is possible
@@ -37,10 +37,10 @@ NOTE: Any combination of these elements is possible
 ----
 val obj = obj {
   "key" to 3.4
-  "anotherKey" to array["test", "test2", 1, 2.433, true]
+  "anotherKey" to arr["test", "test2", 1, 2.433, true]
   "nullValue" to null
   "emptyObject" to obj { }
-  "emptyArray" to array
+  "emptyArray" to arr
   "custom" to Date()
 }
 
@@ -78,12 +78,12 @@ println(obj.pretty()) <2>
 .Kotlin
 [source, Kotlin]
 ----
-val array = array[
+val array = arr[
   "example",
   obj {
     "apple" to "pie"
     "key" to 3.14
-     "anotherKey" to array["first", "second", 1, 2.433, true]
+     "anotherKey" to arr["first", "second", 1, 2.433, true]
   }
 ]
 
@@ -116,7 +116,7 @@ println(array.pretty()) <2>
 
 == Pretty print
 
-When using the `pretty()` method on `obj` or `array`, you can define the number of whitespaces used for tabulation. Default value is `2`.
+When using the `pretty()` method on `obj` or `arr`, you can define the number of whitespaces used for tabulation. Default value is `2`.
 
 [source, Kotlin]
 ----
@@ -127,7 +127,7 @@ obj { ... }
 obj { ... }.pretty()
 
 // 3 whitespaces tabulation
-array[ ... ].pretty(3)
+arr[ ... ].pretty(3)
 ----
 
 == Raw Json
@@ -165,15 +165,15 @@ In IntelliJ, a compilation error will appear, and code will be flagged as not re
 image:https://github.com/ncomet/koson/blob/master/image/koson-typing.png["Koson Typing"]
 ====
 
-* A JSON value of an _obj { }_ or an _array [...]_ can be one of the following `Kotlin` or _Koson DSL_ instances
+* A JSON value of an _obj { }_ or an _arr[...]_ can be one of the following `Kotlin` or _Koson DSL_ instances
 ** `String?` (will render escaping `"` and `\` chars)
 ** `Number?`
 ** `Boolean?`
 ** `Any?` (will render using `.toString()`, escaping `"` and `\` chars)
 ** `null`
 ** _obj { }_
-** _array[...]_
-** _array_ (empty array)
+** _arr[...]_
+** _arr_ (empty array)
 ** _rawJson("{...}")_ (will render _as is_)
 
 == Runtime prerequisites
