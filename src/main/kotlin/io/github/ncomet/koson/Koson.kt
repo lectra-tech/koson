@@ -6,7 +6,7 @@ private const val nullPrint = "null"
 
 private const val backSlash = '\\'
 private const val doubleQuotes = '\"'
-private val regex = Regex("""[\\$backSlash$doubleQuotes]""")
+private val regex = Regex("""[\\"]""")
 
 private fun String.escapeIllegalChars(): String {
     return if (this.contains(backSlash) || this.contains(doubleQuotes)) {
