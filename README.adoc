@@ -8,6 +8,8 @@ A concise and lightweight `Kotlin` DSL to build `JSON` objects and render their 
 
 Requiring no other dependency than `Kotlin`
 
+image:https://github.com/ncomet/koson/blob/master/image/live.gif["Live"]
+
 == DSL
 
 [source, Kotlin]
