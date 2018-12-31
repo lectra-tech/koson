@@ -179,7 +179,7 @@ image:https://github.com/ncomet/koson/blob/master/image/koson-typing.png["Koson 
 == Runtime prerequisites
 
 * `Kotlin`
-* `Java` 8 or later
+* `Java` 1.6 or later
 
 == Build prerequisites
 
