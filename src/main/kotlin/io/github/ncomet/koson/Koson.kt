@@ -1,104 +1,5 @@
 package io.github.ncomet.koson
 
-private val cr = System.lineSeparator()
-private const val sp = " "
-private const val nullPrint = "null"
-
-private const val backSlash = '\\'
-private const val doubleQuotes = '\"'
-private val regex = Regex("""[\\"]""")
-
-private fun String.escapeIllegalChars(): String {
-    return if (this.contains(backSlash) || this.contains(doubleQuotes)) {
-        regex.replace(this) { mr -> "\\${mr.value}" }
-    } else {
-        this
-    }
-}
-
-private fun String.quotedEscaped() = "\"${this.escapeIllegalChars()}\""
-
-sealed class KosonType {
-    internal abstract fun prettyPrint(level: Int, spaces: Int): String
-}
-
-private data class StringType(val value: String) : KosonType() {
-    override fun toString(): String = value.quotedEscaped()
-    override fun prettyPrint(level: Int, spaces: Int): String = toString()
-}
-
-private data class CustomType(val value: Any) : KosonType() {
-    override fun toString(): String = value.toString().quotedEscaped()
-    override fun prettyPrint(level: Int, spaces: Int): String = toString()
-}
-
-private data class NumberType(val value: Number) : KosonType() {
-    override fun toString(): String = value.toString()
-    override fun prettyPrint(level: Int, spaces: Int): String = toString()
-}
-
-private data class BooleanType(val value: Boolean) : KosonType() {
-    override fun toString(): String = value.toString()
-    override fun prettyPrint(level: Int, spaces: Int): String = toString()
-}
-
-private object NullType : KosonType() {
-    override fun toString(): String = nullPrint
-    override fun prettyPrint(level: Int, spaces: Int): String = toString()
-}
-
-data class RawJsonType(val value: String?) : KosonType() {
-    override fun toString(): String = value ?: nullPrint
-    override fun prettyPrint(level: Int, spaces: Int): String = toString()
-}
-
-/**
- * Use to render unescaped Json, note that the content will NOT be pretty printed
- * @param validJson the content that will be printed 'as is'. You need to ensure the content is a valid Json String
- */
-fun rawJson(validJson: String?): RawJsonType = RawJsonType(validJson)
-
-data class ObjectType(internal val values: MutableMap<String, KosonType> = mutableMapOf()) : KosonType() {
-    override fun toString(): String =
-        values.entries.joinToString(",", "{", "}") { (k, v) -> "\"${k.escapeIllegalChars()}\":$v" }
-
-    fun pretty(spaces: Int = 2): String {
-        require(spaces >= 0) { "spaces Int must be positive, but was $spaces." }
-        return prettyPrint(0, spaces)
-    }
-
-    override fun prettyPrint(level: Int, spaces: Int): String {
-        val space = sp.repeat((level + 1) * spaces)
-        val closingSpace = sp.repeat(level * spaces)
-        return values.entries.joinToString(",$cr$space", "{$cr$space", "$cr$closingSpace}") { (k, v) ->
-            "\"${k.escapeIllegalChars()}\": ${v.prettyPrint(
-                level + 1,
-                spaces
-            )}"
-        }
-    }
-}
-
-open class ArrayType(private val values: List<KosonType> = emptyList()) : KosonType() {
-    override fun toString(): String = values.joinToString(",", "[", "]")
-
-    fun pretty(spaces: Int = 2): String {
-        require(spaces >= 0) { "spaces Int must be positive, but was $spaces." }
-        return prettyPrint(0, spaces)
-    }
-
-    override fun prettyPrint(level: Int, spaces: Int): String {
-        val space = sp.repeat((level + 1) * spaces)
-        val closingSpace = sp.repeat(level * spaces)
-        return values.joinTo(StringBuilder(), ",$cr$space", "[$cr$space", "$cr$closingSpace]") {
-            it.prettyPrint(
-                level + 1,
-                spaces
-            )
-        }.toString()
-    }
-}
-
 @Suppress("ClassName")
 object arr : ArrayType() {
     operator fun get(vararg elements: Any?): ArrayType =
@@ -159,20 +60,125 @@ class Koson(internal val objectType: ObjectType = ObjectType()) {
     }
 
     @Deprecated(
-        "<this> cannot be used as value inside an obj { }",
-        level = DeprecationLevel.ERROR,
-        replaceWith = ReplaceWith(expression = "")
+            "<this> cannot be used as value inside an obj { }",
+            level = DeprecationLevel.ERROR,
+            replaceWith = ReplaceWith(expression = "")
     )
     @Suppress("UNUSED_PARAMETER")
     infix fun String.to(value: Koson): Nothing =
-        throw IllegalStateException("<this> cannot be used as value inside an obj { }")
+            throw IllegalStateException("<this> cannot be used as value inside an obj { }")
 
     @Deprecated(
-        "Key to the left of <to> must be of type String",
-        level = DeprecationLevel.ERROR,
-        replaceWith = ReplaceWith(expression = "")
+            "Key to the left of <to> must be of type String",
+            level = DeprecationLevel.ERROR,
+            replaceWith = ReplaceWith(expression = "")
     )
     infix fun Any.to(value: Any?): Nothing =
-        throw IllegalStateException("key <$this> of ($this to $value) must be of type String")
+            throw IllegalStateException("key <$this> of ($this to $value) must be of type String")
 
 }
+
+/**
+ * Use to render unescaped Json, note that the content will NOT be pretty printed
+ * @param validJson the content that will be printed 'as is'. You need to ensure the content is a valid Json String
+ */
+fun rawJson(validJson: String?): RawJsonType = RawJsonType(validJson)
+
+sealed class KosonType {
+    internal abstract fun prettyPrint(level: Int, spaces: Int): String
+}
+
+private data class StringType(val value: String) : KosonType() {
+    override fun toString(): String = value.quotedEscaped()
+    override fun prettyPrint(level: Int, spaces: Int): String = toString()
+}
+
+private data class NumberType(val value: Number) : KosonType() {
+    override fun toString(): String = value.toString()
+    override fun prettyPrint(level: Int, spaces: Int): String = toString()
+}
+
+private data class BooleanType(val value: Boolean) : KosonType() {
+    override fun toString(): String = value.toString()
+    override fun prettyPrint(level: Int, spaces: Int): String = toString()
+}
+
+data class ObjectType(internal val values: MutableMap<String, KosonType> = mutableMapOf()) : KosonType() {
+
+    override fun toString(): String =
+            values.entries.joinToString(",", "{", "}") { (k, v) -> "\"${k.escapeIllegalChars()}\":$v" }
+
+    fun pretty(spaces: Int = 2): String {
+        require(spaces >= 0) { "spaces Int must be positive, but was $spaces." }
+        return prettyPrint(0, spaces)
+    }
+
+    override fun prettyPrint(level: Int, spaces: Int): String {
+        val space = SPACE.repeat((level + 1) * spaces)
+        val closingSpace = SPACE.repeat(level * spaces)
+        return values.entries.joinToString(",$cr$space", "{$cr$space", "$cr$closingSpace}") { (k, v) ->
+            "\"${k.escapeIllegalChars()}\": ${v.prettyPrint(
+                    level + 1,
+                    spaces
+            )}"
+        }
+    }
+
+}
+
+open class ArrayType(private val values: List<KosonType> = emptyList()) : KosonType() {
+
+    override fun toString(): String = values.joinToString(",", "[", "]")
+
+    fun pretty(spaces: Int = 2): String {
+        require(spaces >= 0) { "spaces Int must be positive, but was $spaces." }
+        return prettyPrint(0, spaces)
+    }
+
+    override fun prettyPrint(level: Int, spaces: Int): String {
+        val space = SPACE.repeat((level + 1) * spaces)
+        val closingSpace = SPACE.repeat(level * spaces)
+        return values.joinTo(StringBuilder(), ",$cr$space", "[$cr$space", "$cr$closingSpace]") {
+            it.prettyPrint(
+                    level + 1,
+                    spaces
+            )
+        }.toString()
+    }
+
+}
+
+data class RawJsonType(val value: String?) : KosonType() {
+    override fun toString(): String = value ?: NULL_PRINT
+    override fun prettyPrint(level: Int, spaces: Int): String = toString()
+
+}
+
+private object NullType : KosonType() {
+    override fun toString(): String = NULL_PRINT
+    override fun prettyPrint(level: Int, spaces: Int): String = toString()
+}
+
+private data class CustomType(val value: Any) : KosonType() {
+    override fun toString(): String = value.toString().quotedEscaped()
+    override fun prettyPrint(level: Int, spaces: Int): String = toString()
+
+}
+
+private val cr = System.lineSeparator()
+private const val SPACE = " "
+private const val NULL_PRINT = "null"
+
+private const val BACKSLASH = '\\'
+private const val DOUBLEQUOTES = '\"'
+private val regex = Regex("""[\\"]""")
+
+private fun String.escapeIllegalChars(): String {
+    return if (this.contains(BACKSLASH) || this.contains(DOUBLEQUOTES)) {
+        regex.replace(this) { mr -> "\\${mr.value}" }
+    } else {
+        this
+    }
+}
+
+private fun String.quotedEscaped() = "\"${this.escapeIllegalChars()}\""
