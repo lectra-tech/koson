@@ -151,7 +151,6 @@ open class ArrayType(private val values: List<KosonType> = emptyList()) : KosonT
 data class RawJsonType(val value: String?) : KosonType() {
     override fun toString(): String = value ?: NULL_PRINT
     override fun prettyPrint(level: Int, spaces: Int): String = toString()
-
 }
 
 private object NullType : KosonType() {
@@ -162,20 +161,17 @@ private object NullType : KosonType() {
 private data class CustomType(val value: Any) : KosonType() {
     override fun toString(): String = value.toString().quotedEscaped()
     override fun prettyPrint(level: Int, spaces: Int): String = toString()
-
 }
 
 private val cr = System.lineSeparator()
 private const val SPACE = " "
 private const val NULL_PRINT = "null"
 
-private const val BACKSLASH = '\\'
-private const val DOUBLEQUOTES = '\"'
-private val regex = Regex("""[\\"]""")
+private val backslashOrDoublequote = Regex("""[\\"]""")
 
 private fun String.escapeIllegalChars(): String {
-    return if (this.contains(BACKSLASH) || this.contains(DOUBLEQUOTES)) {
-        regex.replace(this) { mr -> "\\${mr.value}" }
+    return if (this.contains('\\') || this.contains('\"')) {
+        backslashOrDoublequote.replace(this) { mr -> "\\${mr.value}" }
     } else {
         this
     }
