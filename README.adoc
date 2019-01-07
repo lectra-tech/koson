@@ -213,37 +213,37 @@ Testing environment : _3.3 GHz Intel Core i5-6600, 4 cores, VM version: OpenJDK 
 |ops/s
 
 |BigArray - Koson
-|15811,438
+|14816,130
 |± 132,266
 |ops/s
 
 |BigArray (pretty) - JSON-java
-|7601,470
+|7744,935
 |± 41,067
 |ops/s
 
 |BigArray (pretty) - Koson
-|9243,324
+|8607,388
 |± 31,712
 |ops/s
 
 |BigObject - JSON-java
-|16779,523
+|17120,661
 |± 45,741
 |ops/s
 
 |BigObject - Koson
-|18758,112
+|17433,982
 |± 372,361
 |ops/s
 
 |BigObject (pretty) - JSON-java
-|8802,073
+|8902,486
 |± 19,417
 |ops/s
 
 |BigObject (pretty) - Koson
-|11359,078
+|10252,254
 |± 71,377
 |ops/s
 |===
