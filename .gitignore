@@ -114,3 +114,5 @@ gradle-app.setting
 **/build/
 
 # End of https://www.gitignore.io/api/maven,gradle,kotlin,intellij+iml
+
+benchmarks/target
