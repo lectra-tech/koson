@@ -1,4 +1,4 @@
-package io.github.ncomet.koson
+package com.lectra.koson
 
 import com.google.gson.JsonParser
 import com.google.gson.JsonSyntaxException

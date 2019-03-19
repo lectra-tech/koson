@@ -4,7 +4,7 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>io.github.ncomet</groupId>
+    <groupId>com.lectra</groupId>
     <artifactId>koson</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
@@ -14,7 +14,7 @@
     <name>Koson</name>
     <description>A concise and lightweight Kotlin DSL to build JSON objects and render their String representations
     </description>
-    <url>https://github.com/ncomet/koson</url>
+    <url>https://github.com/lectra-tech/koson</url>
     <licenses>
         <license>
             <name>MIT License</name>
@@ -23,20 +23,19 @@
         </license>
     </licenses>
     <scm>
-        <url>https://github.com/ncomet/koson</url>
-        <connection>scm:git:git://github.com/ncomet/koson.git</connection>
-        <developerConnection>scm:git:git@github.com:ncomet/koson.git</developerConnection>
+        <url>https://github.com/lectra-tech/koson</url>
+        <connection>scm:git:git://github.com/lectra-tech/koson.git</connection>
+        <developerConnection>scm:git:git@github.com/lectra-tech/koson.git</developerConnection>
     </scm>
-    <!--TODO <organization>
-        <name></name>
-        <url></url>
-    </organization>-->
+    <organization>
+        <name>Lectra</name>
+        <url>https://www.lectra.com</url>
+    </organization>
     <developers>
         <developer>
             <name>Nicolas Comet</name>
-            <!--TODO <email></email>
-            <organization></organization>
-            <organizationUrl></organizationUrl>-->
+            <organization>Lectra</organization>
+            <organizationUrl>https://www.lectra.com</organizationUrl>
         </developer>
     </developers>
 

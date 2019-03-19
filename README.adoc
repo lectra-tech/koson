@@ -1,14 +1,14 @@
-image:https://github.com/ncomet/koson/blob/master/image/koson-logo.png["Koson Logo", link="https://github.com/ncomet/koson"]
+image:https://github.com/lectra-tech/koson/blob/master/image/koson-logo.png["Koson Logo", link="https://github.com/lectra-tech/koson"]
 
 = Koson
 
-image:https://travis-ci.org/ncomet/koson.svg?branch=master["Build Status", link="https://travis-ci.org/ncomet/koson"]
+// TODO image:https://travis-ci.org/ncomet/koson.svg?branch=master["Build Status", link="https://travis-ci.org/ncomet/koson"]
 
 A concise and lightweight `Kotlin` DSL to build `JSON` objects and render their _String representations_
 
 Requiring no other dependency than `Kotlin`
 
-image:https://github.com/ncomet/koson/blob/master/image/live.gif["Live"]
+image:https://github.com/lectra-tech/koson/blob/master/image/live.gif["Live"]
 
 == DSL
 
@@ -162,7 +162,7 @@ NOTE: `pretty()` will not work on `rawJson` Strings
 ====
 In IntelliJ, a compilation error will appear, and code will be flagged as not reachable
 
-image:https://github.com/ncomet/koson/blob/master/image/koson-typing.png["Koson Typing"]
+image:https://github.com/lectra-tech/koson/blob/master/image/koson-typing.png["Koson Typing"]
 ====
 
 * A JSON value of an _obj { }_ or an _arr[...]_ can be one of the following `Kotlin` or _Koson DSL_ instances

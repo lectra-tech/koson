@@ -1,4 +1,4 @@
-package io.github.ncomet.koson
+package com.lectra.koson
 
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test

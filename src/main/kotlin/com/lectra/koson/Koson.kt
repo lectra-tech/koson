@@ -1,9 +1,9 @@
-package io.github.ncomet.koson
+package com.lectra.koson
 
 @Suppress("ClassName")
 object arr : ArrayType() {
     operator fun get(vararg elements: Any?): ArrayType =
-        ArrayType(elements.map { toAllowedType(it) }.toList())
+            ArrayType(elements.map { toAllowedType(it) }.toList())
 
     private fun toAllowedType(value: Any?): KosonType =
         when (value) {
