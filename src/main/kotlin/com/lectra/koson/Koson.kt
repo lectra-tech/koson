@@ -170,8 +170,8 @@ private const val COMMA_SPACE = ","
 private const val NULL_PRINT = "null"
 
 private val backslashOrDoublequote = Regex("""[\\"]""")
-private val commasSpace = Regex(""",\s*\n\s*""")
-private val spaces = Regex("""\n\s*""")
+private val commasSpace = Regex(""",\s*$cr\s*""")
+private val spaces = Regex("""$cr\s*""")
 
 private fun String.escapeIllegalChars(): String {
     return if (this.contains('\\') || this.contains('\"')) {
