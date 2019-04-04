@@ -6,16 +6,16 @@ object arr : ArrayType() {
             ArrayType(elements.map { toAllowedType(it) }.toList())
 
     private fun toAllowedType(value: Any?): KosonType =
-        when (value) {
-            is String -> StringType(value)
-            is Number -> NumberType(value)
-            is Boolean -> BooleanType(value)
-            is ObjectType -> value
-            is ArrayType -> value
-            is RawJsonType -> value
-            null -> NullType
-            else -> CustomType(value)
-        }
+            when (value) {
+                is String -> StringType(value)
+                is Number -> NumberType(value)
+                is Boolean -> BooleanType(value)
+                is ObjectType -> value
+                is ArrayType -> value
+                is RawJsonType -> value
+                null -> NullType
+                else -> CustomType(value)
+            }
 }
 
 fun obj(block: Koson.() -> Unit): ObjectType {
@@ -149,8 +149,8 @@ open class ArrayType(private val values: List<KosonType> = emptyList()) : KosonT
 }
 
 data class RawJsonType(val value: String?) : KosonType() {
-    override fun toString(): String = value ?: NULL_PRINT
-    override fun prettyPrint(level: Int, spaces: Int): String = toString()
+    override fun toString(): String = value?.let { spaces.replace(commasSpace.replace(it, COMMA_SPACE), EMPTY) } ?: NULL_PRINT
+    override fun prettyPrint(level: Int, spaces: Int): String = value ?: NULL_PRINT
 }
 
 private object NullType : KosonType() {
@@ -165,9 +165,13 @@ private data class CustomType(val value: Any) : KosonType() {
 
 private val cr = System.lineSeparator()
 private const val SPACE = " "
+private const val EMPTY = ""
+private const val COMMA_SPACE = ","
 private const val NULL_PRINT = "null"
 
 private val backslashOrDoublequote = Regex("""[\\"]""")
+private val commasSpace = Regex(""",\s*\n\s*""")
+private val spaces = Regex("""\n\s*""")
 
 private fun String.escapeIllegalChars(): String {
     return if (this.contains('\\') || this.contains('\"')) {

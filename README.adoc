@@ -152,7 +152,7 @@ You need to ensure the parameter `String?` is a valid Json (by format), otherwis
 Beware that rendering *will not* escape `"` and `\` chars, on purpose.
 ====
 
-NOTE: `pretty()` will not work on `rawJson` Strings
+NOTE: `pretty()` will not work on `rawJson` Strings, however `toString()` will inline provided content
 
 == Strong type constraints
 
