@@ -1,8 +1,8 @@
-image:https://github.com/lectra-tech/koson/blob/master/image/koson-logo.png["Koson Logo", link="https://github.com/lectra-tech/koson"]
+image:https://github.com/lectra-tech/koson/blob/master/image/koson-logo.png["Koson Logo", link="https://github.com/lectra-tech/koson", align="center"]
 
 = Koson
 
-// TODO image:https://travis-ci.org/ncomet/koson.svg?branch=master["Build Status", link="https://travis-ci.org/ncomet/koson"]
+image:https://travis-ci.org/lectra-tech/koson.svg?branch=master["koson build", link="https://travis-ci.org/lectra-tech/koson", align="center"]
 
 A concise and lightweight `Kotlin` DSL to build `JSON` objects and render their _String representations_
 
