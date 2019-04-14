@@ -41,13 +41,13 @@ git checkout -b my_branch
 
 NOTE: Replace `&lt;your_username&gt;` with your GitHub username
 
-* Check you can run tests by typing `mvn package`
+* Check you can run tests by typing `./mvnw package`
 
 * If you've added code it must be tested. Check the tests you've added work by doing
 
 [source,sh]
 ----
-mvn clean package
+./mvnw clean package
 ----
 
 * If you've changed APIs, update the documentation.
