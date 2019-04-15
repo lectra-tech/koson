@@ -1,22 +1,18 @@
 env:
   global:
-    - secure: ""
-    - secure: ""
+  - secure: "QhUNU1a2je5uc+fFu+M0P2OQeJlyd/5A9f0qk0zzi/mnn7/0LwEBybv9FrTHd1b3MCMxtOMtlUglIvfoccAKuwtPx8cwlEll9T3Wm+nvvXd39oJ36cfTdwVxlBQyJxHoORmrEqm/bUlPikYDTeAuIRXRDBpg/Ipen7XGybdcKQH75R+rm1gFpRonWvfr9C0lb8U9QQ27MFdOXqC2Z/j1CU7xaH/Bmj9iu4RPmBTqE3udl3LaNoyIvU/vFxpCgdMlR+/9O5nY8r/jwfQTjFhAlEPXZl+k0lDFSR763HtDwG0vtgNUGu8zM9Wb+2ltiuy2aCB8dvHsFpK/diqeftNuFW2U7hBBYF4eMlMpESuxFhfe09LWJE+WezJl7cJGRwEH66GZM0a7P0Id8Qoa2Qo4AlefZFDz/tlqCMHZvV8lebapK50Xj+umiuYynB+l2LZPNivnzwBWjeJ1/qA9CA/mvagqyhn7dCjsXPvW+VJN6yKTjc17FMHceUSbE7tyAWy1YXYGhSVaN9wFSDN7eyYXRZhFX2CJj/XCRaZ41FgfX6LzwozJ8Ahm883zpsn8zkiPqyBtvi1GNUN0Olk9N6R3RNHGXdCUZEcwrq82f6f+IB6HmSRPoyljztS5fIXtId3yamvN4Hs/t8F5IKNxpzDuj92Ez8cRWp+kxrW73+rDi+I="
 
 language: java
 jdk: openjdk11
-
 before_deploy:
-  - cp .travis.settings.xml $HOME/.m2/settings.xml
-    mvn -B release:prepare release:perform
-
+- cp .travis.settings.xml $HOME/.m2/settings.xml mvn -B release:prepare release:perform
 deploy:
-  - provider: releases
-    api_key: ${GITHUB_TOKEN}
-    file_glob: true
-    file: "target/*.jar"
-    skip_cleanup: true
-    on:
-      repo: ${TRAVIS_REPO_SLUG}
-      branch: master
-      condition: $TRAVIS_COMMIT_MESSAGE = *"MAKE_RELEASE"*
+- provider: releases
+  api_key: "${GITHUB_TOKEN}"
+  file_glob: true
+  file: target/*.jar
+  skip_cleanup: true
+  on:
+    repo: "${TRAVIS_REPO_SLUG}"
+    branch: master
+    condition: $TRAVIS_COMMIT_MESSAGE = *"MAKE_RELEASE"*
