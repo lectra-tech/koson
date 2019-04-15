@@ -6,11 +6,8 @@ env:
 language: java
 jdk: openjdk11
 
-script:
-  - mvn -B release:prepare
-
 before_deploy:
-  - mvn -B release:perform
+  - mvn -B release:prepare release:perform
 
 deploy:
   - provider: releases
