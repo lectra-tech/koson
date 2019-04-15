@@ -1,7 +1,8 @@
 language: java
 jdk: openjdk11
 before_deploy:
-- cp .travis.settings.xml $HOME/.m2/settings.xml mvn -B release:prepare release:perform
+- cp .travis.settings.xml $HOME/.m2/settings.xml 
+  mvn -B release:prepare release:perform
 deploy:
 - provider: releases
   api_key: "${GITHUB_TOKEN}"
