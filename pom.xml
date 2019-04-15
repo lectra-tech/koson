@@ -5,7 +5,7 @@
 
     <groupId>com.lectra</groupId>
     <artifactId>koson</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <inceptionYear>2018</inceptionYear>
