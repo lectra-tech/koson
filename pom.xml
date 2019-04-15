@@ -34,7 +34,7 @@
     </licenses>
     <scm>
         <url>https://github.com/lectra-tech/koson</url>
-        <connection>scm:git:https://github.com/lectra-tech/koson.git</connection>
+        <connection>scm:git:https://${GITHUB_TOKEN}@github.com/lectra-tech/koson.git</connection>
         <developerConnection>scm:git:https://github.com/lectra-tech/koson.git</developerConnection>
     </scm>
     <organization>
