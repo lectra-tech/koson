@@ -7,8 +7,9 @@
             <password>${env.NEXUS_PASSWORD}</password>
         </server>
         <server>
-            <id>github</id>            
-            <password>${env.GITHUB_TOKEN}</password>
+            <id>github</id>
+            <username>${env.GITHUB_USERNAME}</username>
+            <password>${env.GITHUB_PASSWORD}</password>
         </server>
     </servers>
     <profiles>
