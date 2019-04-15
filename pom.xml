@@ -5,7 +5,7 @@
 
     <groupId>com.lectra</groupId>
     <artifactId>koson</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <inceptionYear>2018</inceptionYear>
@@ -34,7 +34,7 @@
     </licenses>
     <scm>
         <url>https://github.com/lectra-tech/koson</url>
-        <connection>scm:git:https://${GITHUB_TOKEN}@github.com/lectra-tech/koson.git</connection>
+        <connection>scm:git:https://github.com/lectra-tech/koson.git</connection>
         <developerConnection>scm:git:https://github.com/lectra-tech/koson.git</developerConnection>
     </scm>
     <organization>
