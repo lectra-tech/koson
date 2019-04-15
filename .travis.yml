@@ -1,15 +1,17 @@
 language: java
 jdk: openjdk11
+
 before_deploy:
-- cp .travis.settings.xml $HOME/.m2/settings.xml 
-  mvn -B release:prepare release:perform
+  - cp .travis.settings.xml $HOME/.m2/settings.xml
+    mvn -B release:prepare release:perform
+
 deploy:
-- provider: releases
-  api_key: "${GITHUB_TOKEN}"
-  file_glob: true
-  file: target/*.jar
-  skip_cleanup: true
-  on:
-    repo: "${TRAVIS_REPO_SLUG}"
-    branch: master
-    condition: $TRAVIS_COMMIT_MESSAGE = *"MAKE_RELEASE"*
+  - provider: releases
+    api_key: "${GITHUB_TOKEN}"
+    file_glob: true
+    file: target/*.jar
+    skip_cleanup: true
+    on:
+      repo: "${TRAVIS_REPO_SLUG}"
+      branch: master
+      condition: $TRAVIS_COMMIT_MESSAGE = *"MAKE_RELEASE"*
