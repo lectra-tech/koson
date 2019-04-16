@@ -13,9 +13,11 @@ and this project adheres to https://semver.org/spec/v2.0.0.html[Semantic Version
 * Implentation of Koson DSL
 * Add rawJson() to inline Json inside DSL
 
-== [1.0.0] - to come
+== [1.0.1] - First release
 
 === Added
+
+Everything
 
 === Changed
 
