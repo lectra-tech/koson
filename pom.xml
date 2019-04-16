@@ -63,10 +63,12 @@
         <build-helper-maven-plugin.version>3.0.0</build-helper-maven-plugin.version>
         <maven-gpg-plugin.version>1.5</maven-gpg-plugin.version>
         <maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
+        <nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
 
         <junit.jupiter.version>5.3.2</junit.jupiter.version>
         <assertj-core.version>3.11.1</assertj-core.version>
         <gson.version>2.8.5</gson.version>
+
     </properties>
 
     <dependencies>
@@ -142,6 +144,17 @@
                                 </configuration>
                             </execution>
                         </executions>
+                    </plugin>
+                    <plugin>
+                        <groupid>org.sonatype.plugins</groupid>
+                        <artifactid>nexus-staging-maven-plugin</artifactid>
+                        <version>${nexus-staging-maven-plugin.version}</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <serverid>ossrh</serverid>
+                            <nexusurl>https://oss.sonatype.org/</nexusurl>
+                            <autoreleaseafterclose>true</autoreleaseafterclose>
+                        </configuration>
                     </plugin>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
