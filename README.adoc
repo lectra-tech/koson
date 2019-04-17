@@ -2,7 +2,7 @@ image:https://github.com/lectra-tech/koson/blob/master/image/koson-logo.png["Kos
 
 = Koson
 
-image:https://travis-ci.org/lectra-tech/koson.svg?branch=master["koson build", link="https://travis-ci.org/lectra-tech/koson"] image:https://maven-badges.herokuapp.com/maven-central/com.lectra/koson/badge.svg["maven central", link="https://maven-badges.herokuapp.com/maven-central/com.lectra/koson"]
+image:https://travis-ci.org/lectra-tech/koson.svg?branch=master["koson build", link="https://travis-ci.org/lectra-tech/koson"] image:https://img.shields.io/maven-central/v/com.lectra/koson.svg["Maven Central", link="https://search.maven.org/search?q=g:com.lectra%20AND%20a:koson"]
 
 A concise and lightweight `Kotlin` DSL to build `JSON` objects and render their _String representations_
 
