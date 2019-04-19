@@ -530,7 +530,7 @@ class KosonTest {
         }
 
         @Test
-        fun `object with rawjson must be inlined properly`() {
+        fun `object with rawjson must be inlined properly in unix format`() {
             val obj = obj {
                 "jsonContent" to rawJson("{\n  \"menu\":{\n    \"id\":\"file\",\n    \"value\":\"File\",\n    \"popup\":{\n      \"menuitem\":[\n        {\n          \"value\":\"New\",\n          \"onclick\":\"CreateNewDoc()\"\n        },\n        {\n          \"value\":\"Open\",\n          \"onclick\":\"OpenDoc()\"\n        },\n        {\n          \"value\":\"Close\",\n          \"onclick\":\"CloseDoc()\"\n        }\n      ]\n    }\n  }\n}")
             }
@@ -542,7 +542,7 @@ class KosonTest {
         }
 
         @Test
-        fun `array with rawjson must be inlined properly`() {
+        fun `array with rawjson must be inlined properly in unix format`() {
             val array =
                     arr[rawJson("{\n  \"menu\":{\n    \"id\":\"file\",\n    \"value\":\"File\",\n    \"popup\":{\n      \"menuitem\":[\n        {\n          \"value\":\"New\",\n          \"onclick\":\"CreateNewDoc()\"\n        },\n        {\n          \"value\":\"Open\",\n          \"onclick\":\"OpenDoc()\"\n        },\n        {\n          \"value\":\"Close\",\n          \"onclick\":\"CloseDoc()\"\n        }\n      ]\n    }\n  }\n}")]
 
@@ -958,3 +958,4 @@ class KosonTest {
     }
 
 }
+
