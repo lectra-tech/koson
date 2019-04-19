@@ -74,7 +74,7 @@ class KosonTest {
         ].toString()
         assertThat(representation).isValidJSON()
         assertThat(representation)
-                .isEqualTo("[\"value\",7.6,3.2,34,9,\"e\",12,50,false,{},[],[\"test\"],[\"test\"],null,\"SimpleObject\",{}]")
+                .isEqualTo("""["value",7.6,3.2,34,9,"e",12,50,false,{},[],["test"],["test"],null,"SimpleObject",{}]""")
     }
 
     object ContainsDoubleQuotesAndBackslashes {
