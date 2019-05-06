@@ -3,9 +3,9 @@ package com.lectra.koson
 @Suppress("ClassName")
 object arr : ArrayType() {
     operator fun get(vararg elements: Any?): ArrayType =
-            invoke(elements.asList())
+            ArrayType(elements.map { toAllowedType(it) }.toList())
 
-    operator fun invoke(elements: Collection<Any?>): ArrayType =
+    operator fun get(elements: Iterable<Any?>): ArrayType =
             ArrayType(elements.map { toAllowedType(it) }.toList())
 
     private fun toAllowedType(value: Any?): KosonType =
