@@ -43,13 +43,13 @@ class KosonTest {
             "object" to obj { }
             "emptyArray" to arr
             "array" to arr["test"]
-            "arrayFromCollection" to arr[listOf("test")]
+            "arrayFromIterable" to arr[listOf("test")]
             "null" to null
             "custom" to SimpleObject
             "raw" to rawJson("{}")
         }.toString()
         assertThat(representation).isValidJSON()
-        assertThat(representation).isEqualTo("{\"string\":\"value\",\"double\":7.6,\"float\":3.2,\"long\":34,\"int\":9,\"char\":\"e\",\"short\":12,\"byte\":50,\"boolean\":false,\"object\":{},\"emptyArray\":[],\"array\":[\"test\"],\"arrayFromCollection\":[\"test\"],\"null\":null,\"custom\":\"SimpleObject\",\"raw\":{}}")
+        assertThat(representation).isEqualTo("{\"string\":\"value\",\"double\":7.6,\"float\":3.2,\"long\":34,\"int\":9,\"char\":\"e\",\"short\":12,\"byte\":50,\"boolean\":false,\"object\":{},\"emptyArray\":[],\"array\":[\"test\"],\"arrayFromIterable\":[\"test\"],\"null\":null,\"custom\":\"SimpleObject\",\"raw\":{}}")
     }
 
     @Test
@@ -67,14 +67,14 @@ class KosonTest {
                 obj { },
                 arr,
                 arr["test"],
-                arr[listOf("test from list")],
+                arr[listOf("test", "from", "iterable")],
                 null,
                 SimpleObject,
                 rawJson("{}")
         ].toString()
         assertThat(representation).isValidJSON()
         assertThat(representation)
-                .isEqualTo("[\"value\",7.6,3.2,34,9,\"e\",12,50,false,{},[],[\"test\"],[\"test from list\"],null,\"SimpleObject\",{}]")
+                .isEqualTo("[\"value\",7.6,3.2,34,9,\"e\",12,50,false,{},[],[\"test\"],[\"test\",\"from\",\"iterable\"],null,\"SimpleObject\",{}]")
     }
 
     object ContainsDoubleQuotesAndBackslashes {
