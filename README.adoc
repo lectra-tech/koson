@@ -25,6 +25,9 @@ obj {
   "another" to true
 }
 
+// inline declaration for an object
+obj { "key" to 3.4; "another" to true }
+
 // for an empty array
 arr
 
