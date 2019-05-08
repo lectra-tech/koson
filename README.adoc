@@ -30,8 +30,6 @@ arr
 
 // for an array
 arr["element", 12.345, null]
-// or
-arr[listOf("element", 12.345, null)]
 ----
 
 NOTE: Any combination of these elements is possible
