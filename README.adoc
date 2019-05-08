@@ -30,6 +30,8 @@ arr
 
 // for an array
 arr["element", 12.345, null]
+// or
+arr[listOf("element", 12.345, null)]
 ----
 
 NOTE: Any combination of these elements is possible
@@ -125,6 +127,16 @@ If you wish so, you can inline multiple entries in `obj` using Kotlin's optional
 [source, Kotlin]
 ----
 obj { "key" to 3.4; "another" to true }
+----
+
+== Alternative `arr` syntax
+
+You can provide any `Iterable`, thus `Collection` to feed in an array `arr`
+
+[source, Kotlin]
+----
+arr[listOf("element", 12.345, null)]
+arr[setOf("element", 12.345, null)]
 ----
 
 == Pretty print
