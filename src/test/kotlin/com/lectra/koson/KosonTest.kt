@@ -49,7 +49,7 @@ class KosonTest {
             "raw" to rawJson("{}")
         }.toString()
         assertThat(representation).isValidJSON()
-        assertThat(representation).isEqualTo("{\"string\":\"value\",\"double\":7.6,\"float\":3.2,\"long\":34,\"int\":9,\"char\":\"e\",\"short\":12,\"byte\":50,\"boolean\":false,\"object\":{},\"emptyArray\":[],\"array\":[\"test\"],\"arrayFromIterable\":[\"test\"],\"null\":null,\"custom\":\"SimpleObject\",\"raw\":{}}")
+        assertThat(representation).isEqualTo("""{"string":"value","double":7.6,"float":3.2,"long":34,"int":9,"char":"e","short":12,"byte":50,"boolean":false,"object":{},"emptyArray":[],"array":["test"],"arrayFromIterable":["test"],"null":null,"custom":"SimpleObject","raw":{}}""")
     }
 
     @Test
@@ -74,7 +74,7 @@ class KosonTest {
         ].toString()
         assertThat(representation).isValidJSON()
         assertThat(representation)
-                .isEqualTo("[\"value\",7.6,3.2,34,9,\"e\",12,50,false,{},[],[\"test\"],[\"test\",\"from\",\"iterable\"],null,\"SimpleObject\",{}]")
+            .isEqualTo("""["value",7.6,3.2,34,9,"e",12,50,false,{},[],["test"],["test","from","iterable"],null,"SimpleObject",{}]""")
     }
 
     object ContainsDoubleQuotesAndBackslashes {
@@ -124,7 +124,7 @@ class KosonTest {
             val representation = obj.toString()
 
             assertThat(representation).isValidJSON()
-            assertThat(representation).isEqualTo("{\"content\":\"va\\\\lue\"}")
+            assertThat(representation).isEqualTo("""{"content":"va\\lue"}""")
         }
 
         @Test
@@ -136,7 +136,7 @@ class KosonTest {
             val representation = obj.toString()
 
             assertThat(representation).isValidJSON()
-            assertThat(representation).isEqualTo("{\"content\":\"\\\\unfor\\\\tunate\\\\\"}")
+            assertThat(representation).isEqualTo("""{"content":"\\unfor\\tunate\\"}""")
         }
 
         @Test
@@ -148,7 +148,7 @@ class KosonTest {
             val representation = obj.toString()
 
             assertThat(representation).isValidJSON()
-            assertThat(representation).isEqualTo("{\"content\":\"va\\\"lue\"}")
+            assertThat(representation).isEqualTo("""{"content":"va\"lue"}""")
         }
 
         @Test
@@ -160,7 +160,7 @@ class KosonTest {
             val representation = obj.toString()
 
             assertThat(representation).isValidJSON()
-            assertThat(representation).isEqualTo("{\"content\":\"\\\"unfor\\\"tunate\\\"\"}")
+            assertThat(representation).isEqualTo("""{"content":"\"unfor\"tunate\""}""")
         }
 
         @Test
@@ -172,7 +172,7 @@ class KosonTest {
             val representation = obj.toString()
 
             assertThat(representation).isValidJSON()
-            assertThat(representation).isEqualTo("{\"content\":\"\\\"un\\\\for\\\"tuna\\\\te\\\"\"}")
+            assertThat(representation).isEqualTo("""{"content":"\"un\\for\"tuna\\te\""}""")
         }
 
         @Test
@@ -184,7 +184,7 @@ class KosonTest {
             val representation = obj.toString()
 
             assertThat(representation).isValidJSON()
-            assertThat(representation).isEqualTo("{\"va\\\\lue\":\"content\"}")
+            assertThat(representation).isEqualTo("""{"va\\lue":"content"}""")
         }
 
         @Test
@@ -196,7 +196,7 @@ class KosonTest {
             val representation = obj.toString()
 
             assertThat(representation).isValidJSON()
-            assertThat(representation).isEqualTo("{\"va\\\"lue\":\"content\"}")
+            assertThat(representation).isEqualTo("""{"va\"lue":"content"}""")
         }
 
         @Test
@@ -208,7 +208,7 @@ class KosonTest {
             val representation = obj.toString()
 
             assertThat(representation).isValidJSON()
-            assertThat(representation).isEqualTo("{\"content\":\"[}[]}\\\\,{][,]\\\"\\\"\\\",\\\",,[,}}}[]],[}#{}\"}")
+            assertThat(representation).isEqualTo("""{"content":"[}[]}\\,{][,]\"\"\",\",,[,}}}[]],[}#{}"}""")
         }
 
         @Test
@@ -220,7 +220,7 @@ class KosonTest {
             val representation = obj.toString()
 
             assertThat(representation).isValidJSON()
-            assertThat(representation).isEqualTo("{\"[}[]}\\\\,{][,]\\\"\\\"\\\",\\\",,[,}}}[]],[}#{}\":\"content\"}")
+            assertThat(representation).isEqualTo("""{"[}[]}\\,{][,]\"\"\",\",,[,}}}[]],[}#{}":"content"}""")
         }
 
         @Test
@@ -230,7 +230,7 @@ class KosonTest {
             val representation = array.toString()
 
             assertThat(representation).isValidJSON()
-            assertThat(representation).isEqualTo("[\"va\\\\lue\"]")
+            assertThat(representation).isEqualTo("""["va\\lue"]""")
         }
 
         @Test
@@ -240,7 +240,7 @@ class KosonTest {
             val representation = array.toString()
 
             assertThat(representation).isValidJSON()
-            assertThat(representation).isEqualTo("[\"va\\\"lue\"]")
+            assertThat(representation).isEqualTo("""["va\"lue"]""")
         }
 
         @Test
@@ -250,7 +250,7 @@ class KosonTest {
             val representation = array.toString()
 
             assertThat(representation).isValidJSON()
-            assertThat(representation).isEqualTo("[\"[}[]}\\\\,{][,]\\\"\\\"\\\",\\\",,[,}}}[]],[}#{}\"]")
+            assertThat(representation).isEqualTo("""["[}[]}\\,{][,]\"\"\",\",,[,}}}[]],[}#{}"]""")
         }
 
     }
@@ -261,7 +261,7 @@ class KosonTest {
         fun `object containing array`() {
             val representation = obj { "array" to arr }.toString()
             assertThat(representation).isValidJSON()
-            assertThat(representation).isEqualTo("{\"array\":[]}")
+            assertThat(representation).isEqualTo("""{"array":[]}""")
         }
 
         @Test
@@ -275,7 +275,7 @@ class KosonTest {
         fun `object containing object`() {
             val representation = obj { "object" to obj { } }.toString()
             assertThat(representation).isValidJSON()
-            assertThat(representation).isEqualTo("{\"object\":{}}")
+            assertThat(representation).isEqualTo("""{"object":{}}""")
         }
 
         @Test
@@ -318,7 +318,7 @@ class KosonTest {
             val representation = obj.toString()
             assertThat(representation).isValidJSON()
             assertThat(representation)
-                    .isEqualTo("{\"key\":3.4,\"anotherKey\":[\"test\",\"test2\",1,2.433,true],\"nullsAreAllowedToo\":null,\"array\":[{\"double\":33.4,\"float\":345.0,\"long\":21,\"int\":42,\"char\":\"a\",\"byte\":170,\"otherArray\":[],\"simpleObject\":\"SimpleObject\"}]}")
+                .isEqualTo("""{"key":3.4,"anotherKey":["test","test2",1,2.433,true],"nullsAreAllowedToo":null,"array":[{"double":33.4,"float":345.0,"long":21,"int":42,"char":"a","byte":170,"otherArray":[],"simpleObject":"SimpleObject"}]}""")
         }
 
         @Test
@@ -333,7 +333,7 @@ class KosonTest {
             val representation = array.toString()
             assertThat(representation).isValidJSON()
             assertThat(representation)
-                    .isEqualTo("[\"koson\",33.4,345.0,21,42,\"a\",33,{\"aKey\":\"value\",\"insideArray\":[],\"otherArray\":[\"element\",\"SimpleObject\",{}]}]")
+                .isEqualTo("""["koson",33.4,345.0,21,42,"a",33,{"aKey":"value","insideArray":[],"otherArray":["element","SimpleObject",{}]}]""")
         }
 
         @Test
@@ -343,7 +343,7 @@ class KosonTest {
             val representation = obj.toString()
             assertThat(representation).isValidJSON()
             assertThat(representation)
-                    .isEqualTo("{\"key\":3.4,\"anotherKey\":[\"test\",\"test2\",1,2.433,true],\"nullsAreAllowedToo\":null}")
+                .isEqualTo("""{"key":3.4,"anotherKey":["test","test2",1,2.433,true],"nullsAreAllowedToo":null}""")
         }
     }
 
@@ -403,7 +403,7 @@ class KosonTest {
 
             val representation = obj.toString()
             assertThat(representation).isValidJSON()
-            assertThat(representation).isEqualTo("{\"string\":null,\"double\":null,\"float\":null,\"long\":null,\"int\":null,\"char\":null,\"short\":null,\"byte\":null,\"boolean\":null,\"date\":null}")
+            assertThat(representation).isEqualTo("""{"string":null,"double":null,"float":null,"long":null,"int":null,"char":null,"short":null,"byte":null,"boolean":null,"date":null}""")
         }
 
         @Test
@@ -423,7 +423,7 @@ class KosonTest {
 
             val representation = obj.toString()
             assertThat(representation).isValidJSON()
-            assertThat(representation).isEqualTo("{\"string\":null,\"double\":null,\"float\":null,\"long\":null,\"int\":null,\"char\":null,\"short\":null,\"byte\":null,\"boolean\":null,\"date\":null}")
+            assertThat(representation).isEqualTo("""{"string":null,"double":null,"float":null,"long":null,"int":null,"char":null,"short":null,"byte":null,"boolean":null,"date":null}""")
         }
 
         @Test
@@ -487,24 +487,24 @@ class KosonTest {
         @Test
         fun `object with inner raw object`() {
             val obj = obj {
-                "jsonContent" to rawJson("{\"menu\":{\"id\":\"file\",\"value\":\"File\",\"popup\":{\"menuitem\":[{\"value\":\"New\",\"onclick\":\"CreateNewDoc()\"},{\"value\":\"Open\",\"onclick\":\"OpenDoc()\"},{\"value\":\"Close\",\"onclick\":\"CloseDoc()\"}]}}}")
+                "jsonContent" to rawJson("""{"menu":{"id":"file","value":"File","popup":{"menuitem":[{"value":"New","onclick":"CreateNewDoc()"},{"value":"Open","onclick":"OpenDoc()"},{"value":"Close","onclick":"CloseDoc()"}]}}}""")
             }
 
             val representation = obj.toString()
 
             assertThat(representation).isValidJSON()
-            assertThat(representation).isEqualTo("{\"jsonContent\":{\"menu\":{\"id\":\"file\",\"value\":\"File\",\"popup\":{\"menuitem\":[{\"value\":\"New\",\"onclick\":\"CreateNewDoc()\"},{\"value\":\"Open\",\"onclick\":\"OpenDoc()\"},{\"value\":\"Close\",\"onclick\":\"CloseDoc()\"}]}}}}")
+            assertThat(representation).isEqualTo("""{"jsonContent":{"menu":{"id":"file","value":"File","popup":{"menuitem":[{"value":"New","onclick":"CreateNewDoc()"},{"value":"Open","onclick":"OpenDoc()"},{"value":"Close","onclick":"CloseDoc()"}]}}}}""")
         }
 
         @Test
         fun `array with inner raw object`() {
             val array =
-                    arr[rawJson("{\"menu\":{\"id\":\"file\",\"value\":\"File\",\"popup\":{\"menuitem\":[{\"value\":\"New\",\"onclick\":\"CreateNewDoc()\"},{\"value\":\"Open\",\"onclick\":\"OpenDoc()\"},{\"value\":\"Close\",\"onclick\":\"CloseDoc()\"}]}}}")]
+                arr[rawJson("""{"menu":{"id":"file","value":"File","popup":{"menuitem":[{"value":"New","onclick":"CreateNewDoc()"},{"value":"Open","onclick":"OpenDoc()"},{"value":"Close","onclick":"CloseDoc()"}]}}}""")]
 
             val representation = array.toString()
 
             assertThat(representation).isValidJSON()
-            assertThat(representation).isEqualTo("[{\"menu\":{\"id\":\"file\",\"value\":\"File\",\"popup\":{\"menuitem\":[{\"value\":\"New\",\"onclick\":\"CreateNewDoc()\"},{\"value\":\"Open\",\"onclick\":\"OpenDoc()\"},{\"value\":\"Close\",\"onclick\":\"CloseDoc()\"}]}}}]")
+            assertThat(representation).isEqualTo("""[{"menu":{"id":"file","value":"File","popup":{"menuitem":[{"value":"New","onclick":"CreateNewDoc()"},{"value":"Open","onclick":"OpenDoc()"},{"value":"Close","onclick":"CloseDoc()"}]}}}]""")
         }
 
         @Test
@@ -516,7 +516,7 @@ class KosonTest {
             val representation = obj.toString()
 
             assertThat(representation).isValidJSON()
-            assertThat(representation).isEqualTo("{\"jsonContent\":null}")
+            assertThat(representation).isEqualTo("""{"jsonContent":null}""")
         }
 
         @Test
@@ -530,7 +530,7 @@ class KosonTest {
         }
 
         @Test
-        fun `object with rawjson must be inlined properly in windows format`() {
+        fun `object with rawjson must be inlined properly when containing windows CR`() {
             val obj = obj {
                 "jsonContent" to rawJson("{\r\n  \"menu\":{\r\n    \"id\":\"file\",\r\n    \"value\":\"File\",\r\n    \"popup\":{\r\n      \"menuitem\":[\r\n        {\r\n          \"value\":\"New\",\r\n          \"onclick\":\"CreateNewDoc()\"\r\n        },\r\n        {\r\n          \"value\":\"Open\",\r\n          \"onclick\":\"OpenDoc()\"\r\n        },\r\n        {\r\n          \"value\":\"Close\",\r\n          \"onclick\":\"CloseDoc()\"\r\n        }\r\n      ]\r\n    }\r\n  }\r\n}")
             }
@@ -538,22 +538,22 @@ class KosonTest {
             val representation = obj.toString()
 
             assertThat(representation).isValidJSON()
-            assertThat(representation).isEqualTo("{\"jsonContent\":{\"menu\":{\"id\":\"file\",\"value\":\"File\",\"popup\":{\"menuitem\":[{\"value\":\"New\",\"onclick\":\"CreateNewDoc()\"},{\"value\":\"Open\",\"onclick\":\"OpenDoc()\"},{\"value\":\"Close\",\"onclick\":\"CloseDoc()\"}]}}}}")
+            assertThat(representation).isEqualTo("""{"jsonContent":{"menu":{"id":"file","value":"File","popup":{"menuitem":[{"value":"New","onclick":"CreateNewDoc()"},{"value":"Open","onclick":"OpenDoc()"},{"value":"Close","onclick":"CloseDoc()"}]}}}}""")
         }
 
         @Test
-        fun `array with rawjson must be inlined properly in windows format`() {
+        fun `array with rawjson must be inlined properly when containing windows CR`() {
             val array =
                     arr[rawJson("{\r\n  \"menu\":{\r\n    \"id\":\"file\",\r\n    \"value\":\"File\",\r\n    \"popup\":{\r\n      \"menuitem\":[\r\n        {\r\n          \"value\":\"New\",\r\n          \"onclick\":\"CreateNewDoc()\"\r\n        },\r\n        {\r\n          \"value\":\"Open\",\r\n          \"onclick\":\"OpenDoc()\"\r\n        },\r\n        {\r\n          \"value\":\"Close\",\r\n          \"onclick\":\"CloseDoc()\"\r\n        }\r\n      ]\r\n    }\r\n  }\r\n}")]
 
             val representation = array.toString()
 
             assertThat(representation).isValidJSON()
-            assertThat(representation).isEqualTo("[{\"menu\":{\"id\":\"file\",\"value\":\"File\",\"popup\":{\"menuitem\":[{\"value\":\"New\",\"onclick\":\"CreateNewDoc()\"},{\"value\":\"Open\",\"onclick\":\"OpenDoc()\"},{\"value\":\"Close\",\"onclick\":\"CloseDoc()\"}]}}}]")
+            assertThat(representation).isEqualTo("""[{"menu":{"id":"file","value":"File","popup":{"menuitem":[{"value":"New","onclick":"CreateNewDoc()"},{"value":"Open","onclick":"OpenDoc()"},{"value":"Close","onclick":"CloseDoc()"}]}}}]""")
         }
 
         @Test
-        fun `object with rawjson must be inlined properly in unix format`() {
+        fun `object with rawjson must be inlined properly when containing UNIX CR`() {
             val obj = obj {
                 "jsonContent" to rawJson("{\n  \"menu\":{\n    \"id\":\"file\",\n    \"value\":\"File\",\n    \"popup\":{\n      \"menuitem\":[\n        {\n          \"value\":\"New\",\n          \"onclick\":\"CreateNewDoc()\"\n        },\n        {\n          \"value\":\"Open\",\n          \"onclick\":\"OpenDoc()\"\n        },\n        {\n          \"value\":\"Close\",\n          \"onclick\":\"CloseDoc()\"\n        }\n      ]\n    }\n  }\n}")
             }
@@ -561,18 +561,18 @@ class KosonTest {
             val representation = obj.toString()
 
             assertThat(representation).isValidJSON()
-            assertThat(representation).isEqualTo("{\"jsonContent\":{\"menu\":{\"id\":\"file\",\"value\":\"File\",\"popup\":{\"menuitem\":[{\"value\":\"New\",\"onclick\":\"CreateNewDoc()\"},{\"value\":\"Open\",\"onclick\":\"OpenDoc()\"},{\"value\":\"Close\",\"onclick\":\"CloseDoc()\"}]}}}}")
+            assertThat(representation).isEqualTo("""{"jsonContent":{"menu":{"id":"file","value":"File","popup":{"menuitem":[{"value":"New","onclick":"CreateNewDoc()"},{"value":"Open","onclick":"OpenDoc()"},{"value":"Close","onclick":"CloseDoc()"}]}}}}""")
         }
 
         @Test
-        fun `array with rawjson must be inlined properly in unix format`() {
+        fun `array with rawjson must be inlined properly when containing UNIX CR`() {
             val array =
                     arr[rawJson("{\n  \"menu\":{\n    \"id\":\"file\",\n    \"value\":\"File\",\n    \"popup\":{\n      \"menuitem\":[\n        {\n          \"value\":\"New\",\n          \"onclick\":\"CreateNewDoc()\"\n        },\n        {\n          \"value\":\"Open\",\n          \"onclick\":\"OpenDoc()\"\n        },\n        {\n          \"value\":\"Close\",\n          \"onclick\":\"CloseDoc()\"\n        }\n      ]\n    }\n  }\n}")]
 
             val representation = array.toString()
 
             assertThat(representation).isValidJSON()
-            assertThat(representation).isEqualTo("[{\"menu\":{\"id\":\"file\",\"value\":\"File\",\"popup\":{\"menuitem\":[{\"value\":\"New\",\"onclick\":\"CreateNewDoc()\"},{\"value\":\"Open\",\"onclick\":\"OpenDoc()\"},{\"value\":\"Close\",\"onclick\":\"CloseDoc()\"}]}}}]")
+            assertThat(representation).isEqualTo("""[{"menu":{"id":"file","value":"File","popup":{"menuitem":[{"value":"New","onclick":"CreateNewDoc()"},{"value":"Open","onclick":"OpenDoc()"},{"value":"Close","onclick":"CloseDoc()"}]}}}]""")
         }
     }
 

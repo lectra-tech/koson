@@ -174,8 +174,6 @@ private const val NULL_PRINT = "null"
 private const val WINDOWS_LINE_SEPARATOR = "\r\n"
 private const val UNIX_LINE_SEPARATOR = "\n"
 
-
-
 private val backslashOrDoublequote = Regex("""[\\"]""")
 private val commasSpace = Regex(""",\s*($UNIX_LINE_SEPARATOR|$WINDOWS_LINE_SEPARATOR)\s*""")
 private val spaces = Regex("""($UNIX_LINE_SEPARATOR|$WINDOWS_LINE_SEPARATOR)\s*""")
