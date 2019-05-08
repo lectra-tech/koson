@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog],
 and this project adheres to https://semver.org/spec/v2.0.0.html[Semantic Versioning].
 
+== [1.0.2] - `arr` alternative declaration syntax
+
+=== Added
+
+* It is now possible to import elements in an array using `arr[listOf(...)]` or any `Iterable` thanks to @a.chatellier
+
+=== Changed
+
+* Documentation updated to explain how to inline statements in `obj`
+
+=== Removed
+
 == [1.0.1] - First release
 
 === Added
