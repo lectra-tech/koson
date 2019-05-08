@@ -5,6 +5,9 @@ object arr : ArrayType() {
     operator fun get(vararg elements: Any?): ArrayType =
             ArrayType(elements.map { toAllowedType(it) }.toList())
 
+    operator fun get(elements: Iterable<Any?>): ArrayType =
+            ArrayType(elements.map { toAllowedType(it) }.toList())
+
     private fun toAllowedType(value: Any?): KosonType =
             when (value) {
                 is String -> StringType(value)
@@ -168,10 +171,14 @@ private const val SPACE = " "
 private const val EMPTY = ""
 private const val COMMA_SPACE = ","
 private const val NULL_PRINT = "null"
+private const val WINDOWS_LINE_SEPARATOR = "\r\n"
+private const val UNIX_LINE_SEPARATOR = "\n"
+
+
 
 private val backslashOrDoublequote = Regex("""[\\"]""")
-private val commasSpace = Regex(""",\s*$cr\s*""")
-private val spaces = Regex("""$cr\s*""")
+private val commasSpace = Regex(""",\s*($UNIX_LINE_SEPARATOR|$WINDOWS_LINE_SEPARATOR)\s*""")
+private val spaces = Regex("""($UNIX_LINE_SEPARATOR|$WINDOWS_LINE_SEPARATOR)\s*""")
 
 private fun String.escapeIllegalChars(): String {
     return if (this.contains('\\') || this.contains('\"')) {

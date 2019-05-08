@@ -43,12 +43,13 @@ class KosonTest {
             "object" to obj { }
             "emptyArray" to arr
             "array" to arr["test"]
+            "arrayFromIterable" to arr[listOf("test")]
             "null" to null
             "custom" to SimpleObject
             "raw" to rawJson("{}")
         }.toString()
         assertThat(representation).isValidJSON()
-        assertThat(representation).isEqualTo("{\"string\":\"value\",\"double\":7.6,\"float\":3.2,\"long\":34,\"int\":9,\"char\":\"e\",\"short\":12,\"byte\":50,\"boolean\":false,\"object\":{},\"emptyArray\":[],\"array\":[\"test\"],\"null\":null,\"custom\":\"SimpleObject\",\"raw\":{}}")
+        assertThat(representation).isEqualTo("{\"string\":\"value\",\"double\":7.6,\"float\":3.2,\"long\":34,\"int\":9,\"char\":\"e\",\"short\":12,\"byte\":50,\"boolean\":false,\"object\":{},\"emptyArray\":[],\"array\":[\"test\"],\"arrayFromIterable\":[\"test\"],\"null\":null,\"custom\":\"SimpleObject\",\"raw\":{}}")
     }
 
     @Test
@@ -66,13 +67,14 @@ class KosonTest {
                 obj { },
                 arr,
                 arr["test"],
+                arr[listOf("test", "from", "iterable")],
                 null,
                 SimpleObject,
                 rawJson("{}")
         ].toString()
         assertThat(representation).isValidJSON()
         assertThat(representation)
-                .isEqualTo("[\"value\",7.6,3.2,34,9,\"e\",12,50,false,{},[],[\"test\"],null,\"SimpleObject\",{}]")
+                .isEqualTo("[\"value\",7.6,3.2,34,9,\"e\",12,50,false,{},[],[\"test\"],[\"test\",\"from\",\"iterable\"],null,\"SimpleObject\",{}]")
     }
 
     object ContainsDoubleQuotesAndBackslashes {
@@ -528,7 +530,30 @@ class KosonTest {
         }
 
         @Test
-        fun `object with rawjson must be inlined properly`() {
+        fun `object with rawjson must be inlined properly in windows format`() {
+            val obj = obj {
+                "jsonContent" to rawJson("{\r\n  \"menu\":{\r\n    \"id\":\"file\",\r\n    \"value\":\"File\",\r\n    \"popup\":{\r\n      \"menuitem\":[\r\n        {\r\n          \"value\":\"New\",\r\n          \"onclick\":\"CreateNewDoc()\"\r\n        },\r\n        {\r\n          \"value\":\"Open\",\r\n          \"onclick\":\"OpenDoc()\"\r\n        },\r\n        {\r\n          \"value\":\"Close\",\r\n          \"onclick\":\"CloseDoc()\"\r\n        }\r\n      ]\r\n    }\r\n  }\r\n}")
+            }
+
+            val representation = obj.toString()
+
+            assertThat(representation).isValidJSON()
+            assertThat(representation).isEqualTo("{\"jsonContent\":{\"menu\":{\"id\":\"file\",\"value\":\"File\",\"popup\":{\"menuitem\":[{\"value\":\"New\",\"onclick\":\"CreateNewDoc()\"},{\"value\":\"Open\",\"onclick\":\"OpenDoc()\"},{\"value\":\"Close\",\"onclick\":\"CloseDoc()\"}]}}}}")
+        }
+
+        @Test
+        fun `array with rawjson must be inlined properly in windows format`() {
+            val array =
+                    arr[rawJson("{\r\n  \"menu\":{\r\n    \"id\":\"file\",\r\n    \"value\":\"File\",\r\n    \"popup\":{\r\n      \"menuitem\":[\r\n        {\r\n          \"value\":\"New\",\r\n          \"onclick\":\"CreateNewDoc()\"\r\n        },\r\n        {\r\n          \"value\":\"Open\",\r\n          \"onclick\":\"OpenDoc()\"\r\n        },\r\n        {\r\n          \"value\":\"Close\",\r\n          \"onclick\":\"CloseDoc()\"\r\n        }\r\n      ]\r\n    }\r\n  }\r\n}")]
+
+            val representation = array.toString()
+
+            assertThat(representation).isValidJSON()
+            assertThat(representation).isEqualTo("[{\"menu\":{\"id\":\"file\",\"value\":\"File\",\"popup\":{\"menuitem\":[{\"value\":\"New\",\"onclick\":\"CreateNewDoc()\"},{\"value\":\"Open\",\"onclick\":\"OpenDoc()\"},{\"value\":\"Close\",\"onclick\":\"CloseDoc()\"}]}}}]")
+        }
+
+        @Test
+        fun `object with rawjson must be inlined properly in unix format`() {
             val obj = obj {
                 "jsonContent" to rawJson("{\n  \"menu\":{\n    \"id\":\"file\",\n    \"value\":\"File\",\n    \"popup\":{\n      \"menuitem\":[\n        {\n          \"value\":\"New\",\n          \"onclick\":\"CreateNewDoc()\"\n        },\n        {\n          \"value\":\"Open\",\n          \"onclick\":\"OpenDoc()\"\n        },\n        {\n          \"value\":\"Close\",\n          \"onclick\":\"CloseDoc()\"\n        }\n      ]\n    }\n  }\n}")
             }
@@ -540,7 +565,7 @@ class KosonTest {
         }
 
         @Test
-        fun `array with rawjson must be inlined properly`() {
+        fun `array with rawjson must be inlined properly in unix format`() {
             val array =
                     arr[rawJson("{\n  \"menu\":{\n    \"id\":\"file\",\n    \"value\":\"File\",\n    \"popup\":{\n      \"menuitem\":[\n        {\n          \"value\":\"New\",\n          \"onclick\":\"CreateNewDoc()\"\n        },\n        {\n          \"value\":\"Open\",\n          \"onclick\":\"OpenDoc()\"\n        },\n        {\n          \"value\":\"Close\",\n          \"onclick\":\"CloseDoc()\"\n        }\n      ]\n    }\n  }\n}")]
 
