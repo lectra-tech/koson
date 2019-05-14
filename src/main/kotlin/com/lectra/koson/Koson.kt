@@ -152,7 +152,14 @@ open class ArrayType(private val values: List<KosonType> = emptyList()) : KosonT
 }
 
 data class RawJsonType(val value: String?) : KosonType() {
-    override fun toString(): String = value?.let { spaces.replace(commasSpace.replace(it, COMMA_SPACE), EMPTY) } ?: NULL_PRINT
+    override fun toString(): String = value?.let {
+        if (value.isBlank()) EMPTYSTRING_JSON_VALUE else spaces.replace(
+            commasSpace.replace(
+                it,
+                COMMA_SPACE
+            ), EMPTY
+        )
+    } ?: NULL_PRINT
     override fun prettyPrint(level: Int, spaces: Int): String = value ?: NULL_PRINT
 }
 
@@ -169,6 +176,7 @@ private data class CustomType(val value: Any) : KosonType() {
 private val cr = System.lineSeparator()
 private const val SPACE = " "
 private const val EMPTY = ""
+private const val EMPTYSTRING_JSON_VALUE = "\"\""
 private const val COMMA_SPACE = ","
 private const val NULL_PRINT = "null"
 private const val WINDOWS_LINE_SEPARATOR = "\r\n"

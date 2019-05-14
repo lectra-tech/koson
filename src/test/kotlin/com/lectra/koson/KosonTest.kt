@@ -530,7 +530,7 @@ class KosonTest {
         }
 
         @Test
-        fun `object with rawjson must be inlined properly when containing windows CR`() {
+        fun `object with rawJson must be inlined properly when containing windows CR`() {
             val obj = obj {
                 "jsonContent" to rawJson("{\r\n  \"menu\":{\r\n    \"id\":\"file\",\r\n    \"value\":\"File\",\r\n    \"popup\":{\r\n      \"menuitem\":[\r\n        {\r\n          \"value\":\"New\",\r\n          \"onclick\":\"CreateNewDoc()\"\r\n        },\r\n        {\r\n          \"value\":\"Open\",\r\n          \"onclick\":\"OpenDoc()\"\r\n        },\r\n        {\r\n          \"value\":\"Close\",\r\n          \"onclick\":\"CloseDoc()\"\r\n        }\r\n      ]\r\n    }\r\n  }\r\n}")
             }
@@ -542,7 +542,7 @@ class KosonTest {
         }
 
         @Test
-        fun `array with rawjson must be inlined properly when containing windows CR`() {
+        fun `array with rawJson must be inlined properly when containing windows CR`() {
             val array =
                     arr[rawJson("{\r\n  \"menu\":{\r\n    \"id\":\"file\",\r\n    \"value\":\"File\",\r\n    \"popup\":{\r\n      \"menuitem\":[\r\n        {\r\n          \"value\":\"New\",\r\n          \"onclick\":\"CreateNewDoc()\"\r\n        },\r\n        {\r\n          \"value\":\"Open\",\r\n          \"onclick\":\"OpenDoc()\"\r\n        },\r\n        {\r\n          \"value\":\"Close\",\r\n          \"onclick\":\"CloseDoc()\"\r\n        }\r\n      ]\r\n    }\r\n  }\r\n}")]
 
@@ -553,7 +553,7 @@ class KosonTest {
         }
 
         @Test
-        fun `object with rawjson must be inlined properly when containing UNIX CR`() {
+        fun `object with rawJson must be inlined properly when containing UNIX CR`() {
             val obj = obj {
                 "jsonContent" to rawJson("{\n  \"menu\":{\n    \"id\":\"file\",\n    \"value\":\"File\",\n    \"popup\":{\n      \"menuitem\":[\n        {\n          \"value\":\"New\",\n          \"onclick\":\"CreateNewDoc()\"\n        },\n        {\n          \"value\":\"Open\",\n          \"onclick\":\"OpenDoc()\"\n        },\n        {\n          \"value\":\"Close\",\n          \"onclick\":\"CloseDoc()\"\n        }\n      ]\n    }\n  }\n}")
             }
@@ -565,7 +565,7 @@ class KosonTest {
         }
 
         @Test
-        fun `array with rawjson must be inlined properly when containing UNIX CR`() {
+        fun `array with rawJson must be inlined properly when containing UNIX CR`() {
             val array =
                     arr[rawJson("{\n  \"menu\":{\n    \"id\":\"file\",\n    \"value\":\"File\",\n    \"popup\":{\n      \"menuitem\":[\n        {\n          \"value\":\"New\",\n          \"onclick\":\"CreateNewDoc()\"\n        },\n        {\n          \"value\":\"Open\",\n          \"onclick\":\"OpenDoc()\"\n        },\n        {\n          \"value\":\"Close\",\n          \"onclick\":\"CloseDoc()\"\n        }\n      ]\n    }\n  }\n}")]
 
@@ -573,6 +573,26 @@ class KosonTest {
 
             assertThat(representation).isValidJSON()
             assertThat(representation).isEqualTo("""[{"menu":{"id":"file","value":"File","popup":{"menuitem":[{"value":"New","onclick":"CreateNewDoc()"},{"value":"Open","onclick":"OpenDoc()"},{"value":"Close","onclick":"CloseDoc()"}]}}}]""")
+        }
+
+        @Test
+        fun `rawJson with emptyString should display empty string`() {
+            val representation = obj {
+                "jsonContent" to rawJson("")
+            }.toString()
+
+            assertThat(representation).isValidJSON()
+            assertThat(representation).isEqualTo("""{"jsonContent":""}""")
+        }
+
+        @Test
+        fun `rawJson with whitespaces string should display empty string`() {
+            val representation = obj {
+                "jsonContent" to rawJson("    ")
+            }.toString()
+
+            assertThat(representation).isValidJSON()
+            assertThat(representation).isEqualTo("""{"jsonContent":""}""")
         }
     }
 
