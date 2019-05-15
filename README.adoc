@@ -274,7 +274,7 @@ To run the tests locally with java 8 or later, do
 [source]
 ----
 cd benchmarks
-mvn clean install
+mvn package
 java -jar target/benchmarks.jar
 ----
 
