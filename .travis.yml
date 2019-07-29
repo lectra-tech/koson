@@ -5,6 +5,7 @@ after_success:
   - bash <(curl -s https://codecov.io/bash)
 
 before_deploy:
+  - export GPG_TTY=$(tty)
   - echo $GPG_SECRET_KEYS | base64 --decode | gpg2 --import
   - echo $GPG_OWNERTRUST | base64 --decode | gpg2 --import-ownertrust
   - cp .travis.settings.xml $HOME/.m2/settings.xml  
