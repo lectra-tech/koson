@@ -21,11 +21,7 @@ object arr : ArrayType() {
             }
 }
 
-fun obj(block: Koson.() -> Unit): ObjectType {
-    val koson = Koson()
-    koson.block()
-    return koson.objectType
-}
+fun obj(block: Koson.() -> Unit): ObjectType = Koson().apply(block).objectType
 
 class Koson(internal val objectType: ObjectType = ObjectType()) {
 
@@ -152,16 +148,16 @@ open class ArrayType(private val values: List<KosonType> = emptyList()) : KosonT
 }
 
 data class RawJsonType(val value: String?) : KosonType() {
-    override fun toString(): String = value?.let {
-        if (value.isBlank()) EMPTYSTRING_JSON_VALUE else spaces.replace(
-            commasSpace.replace(
-                it,
-                COMMA_SPACE
-            ), EMPTY
-        )
-    } ?: NULL_PRINT
+    override fun toString(): String = when {
+        value == null -> NULL_PRINT
+        value.isBlank() -> EMPTYSTRING_JSON_VALUE
+        else -> value.let { spaces.replace(it, EMPTY) }
+                .let { commasSpace.replace(it, COMMA_SPACE) }
+    }
+
     override fun prettyPrint(level: Int, spaces: Int): String = value ?: NULL_PRINT
 }
+
 
 private object NullType : KosonType() {
     override fun toString(): String = NULL_PRINT
@@ -186,12 +182,11 @@ private val backslashOrDoublequote = Regex("""[\\"]""")
 private val commasSpace = Regex(""",\s*($UNIX_LINE_SEPARATOR|$WINDOWS_LINE_SEPARATOR)\s*""")
 private val spaces = Regex("""($UNIX_LINE_SEPARATOR|$WINDOWS_LINE_SEPARATOR)\s*""")
 
-private fun String.escapeIllegalChars(): String {
-    return if (this.contains('\\') || this.contains('\"')) {
-        backslashOrDoublequote.replace(this) { mr -> "\\${mr.value}" }
-    } else {
-        this
-    }
-}
+private fun String.escapeIllegalChars(): String =
+        if (contains('\\') || contains('\"')) {
+            backslashOrDoublequote.replace(this) { mr -> "\\${mr.value}" }
+        } else {
+            this
+        }
 
 private fun String.quotedEscaped() = "\"${this.escapeIllegalChars()}\""
