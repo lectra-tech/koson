@@ -158,7 +158,6 @@ data class RawJsonType(val value: String?) : KosonType() {
     override fun prettyPrint(level: Int, spaces: Int): String = value ?: NULL_PRINT
 }
 
-
 private object NullType : KosonType() {
     override fun toString(): String = NULL_PRINT
     override fun prettyPrint(level: Int, spaces: Int): String = toString()
