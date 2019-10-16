@@ -155,7 +155,7 @@ arr[ ... ].pretty(3)
 
 == Raw Json
 
-If you know what the content you will render, you should favor using DSL elements to build your Json.
+If you know what content will be rendered upfront, you should favor using DSL elements to build your Json.
 
 However, sometimes you may need to include an external source of Json. You can use the `rawJson(validJson: String?)` method to do so.
 
