@@ -153,13 +153,19 @@ obj { ... }.pretty()
 arr[ ... ].pretty(3)
 ----
 
+== Custom Types Serialization
+
+If you don't want to rely on the default `toString()` method when serializing `Any?`, you can provide an instance that implements the `CustomKoson` interface.
+You'll then need to define the `serialize(): String` method.
+
 == Raw Json
 
 If you know what content will be rendered upfront, you should favor using DSL elements to build your Json.
 
-However, sometimes you may need to include an external source of Json. You can use the `rawJson(validJson: String?)` method to do so.
+However, sometimes you may need to include an external source of Json.
+You can use the `rawJson(validJson: String?)` method to do so.
 
-[source, Kotlin]
+[source,Kotlin]
 ----
 obj {
   "rawContent" to rawJson(externalJsonSource())
@@ -191,6 +197,7 @@ image:https://github.com/lectra-tech/koson/blob/master/image/koson-typing.png["K
 ** `Number?`
 ** `Boolean?`
 ** `Any?` (will render using `.toString()`, escaping `"` and `\` chars)
+** `YourType : CustomKoson`, (will render using `.serialize()`, escaping `"` and `\` chars)
 ** `null`
 ** _obj { }_
 ** _arr[...]_

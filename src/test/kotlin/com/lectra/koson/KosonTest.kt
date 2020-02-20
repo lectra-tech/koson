@@ -28,6 +28,10 @@ class KosonTest {
         override fun toString(): String = this.javaClass.simpleName
     }
 
+    object CustomizedKoson : CustomKoson {
+        override fun serialize(): String = "Customized"
+    }
+
     @Test
     fun `object with all possible types of value`() {
         val representation = obj {
@@ -45,11 +49,12 @@ class KosonTest {
             "array" to arr["test"]
             "arrayFromIterable" to arr[listOf("test")]
             "null" to null
-            "custom" to SimpleObject
+            "simple" to SimpleObject
+            "custom" to CustomizedKoson
             "raw" to rawJson("{}")
         }.toString()
         assertThat(representation).isValidJSON()
-        assertThat(representation).isEqualTo("""{"string":"value","double":7.6,"float":3.2,"long":34,"int":9,"char":"e","short":12,"byte":50,"boolean":false,"object":{},"emptyArray":[],"array":["test"],"arrayFromIterable":["test"],"null":null,"custom":"SimpleObject","raw":{}}""")
+        assertThat(representation).isEqualTo("""{"string":"value","double":7.6,"float":3.2,"long":34,"int":9,"char":"e","short":12,"byte":50,"boolean":false,"object":{},"emptyArray":[],"array":["test"],"arrayFromIterable":["test"],"null":null,"simple":"SimpleObject","custom":"Customized","raw":{}}""")
     }
 
     @Test
@@ -70,11 +75,12 @@ class KosonTest {
                 arr[listOf("test", "from", "iterable")],
                 null,
                 SimpleObject,
+                CustomizedKoson,
                 rawJson("{}")
         ].toString()
         assertThat(representation).isValidJSON()
         assertThat(representation)
-            .isEqualTo("""["value",7.6,3.2,34,9,"e",12,50,false,{},[],["test"],["test","from","iterable"],null,"SimpleObject",{}]""")
+                .isEqualTo("""["value",7.6,3.2,34,9,"e",12,50,false,{},[],["test"],["test","from","iterable"],null,"SimpleObject","Customized",{}]""")
     }
 
     object ContainsDoubleQuotesAndBackslashes {
@@ -617,6 +623,7 @@ class KosonTest {
                             "byte" to 0xAA
                             "otherArray" to arr
                             "simpleObject" to SimpleObject
+                            "custom" to CustomizedKoson
                             "raw" to rawJson("[]")
                             "objectInside" to obj {
                                 "to" to 34
@@ -653,6 +660,7 @@ class KosonTest {
                             "        $cr" +
                             "      ],$cr" +
                             "      \"simpleObject\": \"SimpleObject\",$cr" +
+                            "      \"custom\": \"Customized\",$cr" +
                             "      \"raw\": [],$cr" +
                             "      \"objectInside\": {$cr" +
                             "        \"to\": 34,$cr" +
@@ -687,6 +695,7 @@ class KosonTest {
                                     "byte" to 0xAA
                                     "otherArray" to arr
                                     "simpleObject" to SimpleObject
+                                    "custom" to CustomizedKoson
                                     "raw" to rawJson("[]")
                                     "objectInside" to obj {
                                         "to" to 34
@@ -725,6 +734,7 @@ class KosonTest {
                             "          $cr" +
                             "        ],$cr" +
                             "        \"simpleObject\": \"SimpleObject\",$cr" +
+                            "        \"custom\": \"Customized\",$cr" +
                             "        \"raw\": [],$cr" +
                             "        \"objectInside\": {$cr" +
                             "          \"to\": 34,$cr" +

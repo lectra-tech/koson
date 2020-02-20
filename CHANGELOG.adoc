@@ -2,8 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
-The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog],
-and this project adheres to https://semver.org/spec/v2.0.0.html[Semantic Versioning].
+The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog], and this project adheres to https://semver.org/spec/v2.0.0.html[Semantic Versioning].
+
+== [1.0.5] Custom serializable types
+
+=== Added
+
+* Possibility to implement the `CustomKoson` interface to customize serialization
 
 == [1.0.4] - minor fix
 
