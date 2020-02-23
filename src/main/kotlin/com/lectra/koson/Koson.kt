@@ -13,11 +13,12 @@ object arr : ArrayType() {
                 is String -> StringType(value)
                 is Number -> NumberType(value)
                 is Boolean -> BooleanType(value)
+                is CustomKoson -> CustomKosonType(value)
                 is ObjectType -> value
                 is ArrayType -> value
                 is RawJsonType -> value
                 null -> NullType
-                else -> CustomType(value)
+                else -> DefaultType(value)
             }
 }
 
@@ -35,6 +36,10 @@ class Koson(internal val objectType: ObjectType = ObjectType()) {
 
     infix fun String.to(value: Boolean?) {
         objectType.values[this] = if (value == null) NullType else BooleanType(value)
+    }
+
+    infix fun String.to(value: CustomKoson) {
+        objectType.values[this] = CustomKosonType(value)
     }
 
     infix fun String.to(value: ObjectType) {
@@ -55,7 +60,7 @@ class Koson(internal val objectType: ObjectType = ObjectType()) {
     }
 
     infix fun String.to(value: Any?) {
-        objectType.values[this] = if (value == null) NullType else CustomType(value)
+        objectType.values[this] = if (value == null) NullType else DefaultType(value)
     }
 
     @Deprecated(
@@ -83,6 +88,10 @@ class Koson(internal val objectType: ObjectType = ObjectType()) {
  */
 fun rawJson(validJson: String?): RawJsonType = RawJsonType(validJson)
 
+interface CustomKoson {
+    fun serialize(): String
+}
+
 sealed class KosonType {
     internal abstract fun prettyPrint(level: Int, spaces: Int): String
 }
@@ -99,6 +108,11 @@ private data class NumberType(val value: Number) : KosonType() {
 
 private data class BooleanType(val value: Boolean) : KosonType() {
     override fun toString(): String = value.toString()
+    override fun prettyPrint(level: Int, spaces: Int): String = toString()
+}
+
+private data class CustomKosonType(val value: CustomKoson) : KosonType() {
+    override fun toString(): String = value.serialize().quotedEscaped()
     override fun prettyPrint(level: Int, spaces: Int): String = toString()
 }
 
@@ -163,7 +177,7 @@ private object NullType : KosonType() {
     override fun prettyPrint(level: Int, spaces: Int): String = toString()
 }
 
-private data class CustomType(val value: Any) : KosonType() {
+private data class DefaultType(val value: Any) : KosonType() {
     override fun toString(): String = value.toString().quotedEscaped()
     override fun prettyPrint(level: Int, spaces: Int): String = toString()
 }
