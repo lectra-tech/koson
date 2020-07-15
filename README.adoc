@@ -45,7 +45,7 @@ val obj = obj {
   "nullValue" to null
   "emptyObject" to obj { }
   "emptyArray" to arr
-  "custom" to Date()
+  "custom" to ZonedDateTime.now()
 }
 
 println(obj) <1>
@@ -75,7 +75,7 @@ println(obj.pretty()) <2>
   "emptyArray": [
 
   ],
-  "custom": "Tue Dec 11 13:14:14 CET 2018"
+  "custom": "2020-07-15T10:59:19.042965+02:00[Europe/Paris]"
 }
 ----
 
