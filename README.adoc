@@ -53,10 +53,10 @@ println(obj.pretty()) <2>
 ----
 
 .JSON output
-[source, json]
+[source,json]
 ----
 <1>
-{"key":3.4,"anotherKey":["test","test2",1,2.433,true],"nullValue":null,"emptyObject":{},"emptyArray":[],"custom":"Tue Dec 11 13:14:14 CET 2018"}
+{"key":3.4,"anotherKey":["test","test2",1,2.433,true],"nullValue":null,"emptyObject":{},"emptyArray":[],"custom":"2020-07-15T10:59:19.042965+02:00[Europe/Paris]"}
 
 <2>
 {
