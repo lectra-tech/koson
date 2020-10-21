@@ -10,6 +10,8 @@ Using no other dependency than `Kotlin`
 
 Available on link:https://search.maven.org/search?q=g:com.lectra%20AND%20a:koson[Maven Central, window=_blank]
 
+Now part of https://kotlin.link/[Awesome Kotlin] !
+
 image:https://github.com/lectra-tech/koson/blob/master/image/live.gif["Live"]
 
 == DSL
