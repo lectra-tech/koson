@@ -130,10 +130,7 @@ data class ObjectType(internal val values: MutableMap<String, KosonType> = mutab
         val space = SPACE.repeat((level + 1) * spaces)
         val closingSpace = SPACE.repeat(level * spaces)
         return values.entries.joinToString(",$cr$space", "{$cr$space", "$cr$closingSpace}") { (k, v) ->
-            "\"${k.escapeIllegalChars()}\": ${v.prettyPrint(
-                    level + 1,
-                    spaces
-            )}"
+            "\"${k.escapeIllegalChars()}\": ${v.prettyPrint(level + 1, spaces)}"
         }
     }
 
@@ -152,10 +149,7 @@ open class ArrayType(private val values: List<KosonType> = emptyList()) : KosonT
         val space = SPACE.repeat((level + 1) * spaces)
         val closingSpace = SPACE.repeat(level * spaces)
         return values.joinTo(StringBuilder(), ",$cr$space", "[$cr$space", "$cr$closingSpace]") {
-            it.prettyPrint(
-                    level + 1,
-                    spaces
-            )
+            it.prettyPrint(level + 1, spaces)
         }.toString()
     }
 
@@ -190,16 +184,17 @@ private const val COMMA_SPACE = ","
 private const val NULL_PRINT = "null"
 private const val WINDOWS_LINE_SEPARATOR = "\r\n"
 private const val UNIX_LINE_SEPARATOR = "\n"
+private const val ESCAPED_LINE_SEPARATOR = "\\n"
 
 private val backslashOrDoublequote = Regex("""[\\"]""")
 private val commasSpace = Regex(""",\s*($UNIX_LINE_SEPARATOR|$WINDOWS_LINE_SEPARATOR)\s*""")
 private val spaces = Regex("""($UNIX_LINE_SEPARATOR|$WINDOWS_LINE_SEPARATOR)\s*""")
 
 private fun String.escapeIllegalChars(): String =
-        if (contains('\\') || contains('\"')) {
-            backslashOrDoublequote.replace(this) { mr -> "\\${mr.value}" }
-        } else {
-            this
-        }
+    when {
+        contains('\\') || contains('\"') -> backslashOrDoublequote.replace(this) { "\\${it.value}" }
+        contains(cr) -> replace(cr, ESCAPED_LINE_SEPARATOR)
+        else -> this
+    }
 
-private fun String.quotedEscaped() = "\"${this.escapeIllegalChars()}\""
+private fun String.quotedEscaped() = "\"${escapeIllegalChars()}\""

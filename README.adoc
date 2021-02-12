@@ -178,14 +178,14 @@ obj {
 ====
 You need to ensure the parameter `String?` is a valid Json (by format), otherwise the generated Json will not be valid.
 
-Beware that rendering *will not* escape `"` and `\` chars, on purpose.
+Beware that rendering *will not* escape `"`, `\` and `\n` chars, on purpose.
 ====
 
 NOTE: `pretty()` will not work on `rawJson` Strings, however `toString()` will inline provided content
 
 == Strong type constraints
 
-* A JSON key (attribute) can only be of `Kotlin` type `String` (will render escaping `"` and `\` chars)
+* A JSON key (attribute) can only be of `Kotlin` type `String` (will render escaping `"`, `\` and `\n` chars)
 
 [NOTE]
 ====
@@ -195,11 +195,11 @@ image:https://github.com/lectra-tech/koson/blob/master/image/koson-typing.png["K
 ====
 
 * A JSON value of an _obj { }_ or an _arr[...]_ can be one of the following `Kotlin` or _Koson DSL_ instances
-** `String?` (will render escaping `"` and `\` chars)
+** `String?` (will render escaping `"`, `\` and `\n` chars)
 ** `Number?`
 ** `Boolean?`
-** `Any?` (will render using `.toString()`, escaping `"` and `\` chars)
-** `YourType : CustomKoson`, (will render using `.serialize()`, escaping `"` and `\` chars)
+** `Any?` (will render using `.toString()`, escaping `"`, `\` and `\n` chars)
+** `YourType : CustomKoson`, (will render using `.serialize()`, escaping `"`, `\` and `\n` chars)
 ** `null`
 ** _obj { }_
 ** _arr[...]_
