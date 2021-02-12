@@ -58,6 +58,28 @@ class KosonTest {
     }
 
     @Test
+    fun `should inline newlines in multi line strings`() {
+        val representation = obj {
+            "lines" to """
+                line 1
+                line 2
+                line 3
+            """.trimIndent()
+        }.toString()
+
+        assertThat(representation).isEqualTo("""{"lines":"line 1\nline 2\nline 3"}""")
+    }
+
+    @Test
+    fun `should inline newlines in strings`() {
+        val representation = obj {
+            "lines" to "line 1\nline 2\nline 3"
+        }.toString()
+
+        assertThat(representation).isEqualTo("""{"lines":"line 1\nline 2\nline 3"}""")
+    }
+
+    @Test
     fun `array with all possible types of value`() {
         val representation = arr[
                 "value",
@@ -84,15 +106,20 @@ class KosonTest {
     }
 
     object ContainsDoubleQuotesAndBackslashes {
-        override fun toString(): String = "\"un\\for\"tuna\\te\""
+        override fun toString(): String = """"un\for"tuna\te""""
     }
 
     object ContainsDoubleQuotes {
-        override fun toString(): String = "\"unfor\"tunate\""
+        override fun toString(): String = """"unfor"tunate""""
     }
 
     object ContainsBackslashes {
-        override fun toString(): String = "\\unfor\\tunate\\"
+        override fun toString(): String = """\unfor\tunate\"""
+    }
+
+    object ContainsNewLines {
+        override fun toString(): String = """unfor
+            |tunate""".trimMargin()
     }
 
     @Nested
@@ -182,6 +209,30 @@ class KosonTest {
         }
 
         @Test
+        fun `object with value containing new line`() {
+            val obj = obj {
+                "content" to "va\nlue"
+            }
+
+            val representation = obj.toString()
+
+            assertThat(representation).isValidJSON()
+            assertThat(representation).isEqualTo("""{"content":"va\nlue"}""")
+        }
+
+        @Test
+        fun `object with custom value containing new line`() {
+            val obj = obj {
+                "content" to ContainsNewLines
+            }
+
+            val representation = obj.toString()
+
+            assertThat(representation).isValidJSON()
+            assertThat(representation).isEqualTo("""{"content":"unfor\ntunate"}""")
+        }
+
+        @Test
         fun `object with key containing backslash char`() {
             val obj = obj {
                 "va\\lue" to "content"
@@ -203,6 +254,18 @@ class KosonTest {
 
             assertThat(representation).isValidJSON()
             assertThat(representation).isEqualTo("""{"va\"lue":"content"}""")
+        }
+
+        @Test
+        fun `object with key containing newline`() {
+            val obj = obj {
+                "va\nlue" to "content"
+            }
+
+            val representation = obj.toString()
+
+            assertThat(representation).isValidJSON()
+            assertThat(representation).isEqualTo("""{"va\nlue":"content"}""")
         }
 
         @Test
@@ -247,6 +310,16 @@ class KosonTest {
 
             assertThat(representation).isValidJSON()
             assertThat(representation).isEqualTo("""["va\"lue"]""")
+        }
+
+        @Test
+        fun `array containing newline char`() {
+            val array = arr["va\nlue"]
+
+            val representation = array.toString()
+
+            assertThat(representation).isValidJSON()
+            assertThat(representation).isEqualTo("""["va\nlue"]""")
         }
 
         @Test
@@ -611,6 +684,7 @@ class KosonTest {
         fun `must pretty print an object`() {
             val pretty = obj {
                 "key" to 3.4
+                "string" to "newline\n"
                 "anotherKey" to arr["test", "test2", 1, 2.433, true]
                 "nullsAreAllowedToo" to null
                 "array" to arr[
@@ -638,9 +712,10 @@ class KosonTest {
 
             assertThat(pretty).isValidJSON()
             assertThat(pretty).isEqualTo(
-                    "{$cr" +
-                            "  \"key\": 3.4,$cr" +
-                            "  \"anotherKey\": [$cr" +
+                "{$cr" +
+                        "  \"key\": 3.4,$cr" +
+                        "  \"string\": \"newline\\n\",$cr" +
+                        "  \"anotherKey\": [$cr" +
                             "    \"test\",$cr" +
                             "    \"test2\",$cr" +
                             "    1,$cr" +

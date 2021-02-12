@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog], and this project adheres to https://semver.org/spec/v2.0.0.html[Semantic Versioning].
 
+== [1.1.0] Escaping line separators
+
+=== Added
+
+* Koson will escape line separators in keys and String values to match other serialization libraries' behavior (special thanks to https://github.com/anewton1998[Andrew Newton] for noticing this)
+
 == [1.0.5] Custom serializable types
 
 === Added
