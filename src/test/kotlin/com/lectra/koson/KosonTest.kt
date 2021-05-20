@@ -87,7 +87,7 @@ class KosonTest {
     }
 
     @Test
-    fun `should work on not null nullable customtypes`() {
+    fun `CustomKoson should be serialized according to override`() {
         val name = "myName"
         val description = "desc"
         val status = Status("OK", "Nice")
@@ -104,7 +104,7 @@ class KosonTest {
     }
 
     @Test
-    fun `should work on null customtypes`() {
+    fun `nullable CustomKoson should be serialized`() {
         val name = "myName"
         val description = "desc"
         val status: Status? = null
