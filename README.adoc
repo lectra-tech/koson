@@ -229,7 +229,7 @@ NOTE: `pretty()` will not work on `rawJson` Strings, however `toString()` will i
 == Runtime prerequisites
 
 * `Kotlin`
-* `Java` 1.6 or later
+* `Java` 1.8 or later
 
 == Build prerequisites
 
@@ -242,7 +242,7 @@ NOTE: `pretty()` will not work on `rawJson` Strings, however `toString()` will i
 
 == Benchmarks
 
-Benchmarks have been conducted with the https://openjdk.java.net/projects/code-tools/jmh/[jmh] OpenJDK tool. Benchmark project can be found under `benchmarks` folder.
+Benchmarks have been conducted with the https://openjdk.java.net/projects/code-tools/jmh/[jmh] OpenJDK tool.Benchmark project can be found under `benchmarks` folder.
 
 Two tests were done with the same objects and arrays
 
