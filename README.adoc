@@ -141,9 +141,9 @@ arr[setOf("element", 12.345, null)]
 
 == Pretty print
 
-When using the `pretty()` method on `obj` or `arr`, you can define the number of whitespaces used for tabulation. Default value is `2`.
+When using the `pretty()` method on `obj` or `arr`, you can define the number of whitespaces used for tabulation.Default value is `2`.
 
-[source, Kotlin]
+[source,Kotlin]
 ----
 // "compact", single line mode
 obj { ... }
@@ -155,10 +155,53 @@ obj { ... }.pretty()
 arr[ ... ].pretty(3)
 ----
 
+== Strong type constraints
+
+* A JSON key (attribute) can only be of `Kotlin` type `String` (will render escaping `"`, `\` and `\n` chars)
+
+[NOTE]
+====
+In IntelliJ, a compilation error will appear, and code will be flagged as not reachable
+
+image:https://github.com/lectra-tech/koson/blob/master/image/koson-typing.png["Koson Typing"]
+====
+
+* A JSON value of an _obj { }_ or an _arr[...]_ can be one of the following `Kotlin` or _Koson DSL_ instances
+** _obj { }_
+** _arr[...]_
+** _arr_ (empty array)
+** `String?` (will render escaping `"`, `\` and `\n` chars)
+** `Number?`
+** `Boolean?`
+** `null`
+** `Any?` (will render using `.toString()`, escaping `"`, `\` and `\n` chars)
+** `YourType : CustomKoson`, will render using `.serialize()`.
+(See next section for details)
+** _rawJson("{...}")_ (will render _as is_).
+(See section below)
+
 == Custom Types Serialization
 
-If you don't want to rely on the default `toString()` method when serializing `Any?`, you can provide an instance that implements the `CustomKoson` interface.
-You'll then need to define the `serialize(): String` method.
+If you don't want to rely on the default `toString()` that would be used on an `Any?`, you can provide an instance that implements the `CustomKoson` interface.
+
+You'll then need to override the `serialize(): KosonType` method.
+
+TIP: The `KosonType` return type should either be an `obj` or an `arr`
+
+.Example
+[source,Kotlin]
+----
+class Person(
+    val firstName: String,
+    val lastName: String,
+    val age: Int
+) : CustomKoson {
+    override fun serialize() = obj {
+        "usualName" to "$firstName $lastName"
+        "age" to age
+    }
+}
+----
 
 == Raw Json
 
@@ -182,29 +225,6 @@ Beware that rendering *will not* escape `"`, `\` and `\n` chars, on purpose.
 ====
 
 NOTE: `pretty()` will not work on `rawJson` Strings, however `toString()` will inline provided content
-
-== Strong type constraints
-
-* A JSON key (attribute) can only be of `Kotlin` type `String` (will render escaping `"`, `\` and `\n` chars)
-
-[NOTE]
-====
-In IntelliJ, a compilation error will appear, and code will be flagged as not reachable
-
-image:https://github.com/lectra-tech/koson/blob/master/image/koson-typing.png["Koson Typing"]
-====
-
-* A JSON value of an _obj { }_ or an _arr[...]_ can be one of the following `Kotlin` or _Koson DSL_ instances
-** `String?` (will render escaping `"`, `\` and `\n` chars)
-** `Number?`
-** `Boolean?`
-** `Any?` (will render using `.toString()`, escaping `"`, `\` and `\n` chars)
-** `YourType : CustomKoson`, (will render using `.serialize()`, escaping `"`, `\` and `\n` chars)
-** `null`
-** _obj { }_
-** _arr[...]_
-** _arr_ (empty array)
-** _rawJson("{...}")_ (will render _as is_)
 
 == Runtime prerequisites
 

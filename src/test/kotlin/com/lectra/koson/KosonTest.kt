@@ -79,7 +79,18 @@ class KosonTest {
         assertThat(representation).isEqualTo("""{"lines":"line 1\nline 2\nline 3"}""")
     }
 
-    data class Status(val id: String, val name: String) : CustomKoson {
+    class Person(
+        private val firstName: String,
+        private val lastName: String,
+        private val age: Int
+    ) : CustomKoson {
+        override fun serialize() = obj {
+            "usualName" to "$firstName $lastName"
+            "age" to age
+        }
+    }
+
+    class Status(private val id: String, private val name: String) : CustomKoson {
         override fun serialize() = obj {
             "id" to id
             "name" to name
