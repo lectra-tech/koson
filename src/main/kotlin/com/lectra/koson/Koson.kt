@@ -38,8 +38,8 @@ class Koson(internal val objectType: ObjectType = ObjectType()) {
         objectType.values[this] = if (value == null) NullType else BooleanType(value)
     }
 
-    infix fun String.to(value: CustomKoson) {
-        objectType.values[this] = CustomKosonType(value)
+    infix fun String.to(value: CustomKoson?) {
+        objectType.values[this] = if (value == null) NullType else CustomKosonType(value)
     }
 
     infix fun String.to(value: ObjectType) {
@@ -89,7 +89,7 @@ class Koson(internal val objectType: ObjectType = ObjectType()) {
 fun rawJson(validJson: String?): RawJsonType = RawJsonType(validJson)
 
 interface CustomKoson {
-    fun serialize(): String
+    fun serialize(): KosonType
 }
 
 sealed class KosonType {
@@ -112,8 +112,8 @@ private data class BooleanType(val value: Boolean) : KosonType() {
 }
 
 private data class CustomKosonType(val value: CustomKoson) : KosonType() {
-    override fun toString(): String = value.serialize().quotedEscaped()
-    override fun prettyPrint(level: Int, spaces: Int): String = toString()
+    override fun toString(): String = value.serialize().toString()
+    override fun prettyPrint(level: Int, spaces: Int): String = value.serialize().prettyPrint(level, spaces)
 }
 
 data class ObjectType(internal val values: MutableMap<String, KosonType> = mutableMapOf()) : KosonType() {

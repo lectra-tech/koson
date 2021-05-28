@@ -29,7 +29,7 @@ class KosonTest {
     }
 
     object CustomizedKoson : CustomKoson {
-        override fun serialize(): String = "Customized"
+        override fun serialize(): KosonType = obj { "custom" to 11 }
     }
 
     @Test
@@ -54,7 +54,7 @@ class KosonTest {
             "raw" to rawJson("{}")
         }.toString()
         assertThat(representation).isValidJSON()
-        assertThat(representation).isEqualTo("""{"string":"value","double":7.6,"float":3.2,"long":34,"int":9,"char":"e","short":12,"byte":50,"boolean":false,"object":{},"emptyArray":[],"array":["test"],"arrayFromIterable":["test"],"null":null,"simple":"SimpleObject","custom":"Customized","raw":{}}""")
+        assertThat(representation).isEqualTo("""{"string":"value","double":7.6,"float":3.2,"long":34,"int":9,"char":"e","short":12,"byte":50,"boolean":false,"object":{},"emptyArray":[],"array":["test"],"arrayFromIterable":["test"],"null":null,"simple":"SimpleObject","custom":{"custom":11},"raw":{}}""")
     }
 
     @Test
@@ -77,6 +77,58 @@ class KosonTest {
         }.toString()
 
         assertThat(representation).isEqualTo("""{"lines":"line 1\nline 2\nline 3"}""")
+    }
+
+    class Person(
+        private val firstName: String,
+        private val lastName: String,
+        private val age: Int
+    ) : CustomKoson {
+        override fun serialize() = obj {
+            "usualName" to "$firstName $lastName"
+            "age" to age
+        }
+    }
+
+    class Status(private val id: String, private val name: String) : CustomKoson {
+        override fun serialize() = obj {
+            "id" to id
+            "name" to name
+        }
+    }
+
+    @Test
+    fun `CustomKoson should be serialized according to override`() {
+        val name = "myName"
+        val description = "desc"
+        val status = Status("OK", "Nice")
+
+        val representation = obj {
+            "data" to obj {
+                "name" to name
+                "description" to description
+                "status" to status
+            }
+        }.toString()
+
+        assertThat(representation).isEqualTo("""{"data":{"name":"myName","description":"desc","status":{"id":"OK","name":"Nice"}}}""")
+    }
+
+    @Test
+    fun `nullable CustomKoson should be serialized`() {
+        val name = "myName"
+        val description = "desc"
+        val status: Status? = null
+
+        val representation = obj {
+            "data" to obj {
+                "name" to name
+                "description" to description
+                "status" to status
+            }
+        }.toString()
+
+        assertThat(representation).isEqualTo("""{"data":{"name":"myName","description":"desc","status":null}}""")
     }
 
     @Test
@@ -102,7 +154,7 @@ class KosonTest {
         ].toString()
         assertThat(representation).isValidJSON()
         assertThat(representation)
-                .isEqualTo("""["value",7.6,3.2,34,9,"e",12,50,false,{},[],["test"],["test","from","iterable"],null,"SimpleObject","Customized",{}]""")
+                .isEqualTo("""["value",7.6,3.2,34,9,"e",12,50,false,{},[],["test"],["test","from","iterable"],null,"SimpleObject",{"custom":11},{}]""")
     }
 
     object ContainsDoubleQuotesAndBackslashes {
@@ -735,7 +787,9 @@ class KosonTest {
                             "        $cr" +
                             "      ],$cr" +
                             "      \"simpleObject\": \"SimpleObject\",$cr" +
-                            "      \"custom\": \"Customized\",$cr" +
+                            "      \"custom\": {$cr" +
+                            "        \"custom\": 11$cr" +
+                            "      },$cr" +
                             "      \"raw\": [],$cr" +
                             "      \"objectInside\": {$cr" +
                             "        \"to\": 34,$cr" +
@@ -809,7 +863,9 @@ class KosonTest {
                             "          $cr" +
                             "        ],$cr" +
                             "        \"simpleObject\": \"SimpleObject\",$cr" +
-                            "        \"custom\": \"Customized\",$cr" +
+                            "        \"custom\": {$cr" +
+                            "          \"custom\": 11$cr" +
+                            "        },$cr" +
                             "        \"raw\": [],$cr" +
                             "        \"objectInside\": {$cr" +
                             "          \"to\": 34,$cr" +

@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog], and this project adheres to https://semver.org/spec/v2.0.0.html[Semantic Versioning].
 
+== [1.2.0] New CustomKoson contract
+
+=== Added
+
+WARNING: Breaking change
+
+* CustomKoson will now require to override `serialize(): KosonType`, instead of `serialize: String` which allows for a safer type hierarchy (no need to escape illegal chars)
+
 == [1.1.0] Escaping line separators
 
 === Added
