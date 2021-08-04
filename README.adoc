@@ -141,7 +141,7 @@ arr[setOf("element", 12.345, null)]
 
 == Pretty print
 
-When using the `pretty()` method on `obj` or `arr`, you can define the number of whitespaces used for tabulation.Default value is `2`.
+When using the `pretty()` method on `obj` or `arr`, you can define the number of whitespaces used for tabulation.Default value is `2`. 
 
 [source,Kotlin]
 ----
