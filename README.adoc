@@ -2,7 +2,7 @@ image:https://github.com/lectra-tech/koson/blob/master/image/koson-logo.png["Kos
 
 = Koson
 
-image:https://travis-ci.com/lectra-tech/koson.svg?branch=master["koson build", link="https://travis-ci.com/lectra-tech/koson"] image:https://codecov.io/gh/lectra-tech/koson/branch/master/graph/badge.svg["koson coverage", link="https://codecov.io/gh/lectra-tech/koson"] image:https://img.shields.io/maven-central/v/com.lectra/koson.svg["Maven Central", link="https://search.maven.org/search?q=g:com.lectra%20AND%20a:koson"] image:https://kotlin.link/awesome-kotlin.svg["awesome kotlin badge", link="https://github.com/KotlinBy/awesome-kotlin"]
+image:https://github.com/lectra-R-D/koson/actions/workflows/deploy.yml/badge.svg?branch=master["Deploy koson", link:"https://github.com/lectra-R-D/koson/actions/workflows/deploy.yml"] image:https://codecov.io/gh/lectra-tech/koson/branch/master/graph/badge.svg["koson coverage", link="https://codecov.io/gh/lectra-tech/koson"] image:https://img.shields.io/maven-central/v/com.lectra/koson.svg["Maven Central", link="https://search.maven.org/search?q=g:com.lectra%20AND%20a:koson"] image:https://kotlin.link/awesome-kotlin.svg["awesome kotlin badge", link="https://github.com/KotlinBy/awesome-kotlin"]
 
 A concise and lightweight `Kotlin` DSL to build `JSON` objects and render their _String representations_
 
