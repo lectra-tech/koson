@@ -538,6 +538,33 @@ class KosonTest {
         }
 
         @Test
+        fun `object with nullable inner object must render`() {
+            val anObject: ObjectType? = obj { "att" to "value" }
+            val aContainer = obj { "inner" to anObject }
+            val representation = aContainer.toString()
+            assertThat(representation).isValidJSON()
+            assertThat(representation).isEqualTo("""{"inner":{"att":"value"}}""")
+        }
+
+        @Test
+        fun `object with nullable inner array must render`() {
+            val anArray: ArrayType? = arr["value"]
+            val aContainer = obj { "inner" to anArray }
+            val representation = aContainer.toString()
+            assertThat(representation).isValidJSON()
+            assertThat(representation).isEqualTo("""{"inner":["value"]}""")
+        }
+
+        @Test
+        fun `object with nullable raw json must render`() {
+            val aRawJson: RawJsonType? = RawJsonType("""{"att":"value"}""")
+            val aContainer = obj { "inner" to aRawJson }
+            val representation = aContainer.toString()
+            assertThat(representation).isValidJSON()
+            assertThat(representation).isEqualTo("""{"inner":{"att":"value"}}""")
+        }
+
+        @Test
         fun `object with all nullable Java types must render`() {
             val obj = obj {
                 "string" to NullableTypes.STRING

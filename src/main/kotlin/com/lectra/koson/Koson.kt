@@ -42,16 +42,16 @@ class Koson(internal val objectType: ObjectType = ObjectType()) {
         objectType.values[this] = if (value == null) NullType else CustomKosonType(value)
     }
 
-    infix fun String.to(value: ObjectType) {
-        objectType.values[this] = value
+    infix fun String.to(value: ObjectType?) {
+        objectType.values[this] = value ?: NullType
     }
 
-    infix fun String.to(value: ArrayType) {
-        objectType.values[this] = value
+    infix fun String.to(value: ArrayType?) {
+        objectType.values[this] = value ?: NullType
     }
 
-    infix fun String.to(value: RawJsonType) {
-        objectType.values[this] = value
+    infix fun String.to(value: RawJsonType?) {
+        objectType.values[this] = value ?: NullType
     }
 
     @Suppress("UNUSED_PARAMETER")
