@@ -33,14 +33,14 @@ jobs:
         run: |
           echo -n "$GPG_OWNERTRUST" | base64 --decode | gpg --import-ownertrust
 
-      - name: Configureg Maven Settings
+      - name: Configure Maven Settings
         run : cp .github/workflows/settings.xml $HOME/.m2/settings.xml
 
       - name: Build with Maven
         run:  |
           gpg --list-keys
           gpg --list-secret-keys
-          mvn -B -DskipTests=true clean deploy -Prelease
+          mvn -B clean deploy -Prelease
 
       - name: Bump version and push tag
         id: tag_version
