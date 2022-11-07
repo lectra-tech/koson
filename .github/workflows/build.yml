@@ -1,0 +1,27 @@
+name: Build branches
+
+on:
+  push:
+    branches-ignore:
+      - 'master'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Scm
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'
+          distribution: 'adopt'
+          cache: maven
+
+      - name: Configure Maven Settings
+        run : cp .github/workflows/settings.xml $HOME/.m2/settings.xml
+
+      - name: Build with Maven
+        run:  |
+          mvn clean test
