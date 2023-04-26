@@ -22,6 +22,14 @@ jobs:
       - name: Configure Maven Settings
         run : cp .github/workflows/settings.xml $HOME/.m2/settings.xml
 
+      - name: Compute version
+        id: compute_version
+        uses: mathieudutour/github-tag-action@v6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          dry_run: true
+
       - name: Build with Maven
         run:  |
+          echo "[INFO] if merged, this build would be deployed in koson:${{ steps.compute_version.outputs.new_version }}"
           mvn clean test
