@@ -28,6 +28,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           dry_run: true
+          release_branches: ".*"
 
       - name: Build with Maven
         run:  |
