@@ -36,21 +36,34 @@ jobs:
       - name: Configure Maven Settings
         run : cp .github/workflows/settings.xml $HOME/.m2/settings.xml
 
+      - name: Compute version
+        id: compute_version
+        uses: mathieudutour/github-tag-action@v6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          dry_run: true
+
+      - name: Change project version
+        run: |
+          mvn -B versions:set versions:commit -DnewVersion=${{ steps.compute_version.outputs.new_version }}
+          git config --global user.name "Lectra CI User"
+          git config --global user.email "lectra.ci.user@lectra.com"
+          git commit -a -m "chore: update project version to ${{ steps.compute_version.outputs.new_version }}"
+
       - name: Build with Maven
         run:  |
           gpg --list-keys
           gpg --list-secret-keys
           mvn -B clean deploy -Prelease
 
-      - name: Bump version and push tag
-        id: tag_version
-        uses: mathieudutour/github-tag-action@v6.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Tag project
+        run:  |
+          git tag -m "release ${{ steps.compute_version.outputs.new_tag }}" ${{ steps.compute_version.outputs.new_tag }}
+          git push origin ${{ steps.compute_version.outputs.new_tag }}
 
       - name: Create a GitHub release
         uses: ncipollo/release-action@v1
         with:
-          tag: ${{ steps.tag_version.outputs.new_tag }}
-          name: ${{ steps.tag_version.outputs.new_tag }}
-          body: ${{ steps.tag_version.outputs.changelog }}
+          tag: ${{ steps.compute_version.outputs.new_tag }}
+          name: ${{ steps.compute_version.outputs.new_tag }}
+          body: ${{ steps.compute_version.outputs.changelog }}
