@@ -61,6 +61,7 @@ jobs:
         run:  |
           git tag -m "release ${{ steps.compute_version.outputs.new_tag }}" ${{ steps.compute_version.outputs.new_tag }}
           git push origin ${{ steps.compute_version.outputs.new_tag }}
+          git push origin HEAD:main
 
       - name: Create a GitHub release
         uses: ncipollo/release-action@v1
