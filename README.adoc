@@ -1,8 +1,8 @@
-image:https://github.com/lectra-tech/koson/blob/master/image/koson-logo.png["Koson Logo", link="https://github.com/lectra-tech/koson", align="center"]
+image:https://github.com/lectra-tech/koson/blob/main/image/koson-logo.png["Koson Logo", link="https://github.com/lectra-tech/koson", align="center"]
 
 = Koson
 
-image:https://github.com/lectra-tech/koson/actions/workflows/deploy.yml/badge.svg?branch=master["Deploy koson", link:"https://github.com/lectra-tech/koson/actions/workflows/deploy.yml"] image:https://codecov.io/gh/lectra-tech/koson/branch/master/graph/badge.svg["koson coverage", link="https://codecov.io/gh/lectra-tech/koson"] image:https://img.shields.io/maven-central/v/com.lectra/koson.svg["Maven Central", link="https://search.maven.org/search?q=g:com.lectra%20AND%20a:koson"] image:https://kotlin.link/awesome-kotlin.svg["awesome kotlin badge", link="https://github.com/KotlinBy/awesome-kotlin"]
+image:https://github.com/lectra-tech/koson/actions/workflows/deploy.yml/badge.svg?branch=main["Deploy koson", link:"https://github.com/lectra-tech/koson/actions/workflows/deploy.yml"] image:https://codecov.io/gh/lectra-tech/koson/branch/main/graph/badge.svg["koson coverage", link="https://codecov.io/gh/lectra-tech/koson"] image:https://img.shields.io/maven-central/v/com.lectra/koson.svg["Maven Central", link="https://search.maven.org/search?q=g:com.lectra%20AND%20a:koson"] image:https://kotlin.link/awesome-kotlin.svg["awesome kotlin badge", link="https://github.com/KotlinBy/awesome-kotlin"]
 
 A concise and lightweight `Kotlin` DSL to build `JSON` objects and render their _String representations_
 
@@ -12,7 +12,7 @@ Available on link:https://search.maven.org/search?q=g:com.lectra%20AND%20a:koson
 
 Now part of https://kotlin.link/[Awesome Kotlin] !
 
-image:https://github.com/lectra-tech/koson/blob/master/image/live.gif["Live"]
+image:https://github.com/lectra-tech/koson/blob/main/image/live.gif["Live"]
 
 == DSL
 
@@ -163,7 +163,7 @@ arr[ ... ].pretty(3)
 ====
 In IntelliJ, a compilation error will appear, and code will be flagged as not reachable
 
-image:https://github.com/lectra-tech/koson/blob/master/image/koson-typing.png["Koson Typing"]
+image:https://github.com/lectra-tech/koson/blob/main/image/koson-typing.png["Koson Typing"]
 ====
 
 * A JSON value of an _obj { }_ or an _arr[...]_ can be one of the following `Kotlin` or _Koson DSL_ instances
